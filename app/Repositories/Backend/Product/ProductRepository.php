@@ -37,9 +37,8 @@ class ProductRepository extends BaseRepository {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create($input) {
-		$user = $this->modal->create($input);
-		$user->roles()->sync($input['roles']);
-		return $user;
+		$product = Product::create($input);
+		return $product;
 	}
 
 	/**
@@ -49,10 +48,9 @@ class ProductRepository extends BaseRepository {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(array $input, $user) {
-		$user->update($input);
-		$user->roles()->sync($input['roles']);
-		return $user;
+	public function update(array $input, $product) {
+		$product = $product->update($input);
+		return $product;
 	}
 	/**
 	 * Update the specified resource in storage.
@@ -61,8 +59,8 @@ class ProductRepository extends BaseRepository {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($user) {
-		return $user->load('roles');
+	public function show($product) {
+		return $product;
 	}
 	/**
 	 * Remove the specified resource from storage.
@@ -70,8 +68,8 @@ class ProductRepository extends BaseRepository {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($user) {
-		return $user->delete();
+	public function destroy($product) {
+		return $product->delete();
 	}
 	/**
 	 * Remove the specified resource from storage.

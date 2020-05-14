@@ -1,23 +1,20 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Backend\Product;
 
 use App\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
-{
-    public function authorize()
-    {
-        return \Gate::allows('product_create');
-    }
+class StoreProductRequest extends FormRequest {
+	public function authorize() {
+		return \Gate::allows('product_create');
+	}
 
-    public function rules()
-    {
-        return [
-            'name' => [
-                'required',
-            ],
-        ];
-    }
+	public function rules() {
+		return [
+			'name' => [
+				'required',
+			],
+		];
+	}
 }
