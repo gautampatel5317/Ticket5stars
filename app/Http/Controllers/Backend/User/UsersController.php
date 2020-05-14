@@ -53,6 +53,7 @@ class UsersController extends Controller {
 		abort_unless(\Gate::allows('user_create'), 403);
 		$input = $request->except('_token');
 		$user  = $this->user->create($input);
+		flash('The User has been created successfully!')->success()->important();
 		return redirect()->route('admin.users.index');
 	}
 	/**
@@ -78,6 +79,7 @@ class UsersController extends Controller {
 		abort_unless(\Gate::allows('user_edit'), 403);
 		$input = $request->except('_token');
 		$user  = $this->user->update($input, $user);
+		flash('The User has been updated successfully!')->success()->important();
 		return redirect()->route('admin.users.index');
 	}
 	/**
@@ -97,7 +99,19 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(User $user) {
+	public function deleteUser(User $user) {
+		abort_unless(\Gate::allows('user_delete'), 403);
+		$user = $this->user->destroy($user);
+		flash('The User has been deleted successfully!')->success()->important();
+		return back();
+	}
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id) {
 		abort_unless(\Gate::allows('user_delete'), 403);
 		$user = $this->user->destroy($user);
 		return back();

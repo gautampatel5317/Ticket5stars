@@ -1,5 +1,6 @@
 @extends('backend.layouts.admin')
 @section('content')
+@include('flash::message')
 <div class="card">
     <div class="card-header">
         {{ trans('global.create') }} {{ trans('global.user.title_singular') }}

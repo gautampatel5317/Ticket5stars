@@ -1,17 +1,18 @@
 <?php
 
 namespace App\Models\User;
+use App\Models\ModelTrait;
 use App\Models\Role\Role;
+use App\Models\User\Traits\Attribute\UserAttribute;
 use Carbon\Carbon;
 use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable {
-	use SoftDeletes, Notifiable;
+	use SoftDeletes, Notifiable, ModelTrait, UserAttribute;
 
 	protected $hidden = [
 		'password',
