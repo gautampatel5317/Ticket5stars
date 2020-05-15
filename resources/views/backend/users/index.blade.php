@@ -20,6 +20,9 @@
             <table id="users_table" class=" table table-bordered table-striped table-hover datatable">
                 <thead>
                     <tr>
+                      <th width="10">
+
+                        </th>
                         <th>
                             {{ trans('global.user.fields.name') }}
                         </th>
@@ -28,6 +31,9 @@
                         </th>
                         <th>
                             {{ trans('global.user.fields.email_verified_at') }}
+                        </th>
+                        <th>
+                            {{ trans('global.user.fields.roles') }}
                         </th>
                         <th>
                             {{ trans('Created At') }}
@@ -69,14 +75,15 @@ $(function () {
               type: 'post'
           },
           columns: [
+              {data: 'checkbox', name:'{{ config('tables.users_table')}}.id',visible:false},
               {data: 'name', name:'{{ config('tables.users_table')}}.name'},
               {data: 'email', name: '{{ config('tables.users_table')}}.email'},
               {data: 'email_verified_at', name: '{{ config('tables.users_table')}}.email_verified_at'},
+               {data: 'roles', name: '{{ config('tables.roles_table')}}.title'},
               {data: 'created_at', name: '{{ config('tables.users_table')}}.created_at'},
               {data: 'updated_at', name:   '{{ config('tables.users_table')}}.updated_at'},
               {data: 'actions', name: 'actions', searchable: false, sortable: false},
           ],
-          // order: [[0, "asc"]],
           order: [],
           searchDelay: 500,
           dom: 'lBfrtip',
