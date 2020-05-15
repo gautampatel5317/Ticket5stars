@@ -29,6 +29,19 @@ class UserTableController extends Controller {
 	public function __invoke(Request $request) {
 		return Datatables::of($this->user->getForDataTable())
 			->escapeColumns(['name'])
+			->addColumn('checkbox', function ($user) {
+				return "";
+			})->addColumn('roles', function ($user) {
+				if (!empty($user->roles)) {
+					$roles = [];
+					foreach ($user->roles as $key => $item) {
+						$roles[] = "<span class='badge badge-warning'>$item->title</span>";
+					}
+				} else {
+					return '';
+				}
+				return $roles;
+			})
 			->addColumn('actions', function ($user) {
 				return $user->action_buttons;
 			})
