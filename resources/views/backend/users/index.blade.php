@@ -89,11 +89,11 @@ $(function () {
           dom: 'lBfrtip',
           buttons: {
               buttons: [
-                  { extend: 'copy', className: 'copyButton',  exportOptions: {columns: [ 0, 1, 2,3,4,5 ]  }},
-                  { extend: 'csv', className: 'csvButton',  exportOptions: {columns: [  0, 1, 2,3,4,5 ]  }},
-                  { extend: 'excel', className: 'excelButton',  exportOptions: {columns: [  0, 1, 2,3,4,5 ]  }},
-                  { extend: 'pdf', className: 'pdfButton',  exportOptions: {columns: [  0, 1, 2,3,4,5 ]  }},
-                  { extend: 'print', className: 'printButton',  exportOptions: {columns: [  0, 1, 2,3,4,5 ]  }}
+                  { extend: 'copy', className: 'btn btn-primary copyButton',  exportOptions: {columns: [ 0, 1, 2,3,4,5 ]  }},
+                  { extend: 'csv', className: 'btn btn-primary csvButton',  exportOptions: {columns: [  0, 1, 2,3,4,5 ]  }},
+                  { extend: 'excel', className: 'btn btn-primary excelButton',  exportOptions: {columns: [  0, 1, 2,3,4,5 ]  }},
+                  { extend: 'pdf', className: 'btn btn-primary pdfButton',  exportOptions: {columns: [  0, 1, 2,3,4,5 ]  }},
+                  { extend: 'print', className: 'btn btn-primary printButton',  exportOptions: {columns: [  0, 1, 2,3,4,5 ]  }}
               ]
           }
       });

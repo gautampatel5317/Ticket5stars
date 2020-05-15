@@ -1,22 +1,23 @@
 @extends('backend.layouts.admin')
 @section('content')
-@can('role_create')
+@include('flash::message')
+<div class="card">
+    <div class="card-header form-inline">
+        {{ trans('global.role.title_singular') }} {{ trans('global.list') }}
+        @can('role_create')
     <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.roles.create") }}">
-                {{ trans('global.add') }} {{ trans('global.role.title_singular') }}
+        <div class="col-lg-12" style="margin-left: 1400px;">
+            <a class="btn btn-primary" href="{{ route("admin.roles.create") }}">
+                <i class="fa fa-plus"></i> {{ trans('global.add') }} {{ trans('global.role.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.role.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable">
+            <table id="roles_table" class=" table table-bordered table-striped table-hover datatable">
                 <thead>
                     <tr>
                         <th width="10">
@@ -29,47 +30,10 @@
                             {{ trans('global.role.fields.permissions') }}
                         </th>
                         <th>
-                            &nbsp;
+                            {{ trans('Actions') }}
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($roles as $key => $role)
-                        <tr data-entry-id="{{ $role->id }}">
-                            <td>
-
-                            </td>
-                            <td>
-                                {{ $role->title ?? '' }}
-                            </td>
-                            <td>
-                                @foreach($role->permissions as $key => $item)
-                                    <span class="badge badge-info">{{ $item->title }}</span>
-                                @endforeach
-                            </td>
-                            <td>
-                                @can('role_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.roles.show', $role->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
-                                @can('role_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.roles.edit', $role->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
-                                @can('role_delete')
-                                    <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
             </table>
         </div>
     </div>
@@ -78,40 +42,67 @@
 @section('scripts')
 @parent
 <script>
-    $(function () {
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.roles.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
-          return $(entry).data('entry-id')
+$(function () {
+     // Ajax Data Load
+     $('tr > td').removeClass('select-checkbox');
+      var dataTable = $('#roles_table').DataTable({
+          "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+          ],
+          processing: true,
+          serverSide: true,
+          ajax: {
+              url: '{{ route("admin.roles.get") }}',
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              type: 'post'
+          },
+          columns: [
+              {data: 'checkbox', name:'{{ config('tables.roles_table')}}.id',visible:false},
+              {data: 'title', name:'{{ config('tables.roles_table')}}.title'},
+              {data: 'permission', name: '{{ config('tables.permissions_table')}}.title'},
+              {data: 'action_buttons', name: 'action_buttons', searchable: false, sortable: false},
+          ],
+          order: [],
+          searchDelay: 500,
+          dom: 'lBfrtip',
+          buttons: {
+              buttons: [
+                  { extend: 'copy', className: 'copyButton btn btn-primary',  exportOptions: {columns: [1,2]  }},
+                  { extend: 'csv', className: 'csvButton btn-primary',  exportOptions: {columns: [1,2]  }},
+                  { extend: 'excel', className: 'excelButton btn-primary',  exportOptions: {columns: [1,2]  }},
+                  { extend: 'pdf', className: 'pdfButton btn-primary',  exportOptions: {columns: [1,2]  }},
+                  { extend: 'print', className: 'printButton btn-primary',  exportOptions: {columns: [1,2]  }}
+              ]
+          }
       });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('role_delete')
-  dtButtons.push(deleteButton)
-@endcan
-
-  $('.datatable:not(.ajaxTable)').DataTable({ buttons: dtButtons })
-})
-
+  });
+    /* End Ajax Load Data */
+        $(document).on('click','.delete_record',function(e){
+          var delId = jQuery(this).attr('data');
+          var deleteUrl = window.origin+`/admin/roles/${delId}/delete`;
+          console.log(deleteUrl);
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to delete this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.value) {
+              window.location.href = deleteUrl;
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+            }
+        });
+          e.preventDefault();
+      });
 </script>
 @endsection
