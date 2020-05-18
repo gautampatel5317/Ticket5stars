@@ -36,3 +36,8 @@
 172.18.0.1 - - [18/May/2020:05:57:15 +0000] "GET /admin/users/create HTTP/1.1" 200 22136 "http://localhost:8080/admin/users" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
 172.18.0.1 - - [18/May/2020:05:57:17 +0000] "POST /admin/users HTTP/1.1" 302 416 "http://localhost:8080/admin/users/create" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
 172.18.0.1 - - [18/May/2020:05:57:17 +0000] "GET /admin/users/create HTTP/1.1" 200 22433 "http://localhost:8080/admin/users/create" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
+172.18.0.1 - - [18/May/2020:07:20:46 +0000] "GET / HTTP/1.1" 302 280 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
+172.18.0.1 - - [18/May/2020:07:20:47 +0000] "GET /login HTTP/1.1" 200 2730 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
+172.18.0.1 - - [18/May/2020:07:20:47 +0000] "GET /css/adminltev3.css HTTP/1.1" 200 247410 "http://localhost:8080/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
+172.18.0.1 - - [18/May/2020:07:20:48 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://localhost:8080/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
+172.18.0.1 - - [18/May/2020:07:20:52 +0000] "POST /login HTTP/1.1" 500 567305 "http://localhost:8080/login" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"

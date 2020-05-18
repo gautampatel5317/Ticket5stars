@@ -37,8 +37,8 @@ services:
     ports:
       - "3307:3306"
     environment:         
-      MYSQL_DATABASE: angage       
-      MYSQL_ROOT_PASSWORD: angage@123
+      MYSQL_DATABASE: ticketmaster       
+      MYSQL_ROOT_PASSWORD: Admin@123
     volumes:
       - ../Docker/dbdata:/var/lib/mysql/
       - ../Docker/mysql/my.cnf:/etc/mysql/my.cnf
