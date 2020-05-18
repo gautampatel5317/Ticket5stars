@@ -16,9 +16,9 @@ RUN groupadd -g $GID -o $UNAME
 RUN useradd -r -u $UID -g $GID -o -s /bin/bash $UNAME
 # Copy composer.lock and composer.json
 #RUN cd ../Ticket5stars
-ADD  ./Ticket5stars/composer.json /var/www/
+ADD  ./composer.json /var/www/
 # Copy existing application directory contents
-ADD ./Ticket5stars /var/www
+ADD ./ /var/www
 # existing application directory permissions
 RUN chown -R $UNAME:$UNAME /var/www/bootstrap storage/logs
 # Change current user to www
