@@ -22,6 +22,7 @@ class CreateCustomerTable extends Migration
             $table->enum('business',['1 to 3 months','3 to 6 months','6 to 12 months','1 year +','2 year +','3 year +','Over 3 years']);
             $table->enum('confirmed',['0','1'])->default('0');
             $table->enum('status',['0','1']);
+            $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });
     }

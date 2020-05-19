@@ -22,7 +22,7 @@ class CustomerRepository extends BaseRepository
 	 * @return mixed
 	 */
 	public function getForDataTable() {
-		return $this->modal->all();
+		return $this->model->all();
 	}
     /**
      *
@@ -34,6 +34,35 @@ class CustomerRepository extends BaseRepository
     {
         return Customer::create($input);
     }
+        
+    /**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(array $input, $customer) {
+		return $customer->update($input);
+    }
+    	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($customer) {
+		return $customer->delete();
+	}
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function massdestroy($request) {
+		return $this->model->whereIn('id', $request)->delete();
+	}
 
 }
 

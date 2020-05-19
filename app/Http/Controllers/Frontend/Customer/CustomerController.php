@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\StoreCustomer;
 use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 use App\Repositories\Frontend\Customer\CustomerRepository;
@@ -41,15 +42,8 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCustomer $request)
     {
-        $this->validate($request, [
-            'first_name' => 'required',
-            'family_name' => 'required',
-            'email' => 'required|email|unique:customers',
-            'experience' => 'required',
-            'business' => 'required'
-        ]);
         $input   = $request->except('_token');
 		$customer = $this->customer->create($input);
         return redirect()->route('customer.index')->with('success', 'Successfully Signup!');
