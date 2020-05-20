@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">Project</span>
+    <a href="{{ route('admin.home') }}" class="brand-link"  style="width: 250px;height: 104px;text-align: center;margin-top: -30px;">
+        <span class="brand-text font-weight-light"><img style="width:100px;" src="{{ \URL::to('/images/site_logo.png') }}"></span>
     </a>
 
     <!-- Sidebar -->
