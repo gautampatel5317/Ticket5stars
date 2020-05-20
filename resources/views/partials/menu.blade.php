@@ -21,6 +21,23 @@
                         </p>
                     </a>
                 </li>
+                 <li class="nav-item">
+                    <a href="{{ route('admin.video') }}" class="nav-link">
+                        <p>
+                            <i class="fas fa-video"></i>
+                            <span>{{ trans('Video') }}</span>
+                        </p>
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a href="{{ route('admin.calander') }}" class="nav-link">
+                        <p>
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>{{ trans('Calender') }}</span>
+                        </p>
+                    </a>
+                </li>
+
                 @can('user_management_access')
                     <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">
                         <a class="nav-link nav-dropdown-toggle">
