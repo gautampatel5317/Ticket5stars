@@ -37,6 +37,14 @@
                         </p>
                     </a>
                 </li>
+                 <li class="nav-item">
+                    <a href="{{ route('admin.barcode') }}" class="nav-link">
+                        <p>
+                          <i class="fas fa-qrcode"></i>
+                            <span>{{ trans('QR-CODE') }}</span>
+                        </p>
+                    </a>
+                </li>
 
                 @can('user_management_access')
                     <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">

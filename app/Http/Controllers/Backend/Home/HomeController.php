@@ -44,4 +44,8 @@ class HomeController {
 		// dd($calendar);
 		return view('calander', compact('calendar'));
 	}
+	public function barCode(Request $request) {
+		$qrCode = \QrCode::format('svg')->size(200)->generate('Ticketstar QRCODE!');
+		return view('barcode', compact('qrCode'));
+	}
 }
