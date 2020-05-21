@@ -11,8 +11,17 @@ trait UserAttribute {
 	public function getActionButtonsAttribute() {
 		return '<div class="btn-group action-btn">'.
 		$this->editButton('edit-blog', 'admin.users.edit').
+		$this->view('edit-blog', 'admin.users.show').
 		$this->deleteButton('delete-blog', 'admin.users.destroy').
 		'</div>';
+	}
+	/**
+	 * Show Users
+	 */
+	public function view($permission, $route) {
+		return '<a href="'.route($route, $this).'" class="text-success pr-2">
+                    <i data-toggle="tooltip" data-placement="top" title="View" class="fas fa-eye"></i>
+                </a>';
 	}
 	/**
 	 * @return string

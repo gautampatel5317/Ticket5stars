@@ -8,7 +8,7 @@
         <title>{{ trans('global.site_title') }}</title>
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
         <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
-        {{ Html::style('css/backend2/backend-custom.css') }}
+        {{ Html::style('css/backend/backend-custom.css') }}
         @yield('styles')
     </head>
     <body class="sidebar-mini sidebar-open" style="height: auto;">
@@ -60,7 +60,7 @@
                 {{ csrf_field() }}
             </form>
         </div>
-        {{ Html::script('js/backend2/backend-custom.js') }}
+        {{ Html::script('js/backend/backend-custom.js') }}
         <script type="text/javascript">
         $(function() {
         let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
@@ -76,8 +76,8 @@
         var moduleConfig = '';
         </script>
         @yield('scripts')
-        {{ Html::script('js/backend2/additional-methods.min.js') }}
-        {{ Html::script('js/backend2/adminlte.js') }}
+        {{ Html::script('js/backend/additional-methods.min.js') }}
+        {{ Html::script('js/backend/adminlte.js') }}
         @yield('after-scripts')
     </body>
 </html>

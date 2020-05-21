@@ -136,7 +136,6 @@ $(function () {
 @can('user_delete')
   dtButtons.push(deleteButton)
 @endcan
-  // $  ('.datatable:not(.ajaxTable)').DataTable({ buttons: dtButtons })
     $(document).on('click','.delete_record',function(e){
           var delId = jQuery(this).attr('data');
           console.log(delId);
