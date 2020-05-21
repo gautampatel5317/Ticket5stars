@@ -23,7 +23,7 @@ mix.js('resources/js/app.js', 'public/js')
       'public/css/backend/dropzone.min.css',
       'public/css/backend/toastr.css',
       'public/css/backend/adminltev3.css',
-      'public/css/backend/videojs-seek-buttons.css',
+      // 'public/css/backend/videojs-seek-buttons.css',
       'public/css/backend/custom.css',
     ],'public/css/backend/backend-custom.css')
     .scripts([

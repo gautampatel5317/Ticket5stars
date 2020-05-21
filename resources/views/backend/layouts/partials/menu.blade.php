@@ -10,7 +10,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route("admin.home") }}" class="nav-link">
+                    <a href="{{ route("admin.home") }}" class="nav-link  {{ request()->is('admin') || request()->is('admin') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-tachometer-alt">
                             </i>
@@ -19,7 +19,7 @@
                     </a>
                 </li>
                   <li class="nav-item">
-                    <a href="{{ route('admin.video') }}" class="nav-link">
+                    <a href="{{ route('admin.video') }}" class="nav-link {{ request()->is('admin/video') || request()->is('admin/video/*') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-video"></i>
                             <span>{{ trans('Video') }}</span>
@@ -27,10 +27,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.calander') }}" class="nav-link">
+                    <a href="{{ route('admin.calander') }}" class="nav-link {{ request()->is('admin/calander') || request()->is('admin/calander') ? 'active' : '' }}">
                         <p>
                             <i class="far fa-calendar-times"></i>
                             <span>{{ trans('Calander') }}</span>
+                        </p>
+                    </a>
+                </li>
+                  <li class="nav-item">
+                    <a href="{{ route('admin.barcode') }}" class="nav-link {{ request()->is('admin/barcode') || request()->is('admin/barcode') ? 'active' : '' }}">
+                        <p>
+                            <i class="fas fa-barcode"></i>
+                            <span>{{ trans('QRCODE') }}</span>
                         </p>
                     </a>
                 </li>

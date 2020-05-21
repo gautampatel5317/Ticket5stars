@@ -1,15 +1,18 @@
 @extends('backend.layouts.admin')
-@section('content')
-<div class="content">
-   <div class="card">
-        <div class="card-header">
-        </div>
-        <div class="card-body">
-        	<div class="visible-print text-center">
-        			{!! $qrCode !!}
-        	</div>
-        </div>
-    </div>
+@section('page-header')
+{{ trans('QRCODE') }}
 @endsection
-@section('scripts')
+@section('content')
+<div class="container-fluid">
+	<div class="card card-primary card-outline">
+		<div class="card-body">
+			<div class="visible-print text-center">
+				{!! $qrCode !!}
+			</div>
+		</div>
+	</div>
+</div>
+@endsection
+<!-- JAvascript Included-->
+@section('after-scripts')
 @endsection
