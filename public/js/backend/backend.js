@@ -318,7 +318,7 @@ var Backend = {
                 }
             },
         },
-        Company: function(event) {
+        Users: function(event) {
         var Rules = Backend.Validate.init;
         var $validator = $(".form-validate-jquery").validate({
         errorClass: Rules.errorClass,
@@ -328,284 +328,25 @@ var Backend = {
         rules: {
             vali: "required",
             name: {
-                required: true,
-                
+                required: true                
             },
-            description: {
+            email: {
                 required: true
             },
-            logo: {
-                required: true,
-                accept:"image/*",
+            password: {
+                required: true               
             },
-            domain: {
-                required: true,
-            },
-            sub_domain: {
-                required: true
-            },
-            license_key: {
-                required: true
-            },            
-            start_date: {
-                required: true,
-                date:true                
-            },
-            end_date: {
-                required: true,
-                date:true
-                
-            }          
+             'roles[]' :"required"
         },
         messages: {
             name: 'The name field is required!',
-            description: 'The description field is required!',
-            logo:'The logo field is required!',            
-            domain: 'The domain field is required!',
-            sub_domain: 'The subdomain field is required!',
-            start_date: 'The startdate field is required!',
-            end_date: 'The enddate field is required'
+            email: 'The email field is required!',
+            password:'The password field is required!',            
+            roles: 'The roles field is required!'
+            
         }
     });
     Backend.Validate.$validator = $validator;
-},
-        Venue: function(event) {
-                var Rules = Backend.Validate.init;
-                var $validator = $(".form-validate-jquery").validate({
-                errorClass: Rules.errorClass,
-                highlight: Rules.highlight,
-                unhighlight: Rules.unhighlight,
-                errorPlacement: Rules.errorPlacement,
-                rules: {
-                    vali: "required",
-                    name: {
-                        required: true
-                    },
-                    image: {
-                        required: true
-                    },
-                    status:{
-                        required:true
-                    }
-                },
-                messages: {
-                }
-            });
-            Backend.Validate.$validator = $validator;
-        },
-        PaymentGateway: function(event) {
-            var Rules = Backend.Validate.init;
-            var $validator = $(".form-validate-jquery").validate({
-            errorClass: Rules.errorClass,
-            highlight: Rules.highlight,
-            unhighlight: Rules.unhighlight,
-            errorPlacement: Rules.loginValidateError,
-            rules: {
-                vali: "required",
-                name: {
-                    required: true
-                },
-                status:{
-                    required:true
-                }
-            },
-            messages: {
-            }
-        });
-        Backend.Validate.$validator = $validator;
     },
-        BillingPlan: function(event) {
-                var Rules = Backend.Validate.init;
-                var $validator = $(".form-validate-jquery").validate({
-                errorClass: Rules.errorClass,
-                highlight: Rules.highlight,
-                unhighlight: Rules.unhighlight,
-                errorPlacement: Rules.errorPlacement,
-                rules: {
-                    vali: "required",
-                    title: {
-                        required: true
-                    },
-                    currency: {
-                        required: true
-                    },
-                    tax_value: {
-                        required: true
-                    },
-                    amounts:{
-                        required:true
-                    },
-                    'perhead[]' :"required",
-                    'amount[]' :"required",
-                    status:{
-                        required:true
-                    }
-                },
-                messages: {
-                    title: "Please enter the title.",
-                    currency: "Please select the currency.",
-                    tax_value: "Please enter the tax value",
-                    status: "Please select the status",
-                    "perhead[]": "Please enter per head.",
-                    "amount[]": "Please enter amount.",
-                    amounts: "Please enter amount"
-
-                }
-            });
-            
-
-            Backend.Validate.$validator = $validator;
-
-            // add valid and remove error classes on select2 element if valid
-            $('.select2-hidden-accessible').on('change', function() {
-                if($(this).valid()) {
-                    $(this).next('span').removeClass('is-invalid');
-                }
-            });
-        },
-        Game: function(event) {
-                var Rules = Backend.Validate.init;
-                var $validator = $(".form-validate-jquery").validate({
-                errorClass: Rules.errorClass,
-                highlight: Rules.highlight,
-                unhighlight: Rules.unhighlight,
-                errorPlacement: Rules.errorPlacement,
-                rules: {
-                    ignore: '.note-editor *',
-                    vali: "required",
-                    name: {
-                        required: true,
-                        alphanumericwithspace:true,
-                    },
-                    description: {
-                        required: true
-                    },
-
-                    image:{
-                        accept:"image/*"
-                    },
-                    status:{
-                        required:true
-                    }
-                },
-                messages: {
-                    name: {
-                        'required': "Please enter the game name.",
-                    },
-                    description: "Please enter the description.",
-                    image:"Please select valid image.",
-                    status: "Please select the status",
-                }
-            });
-            
-            Backend.Validate.$validator = $validator;
-        },
-        GameVenue: function(event) {
-                var Rules = Backend.Validate.init;
-                var $validator = $(".form-validate-jquery").validate({
-                errorClass: Rules.errorClass,
-                highlight: Rules.highlight,
-                unhighlight: Rules.unhighlight,
-                errorPlacement: Rules.errorPlacement,
-                rules: {
-                    ignore: '.note-editor *',
-                    vali: "required",
-                    "venue[]": "required"
-                },
-                messages: {
-                   "venue[]" : "Please select venue"
-                }
-            });
-            
-            Backend.Validate.$validator = $validator;
-        },
-        GameTiming: function(event) {
-                var Rules = Backend.Validate.init;
-                var $validator = $(".form-validate-jquery").validate({
-                errorClass: Rules.errorClass,
-                highlight: Rules.highlight,
-                unhighlight: Rules.unhighlight,
-                errorPlacement: Rules.errorPlacement,
-                rules: {
-                    vali: "required",
-                    "game_date[]": "required",
-                    "start_time[]": "required",
-                    "end_time[]": "required",
-                    "min_participants[]":"required",
-                    "max_participants[]":"required",
-                    "billing_plan_id[]":"required",
-                },
-                messages: {
-                   "game_date[]" : "Please select date",
-                   "start_time[]" : "Please select start time",
-                   "end_time[]" : "Please select end time",
-                   "min_participants[]" : "Please enter the min participants",
-                   "max_participants[]" : "Please enter the max participants",
-                   "billing_plan_id[]" : "Please select billing plans",
-                }
-            });
-            
-            Backend.Validate.$validator = $validator;
-        },
-        PromoCode: function(event) {
-            var Rules = Backend.Validate.init;
-            var $validator = $(".form-validate-jquery").validate({
-                errorClass: Rules.errorClass,
-                highlight: Rules.highlight,
-                unhighlight: Rules.unhighlight,
-                errorPlacement: Rules.errorPlacement,
-                rules: {
-                    "name": "required",
-                    "numberOfUsers" : {
-                        required: true,
-                        digits:true,
-                    },
-                    "value" : "required",
-                    "minCartValue" : "required",
-                    "maxRedemptionAllowedForUser" : "required",
-                    "maxRedemptionAllowed" : "required"
-                },
-                messages: {
-                    "name" : "Please enter coupon code",
-                    "numberOfUsers" : {
-                        required: "Please enter number of users",
-                        digits: "Please enter valid number",
-                    },
-                    "value" : "Please enter coupon amount",
-                    "minCartValue" : "Please enter minimum cart amount",
-                    "maxRedemptionAllowedForUser" : "Please enter maximum redemption allowed for a user",
-                    "maxRedemptionAllowed" : "Please enter maximum redemption allowed"
-                },	// end messages
-                errorPlacement: function(error, element) {
-                    if(element.attr("name").includes("dayDateSectionDays") || 
-                        element.attr("name").includes("dayTimeSectionDays") || 
-                        element.attr("name").includes("dayDateTimeSectionDays")) {
-                        element.parent().parent().children(".custom-control.custom-radio:last").after(error);
-                    } else if(
-                                element.attr("name") == "name" ||
-                                element.attr("name").includes("dayDateSectionStartDate") || 
-                                element.attr("name").includes("dayDateSectionEndDate") || 
-                                element.attr("name").includes("timeSectionStartTime") || 
-                                element.attr("name").includes("timeSectionEndTime") ||
-                                element.attr("name").includes("dateTimeSectionStartDate") ||
-                                element.attr("name").includes("dateTimeSectionEndDate") ||
-                                element.attr("name").includes("dayDateTimeSectionStartDate") ||
-                                element.attr("name").includes("dayDateTimeSectionEndDate") ||
-                                element.attr("name").includes("dateTimeStartTime") ||
-                                element.attr("name").includes("dateTimeEndTime") ||
-                                element.attr("name").includes("dayTimeStartTime") ||
-                                element.attr("name").includes("dayTimeEndTime") ||
-                                element.attr("name").includes("dayDateTimeStartTime") ||
-                                element.attr("name").includes("dayDateTimeEndTime")) {
-                        element.parent(".input-group").after(error);
-                    } else {
-                        element.after(error)
-                    }
-                    $("label.is-invalid").addClass("invalid-feedback");
-                }
-            });
-            
-            Backend.Validate.$validator = $validator;  
-        }
-    }
+  }
 }

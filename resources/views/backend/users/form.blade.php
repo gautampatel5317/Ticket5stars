@@ -12,7 +12,7 @@
 </div>
 <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
     <label for="email">{{ trans('global.user.fields.email') }}*</label>
-    <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($user) ? $user->email : '') }}">
+    <input type="email" autocomplete="off" id="email" name="email" class="form-control" value="{{ old('email', isset($user) ? $user->email : '') }}">
     @if($errors->has('email'))
     <p class="help-block">
         {{ $errors->first('email') }}
@@ -24,7 +24,7 @@
 </div>
 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
     <label for="password">{{ trans('global.user.fields.password') }}</label>
-    <input type="password" id="password" name="password" class="form-control">
+    <input type="password" autocomplete="off" id="password" name="password" class="form-control">
     @if($errors->has('password'))
     <p class="help-block">
         {{ $errors->first('password') }}
@@ -63,7 +63,7 @@
 @section('after-scripts')
 <script type="text/javascript">
     $(document).ready(function(){
-
+        Backend.Validate.Users();
     });
 </script>
 @endsection
