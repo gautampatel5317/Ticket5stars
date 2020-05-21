@@ -1,57 +1,68 @@
 @extends('backend.layouts.admin')
+@section('page-header')
+    {{ trans('User Management') }}
+@endsection
 @section('content')
 @include('flash::message')
-@can('user_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.users.create") }}">
-                {{ trans('global.add') }} {{ trans('global.user.title_singular') }}
-            </a>
+<div class="container-fluid">
+   <div class="card card-primary card-outline">
+     <div class="card-header">
+        <div class="card-tools">
+          @can('user_create')
+          <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>Add New User</a>
+          @endcan
         </div>
-    </div>
-@endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.user.title_singular') }} {{ trans('global.list') }}
-    </div>
+     </div>
+      <div class="card-body">
+         <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+               <div class="col-sm-12 col-md-6"></div>
+                <div class="col-sm-12 col-md-6"></div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="box-body">
+                    <div class="table-responsive-lg data-table-wrapper">
+                        <table id="users_table" class="table table-condensed table-hover table-bordered datatable">
+                        <thead>
+                            <tr>
+                              <th width="10">
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <table id="users_table" class=" table table-bordered table-striped table-hover datatable">
-                <thead>
-                    <tr>
-                      <th width="10">
+                                </th>
+                                <th>
+                                    {{ trans('global.user.fields.name') }}
+                                </th>
+                                <th>
+                                    {{ trans('global.user.fields.email') }}
+                                </th>
+                                <th>
+                                    {{ trans('global.user.fields.email_verified_at') }}
+                                </th>
+                                <th>
+                                    {{ trans('global.user.fields.roles') }}
+                                </th>
+                                <th>
+                                    {{ trans('Created At') }}
+                                </th>
+                                <th>
+                                    {{ trans('Updated At') }}
+                                </th>
+                                <th>
+                                   {{ trans('Actions') }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        </th>
-                        <th>
-                            {{ trans('global.user.fields.name') }}
-                        </th>
-                        <th>
-                            {{ trans('global.user.fields.email') }}
-                        </th>
-                        <th>
-                            {{ trans('global.user.fields.email_verified_at') }}
-                        </th>
-                        <th>
-                            {{ trans('global.user.fields.roles') }}
-                        </th>
-                        <th>
-                            {{ trans('Created At') }}
-                        </th>
-                        <th>
-                            {{ trans('Updated At') }}
-                        </th>
-                        <th>
-                           {{ trans('Actions') }}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
+                        </tbody>
+                     </table>
+                    </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
 @endsection
 @section('scripts')

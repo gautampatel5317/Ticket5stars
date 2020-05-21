@@ -1,12 +1,13 @@
 @extends('backend.layouts.admin')
+@section('page-header')
+{{ trans('Create User') }}
+@endsection
 @section('content')
-@include('flash::message')
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.create') }} {{ trans('global.user.title_singular') }}
-    </div>
-    <div class="card-body">
-        <form action="{{ route("admin.users.store") }}" method="POST" enctype="multipart/form-data">
+<div class="container-fluid">
+    @include('flash::message')
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            {!! Form::model(null, ['id' => 'create-from','url' => route('admin.users.store'),'enctype'=> 'multipart/form-data','class'=>'form-validate-jquery']) !!}
             @csrf
             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                 <label for="name">{{ trans('global.user.fields.name') }}*</label>
@@ -67,7 +68,8 @@
                 <div>
                     <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
                 </div>
-            </form>
+                {{ Form::close() }}
+            </div>
         </div>
     </div>
-    @endsection
+@endsection
