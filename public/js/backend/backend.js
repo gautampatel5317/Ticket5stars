@@ -317,26 +317,7 @@ var Backend = {
                     elem.removeClass(errorClass);
                 }
             },
-        },
-        Roles:function(event) {
-          var Rules = Backend.Validate.init;
-          var $validator = $(".form-validate-jquery").validate({
-          errorClass: Rules.errorClass,
-          highlight: Rules.highlight,
-          unhighlight: Rules.unhighlight,
-          errorPlacement: Rules.errorPlacement,
-          rules: {
-            vali: "required",
-            title: {
-                required: true                
-            },
-            'permissions[]':"required"
-          },
-          messages: {
-            title: 'The title field is required!',
-            permissions: 'The permissions field is required!',
-        }
-        },
+        },   
         Users: function(event) {
         var Rules = Backend.Validate.init;
         var $validator = $(".form-validate-jquery").validate({
@@ -363,6 +344,27 @@ var Backend = {
             password:'The password field is required!',            
             roles: 'The roles field is required!'
             
+        }
+    });
+    Backend.Validate.$validator = $validator;
+    },
+     Roles: function(event) {
+        var Rules = Backend.Validate.init;
+        var $validator = $(".form-validate-jquery").validate({
+        errorClass: Rules.errorClass,
+        highlight: Rules.highlight,
+        unhighlight: Rules.unhighlight,
+        errorPlacement: Rules.errorPlacement,
+        rules: {
+            vali: "required",
+            title: {
+                required: true                
+            },           
+           'permissions[]':"required"
+        },
+        messages: {
+            title: 'The title field is required!',
+            permissions: 'The permissions field is required!'
         }
     });
     Backend.Validate.$validator = $validator;
