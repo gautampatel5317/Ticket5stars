@@ -1,41 +1,42 @@
 @extends('backend.layouts.admin')
+@section('page-header')
+{{ trans('Role Management') }}
+@endsection
 @section('content')
-@include('flash::message')
-<div class="card">
-    <div class="card-header form-inline">
-        {{ trans('global.role.title_singular') }} {{ trans('global.list') }}
-        @can('role_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12" style="margin-left: 1400px;">
-            <a class="btn btn-primary" href="{{ route("admin.roles.create") }}">
-                <i class="fa fa-plus"></i> {{ trans('global.add') }} {{ trans('global.role.title_singular') }}
-            </a>
-        </div>
-    </div>
-@endcan
-    </div>
+<div class="container-fluid">
+    @include('flash::message')
+    <div class="card card-primary card-outline">
+         <div class="card-header">
+           <div class="card-tools">
+              @can('role_create')
+                <a class="btn btn-primary" href="{{ route("admin.roles.create") }}">
+                   <i class="fa fa-plus"></i> {{ trans('global.add') }} {{ trans('global.role.title_singular') }}
+                </a>
+              @endcan
+           </div>
+         </div>
+          <div class="card-body">
+                  <div class="table-responsive">
+                        <table id="roles_table" class=" table table-bordered table-striped table-hover datatable">
+                            <thead>
+                                <tr>
+                                    <th width="10">
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <table id="roles_table" class=" table table-bordered table-striped table-hover datatable">
-                <thead>
-                    <tr>
-                        <th width="10">
-
-                        </th>
-                        <th>
-                            {{ trans('global.role.fields.title') }}
-                        </th>
-                        <th>
-                            {{ trans('global.role.fields.permissions') }}
-                        </th>
-                        <th>
-                            {{ trans('Actions') }}
-                        </th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+                                    </th>
+                                    <th>
+                                        {{ trans('global.role.fields.title') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('global.role.fields.permissions') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('Actions') }}
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                  </div>
+          </div>
     </div>
 </div>
 @endsection

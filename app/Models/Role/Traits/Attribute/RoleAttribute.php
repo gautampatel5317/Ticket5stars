@@ -11,8 +11,17 @@ trait RoleAttribute {
 	public function getActionButtonsAttribute() {
 		return '<div class="btn-group action-btn">'.
 		$this->editButton('edit-blog', 'admin.roles.edit').
+		$this->view('role_show', 'admin.roles.show').
 		$this->deleteButton('delete-blog', 'admin.roles.destroy').
 		'</div>';
+	}
+	/**
+	 * Show Roles
+	 */
+	public function view($permission, $route) {
+		return '<a href="'.route($route, $this).'" class="text-success pr-2">
+                    <i data-toggle="tooltip" data-placement="top" title="View" class="fas fa-eye"></i>
+                </a>';
 	}
 	/**
 	 * @return string
