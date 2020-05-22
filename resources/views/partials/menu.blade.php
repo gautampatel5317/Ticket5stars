@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">Project</span>
+    <a href="{{ route('admin.home') }}" class="brand-link"  style="width: 250px;height: 104px;text-align: center;margin-top: -30px;">
+        <span class="brand-text font-weight-light"><img style="width:100px;" src="{{ \URL::to('/images/site_logo.png') }}"></span>
     </a>
 
     <!-- Sidebar -->
@@ -21,6 +21,31 @@
                         </p>
                     </a>
                 </li>
+                 <li class="nav-item">
+                    <a href="{{ route('admin.video') }}" class="nav-link">
+                        <p>
+                            <i class="fas fa-video"></i>
+                            <span>{{ trans('Video') }}</span>
+                        </p>
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a href="{{ route('admin.calander') }}" class="nav-link">
+                        <p>
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>{{ trans('Calender') }}</span>
+                        </p>
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a href="{{ route('admin.barcode') }}" class="nav-link">
+                        <p>
+                          <i class="fas fa-qrcode"></i>
+                            <span>{{ trans('QR-CODE') }}</span>
+                        </p>
+                    </a>
+                </li>
+
                 @can('user_management_access')
                     <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">
                         <a class="nav-link nav-dropdown-toggle">

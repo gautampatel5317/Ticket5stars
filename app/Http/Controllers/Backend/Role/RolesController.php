@@ -30,8 +30,7 @@ class RolesController extends Controller {
 	 */
 	public function index(ManageRoleRequest $request) {
 		abort_unless(\Gate::allows('role_access'), 403);
-		$roles = $this->role->getForDataTable();
-		return view('backend.roles.index', compact('roles'));
+		return view('backend.roles.index');
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -53,6 +52,7 @@ class RolesController extends Controller {
 		abort_unless(\Gate::allows('role_create'), 403);
 		$input = $request->except('_token');
 		$role  = $this->role->create($input);
+		flash('The Role has been created successfully!')->success()->important();
 		return redirect()->route('admin.roles.index');
 	}
 	/**
@@ -78,6 +78,7 @@ class RolesController extends Controller {
 		abort_unless(\Gate::allows('role_edit'), 403);
 		$input = $request->except('_token');
 		$role  = $this->role->update($input, $role);
+		flash('The Role has been updated successfully!')->success()->important();
 		return redirect()->route('admin.roles.index');
 	}
 	/**
@@ -97,9 +98,22 @@ class RolesController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
+	public function roleDelete(Role $role) {
+		abort_unless(\Gate::allows('role_delete'), 403);
+		$role = $this->role->destroy($role);
+		flash('The Role has been deleted successfully!')->success()->important();
+		return back();
+	}
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
 	public function destroy(Role $role) {
 		abort_unless(\Gate::allows('role_delete'), 403);
 		$role = $this->role->destroy($role);
+		flash('The Role has been deleted successfully!')->success()->important();
 		return back();
 	}
 	/**

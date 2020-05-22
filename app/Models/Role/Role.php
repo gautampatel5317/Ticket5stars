@@ -2,12 +2,18 @@
 
 namespace App\Models\Role;
 
+use App\Models\BaseModel;
+use App\Models\ModelTrait;
 use App\Models\Permission\Permission;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Role\Traits\Attribute\RoleAttribute;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
-class Role extends Model {
-	use SoftDeletes;
+class Role extends BaseModel {
+	use SoftDeletes,
+	Notifiable,
+	ModelTrait,
+	RoleAttribute;
 
 	protected $dates = [
 		'created_at',
