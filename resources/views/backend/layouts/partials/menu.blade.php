@@ -1,8 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">Project</span>
-    </a>
+       <a href="#" class="brand-link text-center">
+            <img src="{{ \URL::to('/images/site_logo.png') }}" alt="Ticket5Star" class="brand-image">
+            <span class="brand-text font-weight-light"><img src="{{ \URL::to('/images/site_logo.png') }}" alt="Ticket5Star"></span>
+        </a>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
