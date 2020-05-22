@@ -32,7 +32,7 @@
     </div>
     <div class="card-footer text-center">
         <a href="{{ route('admin.roles.index') }}" class="btn btn-danger ml-2">Cancel</a>
-         <input class="btn btn-primary" type="submit" value="{{ trans('global.save') }}">
+         <input class="btn btn-primary" type="submit" value="{{ isset($role)  ?  trans('global.update') :trans('global.save') }}">
     </div>
 <!-- JAvascript Included-->
 @section('after-scripts')

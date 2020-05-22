@@ -27,23 +27,13 @@ class PermissionTableController extends Controller {
 	 * @return mixed
 	 */
 	public function __invoke(Request $request) {
-		return Datatables::of($this->role->getForDataTable())
+		return Datatables::of($this->permission->getForDataTable())
 			->escapeColumns(['title'])
 			->addColumn('checkbox', function ($permission) {
 				return "";
-			})->addColumn('permission', function ($permission) {
-				if (!empty($role->permissions)) {
-					$permissions = [];
-					foreach ($role->permissions as $key => $item) {
-						$permissions[] = "<span class='badge badge-danger'>$item->title</span>";
-					}
-				} else {
-					return '';
-				}
-				return $permissions;
 			})
 			->addColumn('action_buttons', function ($permission) {
-				return $role->action_buttons;
+				return $permission->action_buttons;
 			})
 			->make(true);
 	}
