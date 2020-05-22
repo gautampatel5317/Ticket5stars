@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Signup Customer') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{url('customer')}}">
+                    <form method="POST" action="{{url('customer')}}" name = "customer_form" id = "customer_form">
                         @csrf
 
                         <div class="form-group row">
@@ -106,4 +106,32 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+$(document).ready(function () {
+    
+    $('#customer_form').validate({ // initialize the plugin
+        rules: {
+            first_name: {
+                required: true
+            },
+            family_name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            experience: {
+                required: true
+            },
+            business: {
+                required: true
+            },
+        }
+    });
+});
+</script>
 @endsection

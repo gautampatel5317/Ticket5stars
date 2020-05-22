@@ -2,16 +2,14 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('global.customer.title_singular') }}
+        {{ trans('global.add') }} {{ trans('global.customer.title_singular') }}
     </div>
     <div class="card-body">
-        <form action="{{ route("admin.customers.update", [$customer->id]) }}" method="POST" enctype="multipart/form-data" id = "customer_form">
+        <form action="{{ route("admin.customers.store") }}" method="POST" enctype="multipart/form-data" id = "customer_form">
             @csrf
-            @method('PUT')
-            <input type="hidden" name = "id" value = "{{$customer->id}}">
             <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
                 <label for="first_name">{{ trans('global.customer.fields.name') }}*</label>
-                <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name', isset($customer) ? $customer->first_name : '') }}">
+                <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name') }}">
                 @if($errors->has('first_name'))
                 <p class="help-block">
                     {{ $errors->first('first_name') }}
@@ -23,7 +21,7 @@
             </div>
             <div class="form-group {{ $errors->has('family_name') ? 'has-error' : '' }}">
                 <label for="family_name">{{ trans('global.customer.fields.family_name') }}*</label>
-                <input type="text" id="family_name" name="family_name" class="form-control" value="{{ old('family_name', isset($customer) ? $customer->family_name : '') }}">
+                <input type="text" id="family_name" name="family_name" class="form-control" value="{{ old('family_name') }}">
                 @if($errors->has('family_name'))
                 <p class="help-block">
                     {{ $errors->first('family_name') }}
@@ -36,7 +34,7 @@
 
             <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                 <label for="email">{{ trans('global.customer.fields.email') }}*</label>
-                <input type="text" id="email" name="email" class="form-control" value="{{ old('email', isset($customer) ? $customer->email : '') }}">
+                <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
                 @if($errors->has('email'))
                 <p class="help-block">
                     {{ $errors->first('email') }}
@@ -50,7 +48,7 @@
             <div class="form-group {{ $errors->has('experience') ? 'has-error' : '' }}">
                 <label for="experience">{{ trans('global.customer.fields.experience') }}*</label>
                 @php
-                    $selected_experience = ( old('experience') != "" ? old('experience') : $customer->experience );
+                    $selected_experience = ( old('experience') != "" ? old('experience') : '' );
                 @endphp
                 <select name = "experience" class="form-control" name="experience">
                     <option value = "">{{ trans('global.customer.fields.select_experience') }}</option>
@@ -71,7 +69,7 @@
             <div class="form-group {{ $errors->has('business') ? 'has-error' : '' }}">
                 <label for="business">{{ trans('global.customer.fields.business') }}*</label>
                 @php
-                    $selected_business = ( old('business') != "" ? old('business') : $customer->business );
+                $selected_business = ( old('business') != "" ? old('business') : '');
                 @endphp
                 <select name = "business" class="form-control" name="business">
                     <option value = "">{{ trans('global.customer.fields.select_business') }}</option>
@@ -96,7 +94,7 @@
             <div class="form-group">
                 <label for="status">{{ trans('global.status') }}    </label>
                 @php
-                    $selected_status = ( old('status') != "" ? old('status') : $customer->status );
+                    $selected_status = ( old('status') != "" ? old('status') : '1' );
                 @endphp
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="status1" name="status" class="custom-control-input" value = "1" {{ ($selected_status == "1" ? "checked" : "") }}> 
@@ -110,11 +108,11 @@
 
             <div class = "form-group">
                 @php
-                    $selected_confirmed = ( old('confirmed') != "" ? old('confirmed') : $customer->confirmed );
+                    $selected_confirmed = ( old('confirmed') != "" ? old('confirmed') : '' );
                 @endphp
                 <label for="confirmed">{{ trans('global.customer.fields.confirmed') }}    </label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name = "confirmed" id="confirmed" value="1" {{ ($selected_confirmed == "1" ? "checked disabled" : "") }}>
+                    <input class="form-check-input" type="checkbox" name = "confirmed" id="confirmed" value="1" {{ ($selected_confirmed == "1" ? "checked" : "") }}>
                 </div>
             </div>
             

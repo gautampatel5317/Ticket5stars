@@ -384,5 +384,8 @@ return [
             'deleted_at'         => 'Deleted at',
             'deleted_at_helper'  => '',
         ],
-    ]
+    ],
+    'select_status' => 'Select Status',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
 ];
