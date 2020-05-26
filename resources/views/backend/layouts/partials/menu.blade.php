@@ -90,7 +90,7 @@
                     </ul>
                 </li>
                 @endcan
-                @can('product_access')
+    {{--             @can('product_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.products.index") }}" class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
                         <i class="fas fa-cogs">
@@ -100,7 +100,7 @@
                         </p>
                     </a>
                 </li>
-                @endcan
+                @endcan --}}
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

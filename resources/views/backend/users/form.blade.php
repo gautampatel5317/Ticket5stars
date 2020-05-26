@@ -62,7 +62,7 @@
 <!-- JAvascript Included-->
 @section('after-scripts')
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function() {
         Backend.Validate.Users();
     });
 </script>
