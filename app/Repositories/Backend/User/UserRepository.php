@@ -85,4 +85,15 @@ class UserRepository extends BaseRepository {
 	public function massDestroy($request) {
 		return $this->modal->whereIn('id', $request)->delete();
 	}
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function changepassword(array $input, $user) {
+		$user->update($input);
+		return $user;
+	}
 }

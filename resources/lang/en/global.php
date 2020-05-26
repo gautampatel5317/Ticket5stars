@@ -122,6 +122,10 @@ return [
 			'deleted_at_helper'        => '',
 		],
 	],
+	'profile'                       => [
+		'title'                     => 'Profile',
+		'title_singular'            => 'Profile',
+	],
 	'name'                               => 'Name',
 	'remember_token'                     => 'Remember token',
 	'permissions'                        => 'Permissions',
@@ -352,5 +356,17 @@ return [
 			'deleted_at'         => 'Deleted at',
 			'deleted_at_helper'  => '',
 		],
+	],
+	'cityManagement'                     => [
+		'title'                             => 'City Management',
+		'title_singular'                    => 'City Management'
+	],
+	'state'                     => [
+		'title'                             => 'State',
+		'title_singular'                    => 'State'
+	],
+	'city'                     => [
+		'title'                             => 'City',
+		'title_singular'                    => 'City'
 	],
 ];

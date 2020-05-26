@@ -101,6 +101,32 @@
                     </a>
                 </li>
                 @endcan
+                @can('user_access')
+                <li class="nav-item">
+                    <a href="{{ route("admin.users.profile") }}" class="nav-link {{ request()->is('admin/profile') || request()->is('admin/profile/*') ? 'active' : '' }}">
+                        <i class="fas fa-user">
+                        </i>
+                        <p>
+                            <span>{{ trans('global.profile.title') }}</span>
+                        </p>
+                    </a>
+                </li>
+                @endcan
+                @can('city_management_access')
+                <li class="nav-item has-treeview ">
+                    <a class="nav-link nav-dropdown-toggle">
+                        <i class="fas fa-users">
+                        </i>
+                        <p>
+                            <span>{{ trans('global.cityManagement.title') }}</span>
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        
+                    </ul>
+                </li>
+                @endcan
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

@@ -56,10 +56,10 @@ class UserPasswordController extends Controller
             $user  = $this->user->changepassword($input, $user);
 			
 			flash('Password changed successfully !')->success()->important();
-		    return redirect()->route('admin.users.showProfile');
+		    return redirect()->route('admin.users.profile');
         }else{
             flash('This is not your Current Password.')->error()->important();
-            return redirect()->route('admin.users.showProfile');
+            return redirect()->route('admin.users.profile');
         }
         
     }
