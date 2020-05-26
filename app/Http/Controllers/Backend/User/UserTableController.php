@@ -35,7 +35,7 @@ class UserTableController extends Controller {
 				if (!empty($user->roles)) {
 					$roles = [];
 					foreach ($user->roles as $key => $item) {
-						$roles[] = "<span class='badge badge-warning'>$item->title</span>";
+						$roles[] = "<span class='badge badge-danger'>$item->title</span>";
 					}
 				} else {
 					return '';

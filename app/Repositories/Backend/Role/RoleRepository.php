@@ -27,7 +27,7 @@ class RoleRepository extends BaseRepository {
 	 * @return mixed
 	 */
 	public function getForDataTable() {
-		return $this->modal->all();
+		return $this->modal->with('permissions');
 	}
 	/**
 	 *
