@@ -119,6 +119,7 @@
                         </a>
                     </li>
                 @endcan
+
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

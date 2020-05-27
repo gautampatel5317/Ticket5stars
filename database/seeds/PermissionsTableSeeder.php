@@ -1,10 +1,14 @@
 <?php
 
 use App\Models\Permission\Permission;
+use App\Models\Role\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PermissionsTableSeeder extends Seeder {
 	public function run() {
+		DB::table('permission_role')->delete();
+		DB::table('permissions')->delete();
 		$permissions = [[
 				'id'         => '1',
 				'title'      => 'user_management_access',
@@ -130,7 +134,69 @@ class PermissionsTableSeeder extends Seeder {
 				'title'      => 'product_access',
 				'created_at' => '2019-04-15 19:14:42',
 				'updated_at' => '2019-04-15 19:14:42',
-			]];
+			],
+			[
+				'id'         => '22',
+				'title'      => 'customer_show',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '23',
+				'title'      => 'customer_access',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '24',
+				'title'      => 'customer_edit',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '25',
+				'title'      => 'customer_delete',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '26',
+				'title'      => 'customer_create',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '27',
+				'title'      => 'cms_access',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '28',
+				'title'      => 'cms_create',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '29',
+				'title'      => 'cms_edit',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '30',
+				'title'      => 'cms_show',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+			[
+				'id'         => '31',
+				'title'      => 'cms_delete',
+				'created_at' => '2020-05-27 16:14:42',
+				'updated_at' => '2020-05-27 16:14:42',
+			],
+
+		];
 
 		Permission::insert($permissions);
 	}

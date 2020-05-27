@@ -43,7 +43,6 @@ class CustomersController extends Controller{
 	public function store(StoreCustomerRequest $request) {
 		abort_unless(\Gate::allows('customer_create'), 403);
 		$input = $request->except('_token');
-		$input['created_by'] = auth()->user()->id;
 		$this->model->create($input);
 		flash('The Customer has been created successfully!')->success()->important();
 		return redirect()->route('admin.customers.index');
@@ -72,7 +71,6 @@ class CustomersController extends Controller{
 	public function update(UpdateCustomerRequest $request, Customer $customer) {
 		abort_unless(\Gate::allows('customer_edit'), 403);
 		$input   = $request->except('_token');
-		$input['updated_by'] = auth()->user()->id;
 		$this->model->update($input, $customer);
 		flash('The Customer has been updated successfully!')->success()->important();
 		return redirect()->route('admin.customers.index');
