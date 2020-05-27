@@ -552,6 +552,50 @@ textarea.form-control {
 .custom-switch.custom-switch-on-success .custom-control-input:checked ~ .custom-control-label::after {
     background: #86e29b;
 }
+/**
+ * Settings css
+ */
+ /* Tabs*/
+section {
+    padding: 60px 0;
+}
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+#tabs{
+    background: #ffff;
+    color: #000000;
+}
+#tabs h6.section-title{
+    color: #2276ca;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #2276ca;
+    background-color: transparent;
+    border-color: transparent transparent #2276ca;
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #2276ca;
+    font-size: 20px;
+}
+/*Custom Fileinputs start*/
+.custom-file-input input[type=file] { display: none; }
+.custom-file-input .inputfile + label { max-width: 100%; font-size: 14px; font-weight: 500 text-overflow: ellipsis; white-space: nowrap; cursor: pointer; display: inline-block; padding: 8px 12px; margin-bottom: 0; height: 36px; border:1px solid var(--theme-co) }
+.custom-file-input .inputfile + label .fa { margin-right: 10px; }
+.custom-file-input .inputfile:focus + label,.custom-file-input .inputfile.has-focus + label { outline: 1px dotted #000; outline: -webkit-focus-ring-color auto 5px; }
+
+/*Custom Fileinputs end*/
 @media (min-width: 576px){
     .search-box{
         width: 100%;

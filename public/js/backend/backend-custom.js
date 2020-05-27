@@ -2251,7 +2251,7 @@ $(document).ready(function () {
   moment.updateLocale('en', {
     week: {dow: 1} // Monday is the first day of the week
   })
-  $(".custom-select").addClass('select2');
+
   $('.date').datetimepicker({
     format: 'YYYY-MM-DD',
     locale: 'en'

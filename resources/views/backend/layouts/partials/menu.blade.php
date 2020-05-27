@@ -1,8 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
        <a href="#" class="brand-link text-center">
-            <img src="{{ \URL::to('/images/site_logo.png') }}" alt="Ticket5Star" class="brand-image">
-            <span class="brand-text font-weight-light"><img src="{{ \URL::to('/images/site_logo.png') }}" alt="Ticket5Star"></span>
+            <span class="brand-text font-weight-light">Ticket5Star</span>
         </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -40,6 +39,14 @@
                         <p>
                             <i class="fas fa-barcode"></i>
                             <span>{{ trans('QRCODE') }}</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
+                        <p>
+                           <i class="fas fa-cogs"></i>
+                            <span>{{ trans('Settings') }}</span>
                         </p>
                     </a>
                 </li>

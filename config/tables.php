@@ -17,4 +17,8 @@ return [
 	 * Products table used to store users
 	 */
 	'products_table' => 'products',
+	/**
+	 * Settings Table
+	 */
+	'settings_table' => 'setting'
 ];
