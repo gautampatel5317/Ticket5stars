@@ -18,5 +18,8 @@
             </tbody>
         </table>
     </div>
+     <div class="card-footer text-center">
+            <a href="{{ route('admin.permissions.index') }}" class="btn btn-danger ml-2">Back</a>
+        </div>
 </div>
 @endsection

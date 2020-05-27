@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Backend\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\Customer\CreateCustomerRequest;
 use App\Http\Requests\Backend\Customer\MassDestroyCustomerRequest;
+use App\Http\Requests\Backend\Customer\StoreCustomerRequest;
 use App\Http\Requests\Backend\Customer\UpdateCustomerRequest;
 use App\Models\Customer\Customer;
-use App\Repositories\Frontend\Customer\CustomerRepository;
+use App\Repositories\Backend\Customer\CustomerRepository;
 class CustomersController extends Controller{
 
 	protected $model;
@@ -21,10 +23,31 @@ class CustomersController extends Controller{
 	 */
 	public function index() {
 		abort_unless(\Gate::allows('customer_access'), 403);
-		$customers = $this->model->getForDataTable();
-		return view('backend.customers.index', compact('customers')); 
+		return view('backend.customers.index'); 
 	}
-
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create(CreateCustomerRequest $request) {
+		abort_unless(\Gate::allows('customer_create'), 403);
+		return view('backend.customers.create');
+	}
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(StoreCustomerRequest $request) {
+		abort_unless(\Gate::allows('customer_create'), 403);
+		$input = $request->except('_token');
+		$input['created_by'] = auth()->user()->id;
+		$this->model->create($input);
+		flash('The Customer has been created successfully!')->success()->important();
+		return redirect()->route('admin.customers.index');
+	}
 	public function show(Customer $customer){
 		abort_unless(\Gate::allows('customer_show'), 403);
 		return view('backend.customers.show', compact('customer'));
@@ -47,9 +70,11 @@ class CustomersController extends Controller{
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(UpdateCustomerRequest $request, Customer $customer) {
-		abort_unless(\Gate::allows('product_edit'), 403);
+		abort_unless(\Gate::allows('customer_edit'), 403);
 		$input   = $request->except('_token');
+		$input['updated_by'] = auth()->user()->id;
 		$this->model->update($input, $customer);
+		flash('The Customer has been updated successfully!')->success()->important();
 		return redirect()->route('admin.customers.index');
 	}
 	/**
@@ -61,7 +86,7 @@ class CustomersController extends Controller{
 	public function destroy(Customer $customer) {
 		abort_unless(\Gate::allows('customer_delete'), 403);
 		$this->model->destroy($customer);
-		return back();
+		return "success";
 	}
 	/**
 	 * Remove the specified resource from storage.
