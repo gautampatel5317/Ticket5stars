@@ -27,7 +27,6 @@ class CustomerRepository extends BaseRepository
 		}else{
 			return $this->model->orderByDesc('id')->get();
 		}
-		
 	}
     /**
      *

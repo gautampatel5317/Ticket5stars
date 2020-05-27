@@ -111,6 +111,14 @@
                         </a>
                     </li>
                 @endcan
+                @can('cms_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.cms.index") }}" class="nav-link {{ request()->is('admin/cms') || request()->is('admin/cms/*') ? 'active' : '' }}">
+                            <i class="fa fa-file"></i>
+                            <p><span>{{ trans('Pages') }}</span></p>
+                        </a>
+                    </li>
+                @endcan
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

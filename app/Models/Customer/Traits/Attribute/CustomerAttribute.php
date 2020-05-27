@@ -11,8 +11,19 @@ trait CustomerAttribute {
 	public function getActionButtonsAttribute() {
 		return '<div class="btn-group action-btn">'.
 		$this->editButton('edit-blog', 'admin.customers.edit').
+		$this->view('edit-blog', 'admin.customers.show').
 		$this->deleteButton('delete-blog', 'admin.customers.destroy').
 		'</div>';
+	}
+	/**
+	 * Show Customerss
+	 */
+	public function view($permission, $route) {
+		if(\Gate::allows('customer_show')){
+		return '<a href="'.route($route, $this).'" class="text-success pr-2">
+                    <i data-toggle="tooltip" data-placement="top" title="View" class="fas fa-eye"></i>
+				</a>';
+		}
 	}
 	/**
 	 * @return string

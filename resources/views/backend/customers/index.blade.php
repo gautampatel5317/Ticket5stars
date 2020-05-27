@@ -1,19 +1,22 @@
 @extends('backend.layouts.admin')
+@section('page-header')
+{{ trans('global.add') }} {{ trans('global.customer.title_singular') }}
+@endsection
 @section('content')
 @include('flash::message')
-@can('customer_create')
-<div style="margin-bottom: 10px;" class="row">
-    <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route("admin.customers.create") }}">
-            {{ trans('global.add') }} {{ trans('global.customer.title_singular') }}
-        </a>
-    </div>
-</div>
-@endcan
-<div class="card">
+
+<div class="container-fluid">
+<div class="card card-primary card-outline">
+
     <div class="card-header">
-        {{ trans('global.customer.title_singular') }} {{ trans('global.list') }}
-    </div>
+        <div class="card-tools">
+        @can('customer_create')
+            <a class="btn btn-primary btn-sm" href="{{ route("admin.customers.create") }}">
+            <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.customer.title_singular') }}
+            </a>
+          @endcan
+        </div>
+     </div>
 
     <div class="card-body">
         <div class="table-responsive">
@@ -52,6 +55,7 @@
         </div>
     </div>
 </div>
+</div>
 @endsection
 @section('scripts')
 @parent
@@ -85,7 +89,7 @@
                     {data: 'actions', name: 'actions', searchable: false, sortable: false
                     },
                 ],
-                order: [[0, "desc"]],
+                order: [],
                 searchDelay: 500,
                 dom: 'lBfrtip',
                 buttons: {
@@ -130,7 +134,6 @@
             /* End Ajax Load Data */
         }
 
-        
         let deleteButtonTrans = '{{ trans('global.datatables.delete ') }}'
         let deleteButton = {
             text: deleteButtonTrans,

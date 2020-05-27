@@ -319,55 +319,110 @@ var Backend = {
             },
         },   
         Users: function(event) {
-        var Rules = Backend.Validate.init;
-        var $validator = $(".form-validate-jquery").validate({
-        errorClass: Rules.errorClass,
-        highlight: Rules.highlight,
-        unhighlight: Rules.unhighlight,
-        errorPlacement: Rules.errorPlacement,
-        rules: {
-            vali: "required",
-            name: {
-                required: true                
+            var Rules = Backend.Validate.init;
+            var $validator = $(".form-validate-jquery").validate({
+            errorClass: Rules.errorClass,
+            highlight: Rules.highlight,
+            unhighlight: Rules.unhighlight,
+            errorPlacement: Rules.errorPlacement,
+            rules: {
+                vali: "required",
+                name: {
+                    required: true                
+                },
+                email: {
+                    required: true
+                },
+                password: {
+                    required: true               
+                },
+                'roles[]' :"required"
             },
-            email: {
-                required: true
-            },
-            password: {
-                required: true               
-            },
-             'roles[]' :"required"
+            messages: {
+                name: 'The name field is required!',
+                email: 'The email field is required!',
+                password:'The password field is required!',            
+                roles: 'The roles field is required!'
+                
+            }
+        });
+        Backend.Validate.$validator = $validator;
         },
-        messages: {
-            name: 'The name field is required!',
-            email: 'The email field is required!',
-            password:'The password field is required!',            
-            roles: 'The roles field is required!'
-            
-        }
-    });
-    Backend.Validate.$validator = $validator;
-    },
-     Roles: function(event) {
-        var Rules = Backend.Validate.init;
-        var $validator = $(".form-validate-jquery").validate({
-        errorClass: Rules.errorClass,
-        highlight: Rules.highlight,
-        unhighlight: Rules.unhighlight,
-        errorPlacement: Rules.errorPlacement,
-        rules: {
-            vali: "required",
-            title: {
-                required: true                
-            },           
-           'permissions[]':"required"
+        Roles: function(event) {
+            var Rules = Backend.Validate.init;
+            var $validator = $(".form-validate-jquery").validate({
+            errorClass: Rules.errorClass,
+            highlight: Rules.highlight,
+            unhighlight: Rules.unhighlight,
+            errorPlacement: Rules.errorPlacement,
+            rules: {
+                vali: "required",
+                title: {
+                    required: true                
+                },           
+            'permissions[]':"required"
+            },
+            messages: {
+                title: 'The title field is required!',
+                permissions: 'The permissions field is required!'
+            }
+        });
+        Backend.Validate.$validator = $validator;
         },
-        messages: {
-            title: 'The title field is required!',
-            permissions: 'The permissions field is required!'
-        }
-    });
-    Backend.Validate.$validator = $validator;
-    },
-  }
+        Customers: function(event) {
+            var Rules = Backend.Validate.init;
+            var $validator = $(".form-validate-jquery").validate({
+            errorClass: Rules.errorClass,
+            highlight: Rules.highlight,
+            unhighlight: Rules.unhighlight,
+            errorPlacement: Rules.errorPlacement,
+            rules: {
+                vali: "required",
+                first_name: {
+                    required: true
+                },
+                family_name: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                experience: {
+                    required: true
+                },
+                business: {
+                    required: true
+                },
+            },
+            messages: {
+                first_name: 'The first name field is required.',
+                family_name: 'The family name field is required.',
+                email: 'The email field is required!',
+                experience:'The experience field is required!',            
+                business: 'The business field is required!'
+            }
+        });
+        Backend.Validate.$validator = $validator;
+        },
+        Cms: function(event) {
+            var Rules = Backend.Validate.init;
+            var $validator = $(".form-validate-jquery").validate({
+            errorClass: Rules.errorClass,
+            highlight: Rules.highlight,
+            unhighlight: Rules.unhighlight,
+            errorPlacement: Rules.errorPlacement,
+            rules: {
+                vali: "required",
+                title: {required: true},
+                description: {required: true},
+            },
+            messages: {
+                title: 'The title field is required.',
+                description: 'The description field is required.',
+            }
+        });
+        Backend.Validate.$validator = $validator;
+        },
+    }
 }

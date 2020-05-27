@@ -6,9 +6,9 @@ Auth::routes(['register' => false]);
  * Frontend Routes
  * Namespaces indicate folder structure
  */
-// Route::group(['namespace' => 'Frontend'], function () {
-// 		includeRouteFiles(__DIR__ .'/Frontend/');
-// 	});
+ Route::group(['namespace' => 'Frontend'], function () {
+	includeRouteFiles(__DIR__ .'/Frontend/');
+});
 /* ----------------------------------------------------------------------- */
 
 /*

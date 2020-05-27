@@ -24,6 +24,6 @@ class Customer extends Model
         'updated_at',
         'deleted_at',
         'created_by',
-        'updated_by'
+        'updated_by',
     ];
 }

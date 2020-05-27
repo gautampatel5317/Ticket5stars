@@ -111,8 +111,43 @@
 @section('scripts')
 <script>
 $(document).ready(function () {
-    
     $('#customer_form').validate({ // initialize the plugin
+        errorClass: 'is-invalid',
+        highlight: function (element, errorClass, validClass) {
+               var elem = $(element);
+               if (elem.hasClass("select2-hidden-accessible")) {
+                   $("#select2-" + elem.attr("id") + "-container").parent().addClass(errorClass); 
+               } else {
+                   elem.addClass(errorClass);
+               }
+            },
+        unhighlight: function (element, errorClass, validClass) {
+                var elem = $(element);
+                if (elem.hasClass("select2-hidden-accessible")) {
+                    $("#select2-" + elem.attr("id") + "-container").parent().removeClass(errorClass);
+                } else {
+                    elem.removeClass(errorClass);
+                }
+            },
+        errorPlacement: function (error, element) {
+               error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+               var elem = $(element);
+               if (elem.hasClass("select2-hidden-accessible")) {
+                   element = $("#select2-" + elem.attr("id") + "-container").parent(); 
+                   error.insertAfter(element);
+               } else if(elem.hasClass("multiple_input")){
+                   element = $("#" + elem.attr("id")); 
+                   error.insertAfter(element);
+               }else if (element.hasClass("file")) { 
+                    //error.insertAfter(element.siblings(".note-editor")); 
+                    element.closest('.form-group').append(error);
+               }else if (element.hasClass("summernote")) { 
+                    error.insertAfter(element.siblings(".note-editor")); 
+               }else {
+                   error.insertAfter(element);
+               }
+            },
         rules: {
             first_name: {
                 required: true
@@ -130,6 +165,13 @@ $(document).ready(function () {
             business: {
                 required: true
             },
+        },
+        messages: {
+            first_name: 'The first name field is required.',
+            family_name: 'The family name field is required.',
+            email: 'The email field is required!',
+            experience:'The experience field is required!',            
+            business: 'The business field is required!'
         }
     });
 });
