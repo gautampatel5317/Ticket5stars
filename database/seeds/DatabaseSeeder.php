@@ -10,7 +10,10 @@ class DatabaseSeeder extends Seeder {
 				PermissionRoleTableSeeder::class ,
 				UsersTableSeeder::class ,
 				RoleUserTableSeeder::class ,
-				SettingTableSeeder::class
+				SettingTableSeeder::class ,
+				EmailTemplatePlaceholderTableSeeder::class ,
+				EmailTemplateTypeTableSeeder::class ,
+				EmailTemplateTableSeeder::class
 			]);
 	}
 }

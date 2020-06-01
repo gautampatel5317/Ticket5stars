@@ -1,10 +1,16 @@
 <?php
 
 use App\Models\Permission\Permission;
+use Carbon\Carbon as Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PermissionsTableSeeder extends Seeder {
 	public function run() {
+		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+		if (env('DB_CONNECTION') == 'mysql') {
+			DB::table(config('tables.permissions_table'))->truncate();
+		}
 		$permissions = [[
 				'id'         => '1',
 				'title'      => 'user_management_access',
@@ -136,8 +142,27 @@ class PermissionsTableSeeder extends Seeder {
 				'title'      => 'edit-settings',
 				'created_at' => '2019-04-15 19:14:42',
 				'updated_at' => '2019-04-15 19:14:42',
-			]];
-
+			],
+			[
+				'id'         => '23',
+				'title'      => 'view-email-template',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '24',
+				'title'      => 'edit-email-template',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '25',
+				'title'      => 'delete-email-template',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			]
+		];
 		Permission::insert($permissions);
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 	}
 }

@@ -20,5 +20,13 @@ return [
 	/**
 	 * Settings Table
 	 */
-	'settings_table' => 'setting'
+	'settings_table' => 'setting',
+	/**
+	 * Email Template Tables
+	 */
+	'email_templates'     => [
+		'placeholders_table' => 'email_template_placeholders',
+		'types_table'        => 'email_template_types',
+		'table'              => 'email_templates'
+	]
 ];
