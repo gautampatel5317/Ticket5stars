@@ -33,6 +33,9 @@ class EmailTemplatesTableController extends Controller {
 	public function __invoke(ManageEmailTemplatesRequest $request) {
 		return Datatables::of($this->emailtemplates->getForDataTable())
 			->escapeColumns(['title'])
+			->addColumn('checkbox', function ($emailtemplates) {
+				return "";
+			})
 			->addColumn('status', function ($emailtemplates) {
 				return $emailtemplates->status_label;
 			})

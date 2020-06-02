@@ -10,7 +10,10 @@ trait EmailTemplateAttribute {
 	 * @return string
 	 */
 	public function getActionButtonsAttribute() {
-		return '<div class="btn-group action-btn">'.$this->getEditButtonAttribute('edit-email-template', 'admin.emailtemplates.edit').'</div>';
+		return '<div class="btn-group action-btn">'
+		.$this->getEditButtonAttribute('edit-email-template', 'admin.emailtemplates.edit').
+		$this->getDeleteButtonAttribute('delete-email-template', 'admin.emailtemplates.destroy').
+		'</div>';
 	}
 
 	/**
@@ -18,10 +21,10 @@ trait EmailTemplateAttribute {
 	 */
 	public function getStatusLabelAttribute() {
 		if ($this->isActive()) {
-			return "<label class='label label-success'>".trans('labels.general.active').'</label>';
+			return "<span class='badge badge-success'>".trans('global.email_template.active').'</span>';
 		}
 
-		return "<label class='label label-danger'>".trans('labels.general.inactive').'</label>';
+		return "<span class='badge badge-danger'>".trans('global.email_template.inactive').'</span>';
 	}
 
 	/**

@@ -94,6 +94,20 @@ return [
 			'deleted_at_helper'                  => '',
 		],
 	],
+	'email_template' => [
+		'active'        => 'Active',
+		'inactive'      => 'Inactive',
+		'type'          => 'Email Template Type',
+		'placeholder'   => 'Placeholder',
+		'tables'        => [
+			'title'        => 'Title',
+			'subject'      => 'Subject',
+			'body'         => 'Body',
+			'status'       => 'Status',
+			'createdat'    => 'Created At',
+			'updatedat'    => 'Updated At',
+		],
+	],
 	'user_management'            => 'User management',
 	'users'                      => 'Users',
 	'user'                       => [

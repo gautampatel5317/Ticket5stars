@@ -108,16 +108,6 @@
                         </a>
                     </li>
                 @endcan
-                 @can('view-email-template')
-                <li class="nav-item">
-                    <a href="{{ route('admin.emailtemplates') }}" class="nav-link">
-                        <p>
-                            <i class="fas fa-email"></i>
-                            <span>{{ trans('Email Templates') }}</span>
-                        </p>
-                    </a>
-                </li>
-                @endcan
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

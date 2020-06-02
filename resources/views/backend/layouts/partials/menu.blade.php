@@ -43,6 +43,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.emailtemplates.index') }}" class="nav-link {{ request()->is('admin/emailtemplates/*') || request()->is('admin/emailtemplates') ?'active':'' }}">
+                        <p>
+                            <i class="fas fa-envelope-open-text"></i>
+                            <span>{{ trans('Email Templates') }}</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
                         <p>
                            <i class="fas fa-cogs"></i>

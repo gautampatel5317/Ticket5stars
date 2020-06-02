@@ -2291,7 +2291,10 @@ $(document).ready(function () {
       $(this).addClass('active')
     }
   })
-})
+  setTimeout(function() {
+    $('.alert-success').fadeOut('slow');
+  }, 3000); // <-- time in milliseconds
+});
 
 //common functionalities for all the javascript featueres
 var Backend = {}; // common variable used in all the files of the backend

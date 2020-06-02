@@ -61,8 +61,9 @@ class EmailTemplatesController extends Controller {
 	public function update(EmailTemplate $emailtemplate, UpdateEmailTemplatesRequest
 		$request) {
 		$this->emailtemplates->update($emailtemplate, $request->except(['_method', '_token', 'placeholder']));
-		return redirect()->route('admin.emailtemplates.index')
-		                 ->withFlashSuccess(trans('alerts.backend.emailtemplates.updated'));
+		flash('The email template has been updated successfully!')->success()->important();
+		return redirect()->route('admin.emailtemplates.index');
+
 	}
 	/**
 	 * @param \App\Models\EmailTemplates\EmailTemplate                              $emailtemplate
@@ -75,6 +76,17 @@ class EmailTemplatesController extends Controller {
 		$this->emailtemplates->delete($emailtemplate);
 		return redirect()->route('admin.emailtemplates.index')
 		                 ->withFlashSuccess(trans('alerts.backend.emailtemplates.deleted'));
+	}
+	/**
+	 * @param \App\Models\EmailTemplates\EmailTemplate                              $emailtemplate
+	 * @param \App\Http\Requests\Backend\EmailTemplates\DeleteEmailTemplatesRequest $request
+	 *
+	 * @return mixed
+	 */
+	public function delete(EmailTemplate $emailtemplate, DeleteEmailTemplatesRequest $request) {
+		$this->emailtemplates->delete($emailtemplate);
+		flash('The email template has been deleted successfully!')->success()->important();
+		return redirect()->route('admin.emailtemplates.index');
 	}
 
 }

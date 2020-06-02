@@ -2,8 +2,6 @@
 
 namespace App\Repositories\Backend\EmailTemplates;
 
-use App\Events\Backend\EmailTemplates\EmailTemplateDeleted;
-use App\Events\Backend\EmailTemplates\EmailTemplateUpdated;
 use App\Exceptions\GeneralException;
 use App\Models\EmailTemplates\EmailTemplate;
 use App\Repositories\BaseRepository;
@@ -43,9 +41,8 @@ class EmailTemplatesRepository extends BaseRepository {
 	public function update(EmailTemplate $emailtemplate, array $input) {
 		$input['status'] = isset($input['is_active'])?1:0;
 		unset($input['is_active']);
-		$input['updated_by'] = access()->user()->id;
+		$input['updated_by'] = \Auth::user()->id;
 		if ($emailtemplate->update($input)) {
-			event(new EmailTemplateUpdated($emailtemplate));
 			return true;
 		}
 
@@ -60,7 +57,6 @@ class EmailTemplatesRepository extends BaseRepository {
 	 */
 	public function delete(EmailTemplate $emailtemplate) {
 		if ($emailtemplate->delete()) {
-			event(new EmailTemplateDeleted($emailtemplate));
 			return true;
 		}
 		throw new GeneralException(trans('exceptions.backend.emailtemplates.delete_error'));
