@@ -369,5 +369,24 @@ var Backend = {
     });
     Backend.Validate.$validator = $validator;
     },
+    permissions: function(event) {
+          var Rules = Backend.Validate.init;
+          var $validator = $(".form-validate-jquery").validate({
+            errorClass: Rules.errorClass,
+            highlight: Rules.highlight,
+            unhighlight: Rules.unhighlight,
+            errorPlacement: Rules.errorPlacement,
+            rules: {
+              vali: "required",
+              title: {
+                  required: true                
+                },                       
+            },
+            messages: {
+                title: 'The title field is required!',
+            }
+          });
+          Backend.Validate.$validator = $validator;
+    },
   }
 }
