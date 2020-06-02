@@ -39,12 +39,13 @@
 						</div><!--col-lg-3-->
 					</div>
 					 <div class="form-group">
-                    	{{ Form::label('is_active', trans('global.email_template.tables.status'), ['class' => 'col-lg-2 control-label']) }}
+                    	{{ Form::label('is_active', trans('global.email_template.tables.status'), ['class' => 'col-lg-2 control-label d-flex']) }}
                     		<div class="col-lg-10">
-                    			<label class="control control--checkbox">
-                    				{{ Form::checkbox('is_active', 1, ($emailtemplate->status == 1) ? true : false ) }}
-                    				<div class="control__indicator"></div>
-                    			</label>
+                    			 <div class="custom-control custom-checkbox">
+                    			 	{{ Form::checkbox('is_active', 1, ($emailtemplate->status == 1) ? true : false ),['id'=>'status','class' => 'custom-control-input'] }}
+                    			 	 {{-- <label for="status" class="custom-control-label"></label> --}}
+                    			 </div>
+
                     		</div>
                 		</div>
                 		 <div class="card-footer text-center">

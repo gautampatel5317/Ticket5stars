@@ -2293,7 +2293,10 @@ $(document).ready(function () {
   })
   setTimeout(function() {
     $('.alert-success').fadeOut('slow');
-  }, 3000); // <-- time in milliseconds
+    $('.alert-danger').fadeOut('slow');
+    $('.alert-warning').fadeOut('slow');
+    $('.alert-info').fadeOut('slow');
+  }, 4000); // <-- time in milliseconds
 });
 
 //common functionalities for all the javascript featueres

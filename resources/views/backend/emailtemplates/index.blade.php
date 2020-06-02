@@ -8,6 +8,7 @@
 	<div class="card card-primary card-outline">
 		<div class="card-header">
 			<div class="card-tools">
+         <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>Add New Email Template</a>
 			</div>
 		</div>
 		<div class="card-body">
