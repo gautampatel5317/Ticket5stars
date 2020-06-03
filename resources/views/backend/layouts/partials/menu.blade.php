@@ -1,7 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
-       <a href="#" class="brand-link text-center">
-            <span class="brand-text font-weight-light">Ticket5Star</span>
+       <a href="#" class="brand-link text-center" style="height: 90px;">
+        <img style="width: 100%;height:100%;" src="{{ \URL::to('images/site_logos.png') }}" alt="Ticket5Star" class="brand-image">
+        <span class="brand-text font-weight-light"><img style="width: 156px;height:86px;" src="{{ \URL::to('images/site_logos.png') }}" alt="Ticket5Star"></span>
         </a>
     <!-- Sidebar -->
     <div class="sidebar">
