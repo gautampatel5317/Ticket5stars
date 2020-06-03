@@ -746,6 +746,23 @@ return [
             'seo_keyword'       => 'SEO Keyword',
             'seo_description'   => 'SEO Description',
         ],
-    ]
-
+    ],
+    'country' => [
+        'title'              => 'Countries',
+        'title_singular'     => 'Country',
+        'fields'             => [
+            'name'   => 'Name',
+            'code'         => 'Code',
+            'phonecode'       => 'Phone Code',
+        ],
+    ],
+    'state' => [
+        'title'              => 'States',
+        'title_singular'     => 'State',
+        'fields'             => [
+            'name'   => 'Name',
+            'select_country' => 'Select Country'
+        ],
+    ],
+    'country_name' => 'Country Name',
 ];

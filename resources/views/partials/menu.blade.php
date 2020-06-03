@@ -45,7 +45,6 @@
                         </p>
                     </a>
                 </li>
-
                 @can('user_management_access')
                     <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">
                         <a class="nav-link nav-dropdown-toggle">

@@ -18,7 +18,7 @@
 @section('after-scripts')
 <script type="text/javascript">
     $(document).ready(function(){
-        // Backend.Validate.Users();
+        Backend.Validate.permissions();
     });
 </script>
 @endsection

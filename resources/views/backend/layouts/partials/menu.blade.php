@@ -1,8 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
        <a href="#" class="brand-link text-center">
-            <img src="{{ \URL::to('/images/site_logo.png') }}" alt="Ticket5Star" class="brand-image">
-            <span class="brand-text font-weight-light"><img src="{{ \URL::to('/images/site_logo.png') }}" alt="Ticket5Star"></span>
+            <span class="brand-text font-weight-light">Ticket5Star</span>
         </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -40,6 +39,22 @@
                         <p>
                             <i class="fas fa-barcode"></i>
                             <span>{{ trans('QRCODE') }}</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.emailtemplates.index') }}" class="nav-link {{ request()->is('admin/emailtemplates/*') || request()->is('admin/emailtemplates') ?'active':'' }}">
+                        <p>
+                            <i class="fas fa-envelope-open-text"></i>
+                            <span>{{ trans('Email Templates') }}</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
+                        <p>
+                           <i class="fas fa-cogs"></i>
+                            <span>{{ trans('Settings') }}</span>
                         </p>
                     </a>
                 </li>
@@ -119,6 +134,25 @@
                         </a>
                     </li>
                 @endcan
+
+                @can('country_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.country.index") }}" class="nav-link {{ request()->is('admin/country') || request()->is('admin/country/*') ? 'active' : '' }}">
+                            <i class="fa fa-flag"></i>
+                            <p><span>{{ trans('global.country.title') }}</span></p>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('state_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.state.index") }}" class="nav-link {{ request()->is('admin/state') || request()->is('admin/state/*') ? 'active' : '' }}">
+                            <i class="fa fa-city"></i>
+                            <p><span>{{ trans('global.state.title') }}</span></p>
+                        </a>
+                    </li>
+                @endcan
+
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

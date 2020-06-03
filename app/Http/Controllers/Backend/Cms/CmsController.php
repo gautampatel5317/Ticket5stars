@@ -41,7 +41,6 @@ class CmsController extends Controller{
 	public function store(StoreCmsRequest $request) {
 		abort_unless(\Gate::allows('cms_create'), 403);
 		$input = $request->except('_token');
-		$input['created_by'] = auth()->user()->id;
 		$this->model->create($input);
 		flash('The Cms has been created successfully!')->success()->important();
 		return redirect()->route('admin.cms.index');
@@ -72,7 +71,6 @@ class CmsController extends Controller{
 	public function update(UpdateCmsRequest $request, $id) {
 		abort_unless(\Gate::allows('cms_edit'), 403);
 		$input   = $request->except('_token');
-		$input['updated_by'] = auth()->user()->id;
 		if( $request->get('status') != "1" ){
 			$input['status'] = '0';
 		}

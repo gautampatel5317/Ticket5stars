@@ -31,6 +31,7 @@ class CmsRepository extends BaseRepository
      */
     public function create(array $input)
     {
+        $input['created_by'] = auth()->user()->id;
         return Cms::create($input);
     }
 
@@ -44,6 +45,7 @@ class CmsRepository extends BaseRepository
     public function update(array $input, $id)
     {
         $record = $this->model->find($id);
+        $input['updated_by'] = auth()->user()->id;
         return $record->update($input);
     }
     /**

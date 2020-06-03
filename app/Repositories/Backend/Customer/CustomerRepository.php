@@ -36,6 +36,7 @@ class CustomerRepository extends BaseRepository
      */
     public function create(array $input)
     {
+		$input['created_by'] = auth()->user()->id;
         return Customer::create($input);
     }
         
@@ -47,6 +48,7 @@ class CustomerRepository extends BaseRepository
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(array $input, $customer) {
+		$input['updated_by'] = auth()->user()->id;
 		return $customer->update($input);
     }
     	/**
