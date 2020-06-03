@@ -19,46 +19,30 @@
                         </p>
                     </a>
                 </li>
-                  <li class="nav-item">
+                 {{--  <li class="nav-item">
                     <a href="{{ route('admin.video') }}" class="nav-link {{ request()->is('admin/video') || request()->is('admin/video/*') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-video"></i>
                             <span>{{ trans('Video') }}</span>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+               {{--  <li class="nav-item">
                     <a href="{{ route('admin.calander') }}" class="nav-link {{ request()->is('admin/calander') || request()->is('admin/calander') ? 'active' : '' }}">
                         <p>
                             <i class="far fa-calendar-times"></i>
                             <span>{{ trans('Calander') }}</span>
                         </p>
                     </a>
-                </li>
-                  <li class="nav-item">
+                </li> --}}
+                {{--   <li class="nav-item">
                     <a href="{{ route('admin.barcode') }}" class="nav-link {{ request()->is('admin/barcode') || request()->is('admin/barcode') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-barcode"></i>
                             <span>{{ trans('QRCODE') }}</span>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.emailtemplates.index') }}" class="nav-link {{ request()->is('admin/emailtemplates/*') || request()->is('admin/emailtemplates') ?'active':'' }}">
-                        <p>
-                            <i class="fas fa-envelope-open-text"></i>
-                            <span>{{ trans('Email Templates') }}</span>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
-                        <p>
-                           <i class="fas fa-cogs"></i>
-                            <span>{{ trans('Settings') }}</span>
-                        </p>
-                    </a>
-                </li>
+                </li> --}}
                 @can('user_management_access')
                 <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">
                     <a class="nav-link nav-dropdown-toggle">
@@ -106,6 +90,22 @@
                     </ul>
                 </li>
                 @endcan
+                  <li class="nav-item">
+                    <a href="{{ route('admin.emailtemplates.index') }}" class="nav-link {{ request()->is('admin/emailtemplates/*') || request()->is('admin/emailtemplates') ?'active':'' }}">
+                        <p>
+                            <i class="fas fa-envelope-open-text"></i>
+                            <span>{{ trans('Email Templates') }}</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
+                        <p>
+                           <i class="fas fa-cogs"></i>
+                            <span>{{ trans('Settings') }}</span>
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>
