@@ -120,6 +120,24 @@
                     </li>
                 @endcan
 
+                @can('country_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.country.index") }}" class="nav-link {{ request()->is('admin/country') || request()->is('admin/country/*') ? 'active' : '' }}">
+                            <i class="fa fa-flag"></i>
+                            <p><span>{{ trans('global.country.title') }}</span></p>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('state_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.state.index") }}" class="nav-link {{ request()->is('admin/state') || request()->is('admin/state/*') ? 'active' : '' }}">
+                            <i class="fa fa-city"></i>
+                            <p><span>{{ trans('global.state.title') }}</span></p>
+                        </a>
+                    </li>
+                @endcan
+
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

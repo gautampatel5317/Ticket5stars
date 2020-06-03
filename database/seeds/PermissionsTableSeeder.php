@@ -195,7 +195,66 @@ class PermissionsTableSeeder extends Seeder {
 				'created_at' => '2020-05-27 16:14:42',
 				'updated_at' => '2020-05-27 16:14:42',
 			],
-
+			[
+				'id'         => '32',
+				'title'      => 'country_access',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '33',
+				'title'      => 'country_create',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '34',
+				'title'      => 'country_edit',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '35',
+				'title'      => 'country_show',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '36',
+				'title'      => 'country_delete',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '37',
+				'title'      => 'state_access',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '38',
+				'title'      => 'state_create',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '39',
+				'title'      => 'state_edit',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '40',
+				'title'      => 'state_show',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
+			[
+				'id'         => '41',
+				'title'      => 'state_delete',
+				'created_at' => '2020-06-02 16:14:42',
+				'updated_at' => '2020-06-02 16:14:42',
+			],
 		];
 
 		Permission::insert($permissions);

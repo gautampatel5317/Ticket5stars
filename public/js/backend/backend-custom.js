@@ -2251,7 +2251,7 @@ $(document).ready(function () {
   moment.updateLocale('en', {
     week: {dow: 1} // Monday is the first day of the week
   })
-  $(".custom-select").addClass('select2');
+
   $('.date').datetimepicker({
     format: 'YYYY-MM-DD',
     locale: 'en'
@@ -4195,6 +4195,46 @@ var Backend = {
                 description: 'The description field is required.',
             }
         });
+        Backend.Validate.$validator = $validator;
+        },
+        Country: function(event) {
+            var Rules = Backend.Validate.init;
+            var $validator = $(".form-validate-jquery").validate({
+                errorClass: Rules.errorClass,
+                highlight: Rules.highlight,
+                unhighlight: Rules.unhighlight,
+                errorPlacement: Rules.errorPlacement,
+                rules: {
+                    vali: "required",
+                    name: {required: true},
+                    code: {required: true},
+                    phonecode: {required: true},
+                },
+                messages: {
+                    name: 'The country name field is required.',
+                    code: 'The country code field is required.',
+                    phonecode: 'The country phone code field is required.',
+                }
+            });
+        Backend.Validate.$validator = $validator;
+        },
+        State: function(event) {
+            var Rules = Backend.Validate.init;
+            var $validator = $(".form-validate-jquery").validate({
+                errorClass: Rules.errorClass,
+                highlight: Rules.highlight,
+                unhighlight: Rules.unhighlight,
+                errorPlacement: Rules.errorPlacement,
+                rules: {
+                    vali: "required",
+                    name: {required: true},
+                    country_id: {required: true},
+                },
+                messages: {
+                    name: 'The state name field is required.',
+                    country_id: 'The country name field is required.',
+                }
+            });
         Backend.Validate.$validator = $validator;
         },
     }
