@@ -764,6 +764,5 @@ return [
             'select_country' => 'Select Country'
         ],
     ],
-    'country_name' => 'Country Name'
-
+    'country_name' => 'Country Name',
 ];

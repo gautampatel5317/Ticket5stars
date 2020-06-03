@@ -46,4 +46,10 @@ $(document).ready(function () {
       $(this).addClass('active')
     }
   })
-})
+  setTimeout(function() {
+    $('.alert-success').fadeOut('slow');
+    $('.alert-danger').fadeOut('slow');
+    $('.alert-warning').fadeOut('slow');
+    $('.alert-info').fadeOut('slow');
+  }, 4000); // <-- time in milliseconds
+});

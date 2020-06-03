@@ -51,6 +51,7 @@ class PermissionsController extends Controller {
 		abort_unless(\Gate::allows('permission_create'), 403);
 		$input      = $request->except('_token');
 		$permission = $this->permission->create($input);
+		flash('The permissions has been created successfully!')->success()->important();
 		return redirect()->route('admin.permissions.index');
 	}
 	/**
@@ -74,6 +75,7 @@ class PermissionsController extends Controller {
 		abort_unless(\Gate::allows('permission_edit'), 403);
 		$input      = $request->except('_token');
 		$permission = $this->permission->update($input, $permission);
+		flash('The permissions has been updated successfully!')->success()->important();
 		return redirect()->route('admin.permissions.index');
 	}
 	/**
@@ -95,6 +97,7 @@ class PermissionsController extends Controller {
 	public function destroy(Permission $permission) {
 		abort_unless(\Gate::allows('permission_delete'), 403);
 		$permission = $this->permission->destroy($permission);
+		flash('The permissions has been deleted successfully!')->success()->important();
 		return back();
 	}
 	/**
