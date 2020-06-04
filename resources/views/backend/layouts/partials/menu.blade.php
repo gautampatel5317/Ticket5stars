@@ -1,7 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
-       <a href="#" class="brand-link text-center">
-            <span class="brand-text font-weight-light">Ticket5Star</span>
+       <a href="#" class="brand-link text-center" style="height: 90px;">
+        <img style="width: 100%;height:100%;" src="{{ \URL::to('images/site_logos.png') }}" alt="Ticket5Star" class="brand-image">
+        <span class="brand-text font-weight-light"><img style="width: 156px;height:86px;" src="{{ \URL::to('images/site_logos.png') }}" alt="Ticket5Star"></span>
         </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -18,46 +19,30 @@
                         </p>
                     </a>
                 </li>
-                  <li class="nav-item">
+                 {{--  <li class="nav-item">
                     <a href="{{ route('admin.video') }}" class="nav-link {{ request()->is('admin/video') || request()->is('admin/video/*') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-video"></i>
                             <span>{{ trans('Video') }}</span>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+               {{--  <li class="nav-item">
                     <a href="{{ route('admin.calander') }}" class="nav-link {{ request()->is('admin/calander') || request()->is('admin/calander') ? 'active' : '' }}">
                         <p>
                             <i class="far fa-calendar-times"></i>
                             <span>{{ trans('Calander') }}</span>
                         </p>
                     </a>
-                </li>
-                  <li class="nav-item">
+                </li> --}}
+                {{--   <li class="nav-item">
                     <a href="{{ route('admin.barcode') }}" class="nav-link {{ request()->is('admin/barcode') || request()->is('admin/barcode') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-barcode"></i>
                             <span>{{ trans('QRCODE') }}</span>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.emailtemplates.index') }}" class="nav-link {{ request()->is('admin/emailtemplates/*') || request()->is('admin/emailtemplates') ?'active':'' }}">
-                        <p>
-                            <i class="fas fa-envelope-open-text"></i>
-                            <span>{{ trans('Email Templates') }}</span>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
-                        <p>
-                           <i class="fas fa-cogs"></i>
-                            <span>{{ trans('Settings') }}</span>
-                        </p>
-                    </a>
-                </li>
+                </li> --}}
                 @can('user_management_access')
                 <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">
                     <a class="nav-link nav-dropdown-toggle">
@@ -105,17 +90,22 @@
                     </ul>
                 </li>
                 @endcan
-                @can('product_access')
-                <li class="nav-item">
-                    <a href="{{ route("admin.products.index") }}" class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
-                        <i class="fas fa-cogs">
-                        </i>
+                  <li class="nav-item">
+                    <a href="{{ route('admin.emailtemplates.index') }}" class="nav-link {{ request()->is('admin/emailtemplates/*') || request()->is('admin/emailtemplates') ?'active':'' }}">
                         <p>
-                            <span>{{ trans('global.product.title') }}</span>
+                            <i class="fas fa-envelope-open-text"></i>
+                            <span>{{ trans('Email Templates') }}</span>
                         </p>
                     </a>
                 </li>
-                @endcan
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
+                        <p>
+                           <i class="fas fa-cogs"></i>
+                            <span>{{ trans('Settings') }}</span>
+                        </p>
+                    </a>
+                </li>
                 @can('customer_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.customers.index") }}" class="nav-link {{ request()->is('admin/customers') || request()->is('admin/customers/*') ? 'active' : '' }}">
@@ -152,7 +142,6 @@
                         </a>
                     </li>
                 @endcan
-
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>
@@ -162,7 +151,6 @@
                         </p>
                     </a>
                 </li>
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
