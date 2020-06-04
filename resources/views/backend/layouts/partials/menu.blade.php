@@ -44,7 +44,7 @@
                     </a>
                 </li> --}}
                 @can('user_management_access')
-                <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -124,7 +124,7 @@
                     </a>
                 </li>
                 @endcan
-                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
