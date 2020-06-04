@@ -325,6 +325,7 @@ return [
 	'team-management'                    => 'Teams',
 	'team-management-singular'           => 'Team',
 	'site_title'                         => 'Laravel + AdminLTE3',
+	'masters'                            => 'Masters',
 	'userManagement'                     => [
 		'title'                             => 'User Management',
 		'title_singular'                    => 'User Management',
@@ -604,7 +605,7 @@ return [
 	'text'                               => 'Text',
 	'excerpt'                            => 'Excerpt',
 	'featured_image'                     => 'Featured image',
-	'pages'                              => 'Pages',
+	'pages'                              => 'CMS Pages',
 	'axis'                               => 'Axis',
 	'group_by'                           => 'Group by',
 	'chart_type'                         => 'Chart type',
