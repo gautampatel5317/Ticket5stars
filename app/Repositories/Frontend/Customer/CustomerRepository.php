@@ -1,41 +1,51 @@
 <?php
 namespace App\Repositories\Frontend\Customer;
 
-use App\Repositories\BaseRepository;
 use App\Models\Customer\Customer;
+use App\Models\User\User;
+use App\Repositories\BaseRepository;
+use Carbon\Carbon as Carbon;
 
-class CustomerRepository extends BaseRepository
-{
-
-    protected $model;
-
-    public function __construct(Customer $model)
-    {
-        $this->model = $model;
-    }
-    /**
+class CustomerRepository extends BaseRepository {
+	/**
+	 * Modal
+	 */
+	protected $model;
+	public function __construct(Customer $model) {
+		$this->model = $model;
+	}
+	/**
 	 * Associated Repository Model.
 	 */
-    const MODEL = Customer::class;
-    
-    /**
+	const MODEL = Customer::class ;
+	/**
 	 * @return mixed
 	 */
 	public function getForDataTable() {
 		return $this->model->all();
 	}
-    /**
-     *
-     * {@inheritDoc}
-     *
-     * @see \App\Repositories\Customer\CustomerRepositoryInterface::create()
-     */
-    public function create(array $input)
-    {
-        return Customer::create($input);
-    }
-        
-    /**
+	/**
+	 *
+	 * {@inheritDoc}
+	 *
+	 * @see \App\Repositories\Customer\CustomerRepositoryInterface::create()
+	 */
+	public function create(array $input) {
+		$customer = Customer::create($input);
+		if ($customer) {
+			$user             = new User();
+			$user->is_front   = $customer['id'];
+			$user->name       = $input['first_name'];
+			$user->email      = $input['email'];
+			$user->password   = \Hash::make($input['password']);
+			$user->created_at = Carbon::now();
+			if ($user->save()) {
+				return true;
+			}
+		}
+	}
+
+	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
@@ -44,8 +54,8 @@ class CustomerRepository extends BaseRepository
 	 */
 	public function update(array $input, $customer) {
 		return $customer->update($input);
-    }
-    	/**
+	}
+	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
@@ -63,7 +73,5 @@ class CustomerRepository extends BaseRepository
 	public function massdestroy($request) {
 		return $this->model->whereIn('id', $request)->delete();
 	}
-
 }
-
 ?>
