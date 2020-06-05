@@ -1,11 +1,12 @@
-@extends('frontend.main')
-
-@section('content')
+@extends('frontend.layouts.app')
+@section('header')
+@endsection
+@section('conent')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">{{ __('Signup Customer') }}</div>
+                {{-- <div class="card-header">{{ __('Signup Customer') }}</div> --}}
 
                 <div class="card-body">
                     <form method="POST" action="{{url('customer')}}" name = "customer_form" id = "customer_form">
@@ -23,7 +24,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="family_name" class="col-md-4 col-form-label text-md-right">{{ __('Family Name') }}</label>
 
@@ -36,7 +37,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
                             <div class="col-md-6">
@@ -49,7 +50,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="experience" class="col-md-4 col-form-label text-md-right">{{ __('Experience') }}</label>
 
@@ -89,8 +90,8 @@
                                 @enderror
                             </div>
                         </div>
-                        
-                        
+
+
                         <div class="form-group row mb-0">
                             <div class="col-md-4 col-form-label"></div>
                             <div class="col-md-8">
@@ -107,8 +108,7 @@
     </div>
 </div>
 @endsection
-
-@section('scripts')
+@section('script')
 <script>
 $(document).ready(function () {
     $('#customer_form').validate({ // initialize the plugin
@@ -116,7 +116,7 @@ $(document).ready(function () {
         highlight: function (element, errorClass, validClass) {
                var elem = $(element);
                if (elem.hasClass("select2-hidden-accessible")) {
-                   $("#select2-" + elem.attr("id") + "-container").parent().addClass(errorClass); 
+                   $("#select2-" + elem.attr("id") + "-container").parent().addClass(errorClass);
                } else {
                    elem.addClass(errorClass);
                }
@@ -134,16 +134,16 @@ $(document).ready(function () {
               element.closest('.form-group').append(error);
                var elem = $(element);
                if (elem.hasClass("select2-hidden-accessible")) {
-                   element = $("#select2-" + elem.attr("id") + "-container").parent(); 
+                   element = $("#select2-" + elem.attr("id") + "-container").parent();
                    error.insertAfter(element);
                } else if(elem.hasClass("multiple_input")){
-                   element = $("#" + elem.attr("id")); 
+                   element = $("#" + elem.attr("id"));
                    error.insertAfter(element);
-               }else if (element.hasClass("file")) { 
-                    //error.insertAfter(element.siblings(".note-editor")); 
+               }else if (element.hasClass("file")) {
+                    //error.insertAfter(element.siblings(".note-editor"));
                     element.closest('.form-group').append(error);
-               }else if (element.hasClass("summernote")) { 
-                    error.insertAfter(element.siblings(".note-editor")); 
+               }else if (element.hasClass("summernote")) {
+                    error.insertAfter(element.siblings(".note-editor"));
                }else {
                    error.insertAfter(element);
                }
@@ -170,7 +170,7 @@ $(document).ready(function () {
             first_name: 'The first name field is required.',
             family_name: 'The family name field is required.',
             email: 'The email field is required!',
-            experience:'The experience field is required!',            
+            experience:'The experience field is required!',
             business: 'The business field is required!'
         }
     });

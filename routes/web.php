@@ -1,14 +1,17 @@
 <?php
-Route::redirect('/', '/login');
+Route::redirect('/login', '/login');
 Route::redirect('/home', '/admin');
 Auth::routes(['register' => false]);
+Route::any('/', function () {
+		return view('frontend.layouts.app');
+	});
 /*
  * Frontend Routes
  * Namespaces indicate folder structure
  */
- Route::group(['namespace' => 'Frontend'], function () {
-	includeRouteFiles(__DIR__ .'/Frontend/');
-});
+Route::group(['namespace' => 'Frontend'], function () {
+		includeRouteFiles(__DIR__ .'/Frontend/');
+	});
 /* ----------------------------------------------------------------------- */
 
 /*
