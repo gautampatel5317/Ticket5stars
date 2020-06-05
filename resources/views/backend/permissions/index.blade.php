@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="container-fluid">
-     @include('flash::message')
+      @include('flash::message')
      <div class="card card-primary card-outline">
           <div class="card-header">
               <div class="card-tools">

@@ -138,9 +138,7 @@ $(function () {
 @endcan
     $(document).on('click','.delete_record',function(e){
           var delId = jQuery(this).attr('data');
-          console.log(delId);
           var deleteUrl = window.origin+`/admin/users/${delId}/delete`;
-          console.log(deleteUrl);
           Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to delete this!",

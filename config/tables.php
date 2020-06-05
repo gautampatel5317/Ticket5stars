@@ -17,4 +17,28 @@ return [
 	 * Products table used to store users
 	 */
 	'products_table' => 'products',
+	/**
+	 * Customers table used to store customers
+	 */
+	'customers_table' => 'customers',
+	/**
+	 * Settings Table
+	 */
+	'settings_table' => 'setting',
+	/**
+	 * Country Tables
+	 */
+	'country_table' => 'countries',
+	/**
+	 * states Tables
+	 */
+	'states_table' => 'states',
+	/**
+	 * Email Template Tables
+	 */
+	'email_templates'     => [
+		'placeholders_table' => 'email_template_placeholders',
+		'types_table'        => 'email_template_types',
+		'table'              => 'email_templates'
+	]
 ];
