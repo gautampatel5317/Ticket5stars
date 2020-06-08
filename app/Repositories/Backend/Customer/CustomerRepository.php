@@ -1,46 +1,43 @@
 <?php
 namespace App\Repositories\Backend\Customer;
 
-use App\Repositories\BaseRepository;
 use App\Models\Customer\Customer;
+use App\Repositories\BaseRepository;
 
-class CustomerRepository extends BaseRepository
-{
+class CustomerRepository extends BaseRepository {
 
-    protected $model;
+	protected $model;
 
-    public function __construct(Customer $model)
-    {
-        $this->model = $model;
-    }
-    /**
+	public function __construct(Customer $model) {
+		$this->model = $model;
+	}
+	/**
 	 * Associated Repository Model.
 	 */
-    const MODEL = Customer::class;
-    
-    /**
+	const MODEL = Customer::class ;
+
+	/**
 	 * @return mixed
 	 */
 	public function getForDataTable($status) {
-		if($status != "" && ( $status == "0" || $status == "1") ){
+		if ($status != "" && ($status == "0" || $status == "1")) {
 			return $this->model->where('status', '=', $status)->orderByDesc('id')->get();
-		}else{
+		} else {
 			return $this->model->orderByDesc('id')->get();
 		}
 	}
-    /**
-     *
-     * {@inheritDoc}
-     *
-     * @see \App\Repositories\Customer\CustomerRepositoryInterface::create()
-     */
-    public function create(array $input)
-    {
+	/**
+	 *
+	 * {@inheritDoc}
+	 *
+	 * @see \App\Repositories\Customer\CustomerRepositoryInterface::create()
+	 */
+	public function create(array $input) {
 		$input['created_by'] = auth()->user()->id;
-        return Customer::create($input);
-    }
-        
-    /**
+		return Customer::create($input);
+	}
+
+	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
@@ -50,8 +47,8 @@ class CustomerRepository extends BaseRepository
 	public function update(array $input, $customer) {
 		$input['updated_by'] = auth()->user()->id;
 		return $customer->update($input);
-    }
-    	/**
+	}
+	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
