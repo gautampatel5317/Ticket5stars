@@ -56,15 +56,12 @@ class IngredientRepository extends BaseRepository
 	public function destroy($ingredient) {
 		return $ingredient->delete();
 	}
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function massdestroy($request) {
-		return $this->model->whereIn('id', $request)->delete();
-	}
+	/** Change status */
+	public function changeStatus($id, $status)
+    {
+        return $this->model->where('id', $id)
+            ->update(['status' => $status]);
+    }
 
 }
 

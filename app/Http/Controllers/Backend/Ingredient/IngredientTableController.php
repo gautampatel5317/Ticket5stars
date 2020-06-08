@@ -33,7 +33,11 @@ class IngredientTableController extends Controller
 			->addColumn('checkbox', function ($ingredient) {
 				return "";
 			})->addColumn('status', function ($ingredient) {
-                return ($ingredient->status == '1')?'Active':'InActive';
+                $checked = ($ingredient->status == "1" ? "checked" : "");
+            return'<div class="custom-control custom-switch ml-2">
+                <input type="checkbox" class="custom-control-input change_status" id="customSwitch' . $ingredient->id . '" '.$checked.' data = ' . $ingredient->id . ' >
+                <label class="custom-control-label" for="customSwitch' . $ingredient->id . '"></label>
+            </div>';
 			})
 			->addColumn('action_buttons', function ($ingredient) {
 				return $ingredient->action_buttons;

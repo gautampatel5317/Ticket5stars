@@ -4,9 +4,7 @@
  */
 Route::group(['namespace' => 'Ingredient'], function () {
 		Route::resource('ingredient', 'IngredientController');
-		Route::any('ingredient/{ingredient}/delete', 'IngredientController@roleDelete')->name('ingredient.delete');
-		Route::POST('ingredient/massdestroy', 'IngredientController@massDestroy')->name('ingredient.massDestroy');
-		Route::get('/status/update', 'IngredientController@updateStatus')->name('ingredient.status');
+		Route::post('ingredient/changeStatus', 'IngredientController@changeStatus');
 		//For Datatables
 		Route::post('ingredient/get', 'IngredientTableController')->name('ingredient.get');
 	});

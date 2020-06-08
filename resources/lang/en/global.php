@@ -784,4 +784,22 @@ return [
 		],
 	],
 	'country_name' => 'Country Name',
+	'ingredient'            => [
+		'title'           => 'Ingredient Warnings',
+		'title_singular'  => 'Ingredient Warnings',
+		'fields'          => [
+			'title'                    => 'Title',
+			'title_helper'             => '',
+			'status'          		   => 'Status',
+			'status_helper'  		   => '',
+			'active'				   => 'Active',
+			'inactive'				   => 'InActive',
+			'created_at'               => 'Created At',
+			'created_at_helper'        => '',
+			'updated_at'               => 'Updated At',
+			'updated_at_helper'        => '',
+			'deleted_at'               => 'Deleted at',
+			'deleted_at_helper'        => '',
+		],
+	],
 ];

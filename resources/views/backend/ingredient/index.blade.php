@@ -2,8 +2,6 @@
 @section('page-header')
 {{ trans('Ingredient Warnings Management') }}
 @endsection
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
 @section('content')
 <div class="container-fluid">
       @include('flash::message')
@@ -79,46 +77,67 @@ $(function () {
         }
   });
 
-      $(document).on('click','.delete_record',function(e){
-          var delId = jQuery(this).attr('data');
-          console.log(delId);
-          var deleteUrl = window.origin+`/admin/ingredient/${delId}/delete`;
-          console.log(deleteUrl);
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to delete this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if (result.value) {
-              window.location.href = deleteUrl;
-              Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )
-            }
-        });
-          e.preventDefault();
-      });
-
-      $('.js-switch').change(function () {
-          alert('hii');
-        let status = $(this).prop('checked') === true ? 1 : 0;
-        let userId = $(this).data('id');
+  $(document).on('click','.delete_record',function(e){
+    var delId = jQuery(this).attr('data');
+    var that = this;
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to delete this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
         $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: '{{ route('admin.ingredient.status') }}',
-            data: {'status': status, 'id': userId},
-            success: function (data) {
-                console.log(data.message);
-            }
+          url: "{{URL('admin/ingredient/')}}"+"/"+delId,
+          type: "POST",
+          cache: false,
+          data:{
+              _token:'{{ csrf_token() }}', _method:"DELETE"
+          },
+          success: function(Result){
+              if(Result=="success"){
+                  $('#ingredient_table').DataTable().ajax.reload();
+                      Swal.fire(
+                      'Deleted!',
+                      'Ingredient has been deleted successfully.',
+                      'success'
+                      )
+              }
+          }
         });
-    });
+      }
+      });
+    e.preventDefault();
+  });
+      $(document).on('click','.change_status',function(e){
+            var ID = jQuery(this).attr('data');
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            $.ajax({
+                url: "{{URL('admin/ingredient/changeStatus')}}",
+                type: "POST",
+                cache: false,
+                data:{
+                    _token:'{{ csrf_token() }}', 
+                    'status': status, 
+                    'id': ID
+                },
+                success: function(Result){
+                    if(Result=="success"){
+                        $('#ingredient_table').DataTable().ajax.reload();
+                        Swal.fire(
+                          'Status Changed!',
+                          'Ingredient status has been changed successfully.',
+                          'success'
+                        )
+                      }else{
+                        swal("Error!", "Something Went Wrong!", "error");
+                    }
+                }
+            });
+        });
 
 });
 </script>

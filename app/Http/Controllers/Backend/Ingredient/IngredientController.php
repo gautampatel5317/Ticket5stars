@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\Ingredient;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\Ingredient\CreateIngredientRequest;
-use App\Http\Requests\Backend\Ingredient\MassDestroyIngredientRequest;
 use App\Http\Requests\Backend\Ingredient\StoreIngredientRequest;
 use App\Http\Requests\Backend\Ingredient\UpdateIngredientRequest;
 use App\Models\Ingredient\Ingredient;
@@ -88,21 +87,14 @@ class IngredientController extends Controller
 		$this->model->destroy($ingredient);
 		return "success";
 	}
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function massDestroy(MassDestroyIngredientRequest $request) {
-		$this->model->massDestroy(request('ids'));
-		return response(null, 204);
+	public function changeStatus(Request $request)
+	{
+		$input = $request->except('_token');
+        $result = $this->model->changeStatus($input['id'], $input['status']);
+        if ($result == 1) {
+            return "success";
+        } else {
+            return "failed";
+        }
 	}
-	public function updateStatus(Request $request)
-{
-    $ingredient = Ingredient::findOrFail($request->id);
-    $ingredient->status = $request->status;
-    $ingredient->save();
-
-    return response()->json(['message' => 'ingredient status updated successfully.']);
-}
 }
