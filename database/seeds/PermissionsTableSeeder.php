@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Permission\Permission;
-use App\Models\Role\Role;
+
 use Carbon\Carbon as Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -283,28 +283,58 @@ class PermissionsTableSeeder extends Seeder {
 				'title'      => 'state_delete',
 				'created_at' => '2020-06-02 16:14:42',
 				'updated_at' => '2020-06-02 16:14:42',
-            ],
-            [
+			],
+			[
 				'id'         => '46',
 				'title'      => 'city_access',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
-            ],
-            [
+			],
+			[
 				'id'         => '47',
 				'title'      => 'city_create',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
-            ],
-            [
+			],
+			[
 				'id'         => '48',
 				'title'      => 'city_edit',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
-            ],
-            [
+			],
+			[
 				'id'         => '49',
 				'title'      => 'city_delete',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '50',
+				'title'      => 'ingredient_create',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '51',
+				'title'      => 'ingredient_edit',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '52',
+				'title'      => 'ingredient_access',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '53',
+				'title'      => 'ingredient_show',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '54',
+				'title'      => 'ingredient_delete',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
