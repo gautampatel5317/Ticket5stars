@@ -13,7 +13,7 @@
     @php
     $selected_country = ( old('country_id') != "" ? old('country_id') : ( isset($city) ? $city->country_id : "") );
     @endphp
-    <select name="country_id" class="form-control" name="country_id" id="country_id">
+    <select name="country_id" class="form-control select2" name="country_id" id="country_id">
         <option value="">{{ trans('global.state.fields.select_country') }}</option>
         @foreach($countryData as $data)
         <option value="{{ $data->id }}" {{ $selected_country == $data->id ? 'selected' : '' }}>{{ $data->name }}</option>
@@ -32,7 +32,7 @@
     @php
     $selected_state = ( old('state_id') != "" ? old('state_id') : ( isset($city) ? $city->state_id : "") );
     @endphp
-    <select name="state_id" class="form-control" name="state_id" id="state_id">
+    <select name="state_id" class="form-control select2" name="state_id" id="state_id">
         <option value="">{{ trans('global.city.fields.select_state') }}</option>
     </select>
     @if($errors->has('state_id'))
@@ -74,7 +74,7 @@
         });
 
         if ($('#country_id').val() != "") {
-            getStates($('#country_id').val(), '<?php echo $selected_state; ?>');
+            getStates($('#country_id').val(), '<?php echo $selected_state;?>');
         }
 
         function getStates(country_id, state_id) {

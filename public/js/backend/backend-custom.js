@@ -4217,9 +4217,18 @@ var Backend = {
                     phonecode: {required: true, pattern : /^\+?[0-9]+$/},
                 },
                 messages: {
-                    name: 'The country name field is required.',
-                    code: 'The country code field is required.',
-                    phonecode: 'The country phone code field is required.',
+                    name: {
+                        'required': 'The country name field is required!',
+                        'lettersonly': 'The country name should be lettersonly!'
+                    }, 
+                    code:{
+                        'required': 'The code code field is required!',
+                        'lettersonly':'The code should be lettersonly!',
+                    },
+                    phonecode:{
+                        'required':'The phonecode phone code field is required!',  
+                        'pattern':'The phonecode allow only numbers! '
+                    }, 
                 }
             });
         Backend.Validate.$validator = $validator;
@@ -4237,7 +4246,10 @@ var Backend = {
                     country_id: {required: true},
                 },
                 messages: {
-                    name: 'The state name field is required.',
+                    name:{
+                      'required':'The state name field is required!',  
+                      'lettersonly':'The state name should be lettersonly!'
+                    }, 
                     country_id: 'The country name field is required.',
                 }
             });
@@ -4257,7 +4269,10 @@ var Backend = {
                     state_id: {required: true},
                 },
                 messages: {
-                    name: 'The city name field is required.',
+                    name:{
+                        'required':'The city name field is required!',
+                        'lettersonly':'The city name should be lettersonly!'
+                    },
                     country_id: 'The country name field is required.',
                     state_id: 'The state name field is required.',
                 }
