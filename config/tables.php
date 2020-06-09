@@ -26,6 +26,14 @@ return [
 	 */
 	'settings_table' => 'setting',
 	/**
+	 * Country Tables
+	 */
+	'country_table' => 'countries',
+	/**
+	 * states Tables
+	 */
+	'states_table' => 'states',
+	/**
 	 * Email Template Tables
 	 */
 	'email_templates'     => [
