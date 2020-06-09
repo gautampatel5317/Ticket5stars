@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 class AuthGates {
 	public function handle($request, Closure $next) {
 		$user = \Auth::user();
+
 		if (!app()->runningInConsole() && $user) {
 			$roles = Role::with('permissions')->get();
 			foreach ($roles as $role) {

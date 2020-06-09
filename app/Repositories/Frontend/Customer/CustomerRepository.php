@@ -38,8 +38,11 @@ class CustomerRepository extends BaseRepository {
 			$user->name       = $input['first_name'];
 			$user->email      = $input['email'];
 			$user->password   = \Hash::make($input['password']);
+			$user->status     = 1;
 			$user->created_at = Carbon::now();
 			if ($user->save()) {
+				//set role
+				$user->roles()->sync([2]);
 				return true;
 			}
 		}

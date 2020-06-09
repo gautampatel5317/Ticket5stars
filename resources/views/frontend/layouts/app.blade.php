@@ -38,6 +38,7 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
     </ul>
+    @if (!\Auth::user())
       <ul class="navbar-nav my-2 my-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="{{ route('customer.create') }}">Register <span class="sr-only">(current)</span></a>
@@ -46,6 +47,23 @@
         <a class="nav-link" href="{{ route('login') }}">Login <span class="sr-only">(current)</span></a>
       </li>
     </ul>
+   @else
+   <ul class="navbar-nav my-2 my-lg-0">
+    <li class="nav-item active">
+       <span class="nav-link">{{ auth()->user()->name }}</span>
+     </li>
+      <li class="nav-item active">
+       <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                        <p>
+                            <i class="fas fa-sign-out-alt">
+                            </i>
+                            <span>{{ trans('global.logout') }}</span>
+                        </p>
+                    </a>
+      </li>
+
+   </ul>
+  @endif
     <form class="form-inline my-2 my-lg-0">
 
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -65,6 +83,9 @@
 </div>
 <footer class="container-fluid text-center">
 </footer>
+<form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> --}}
 <script type="text/javascript" src="{{ \URL::to('js/backend/bootstrap.min.js') }}"></script>
