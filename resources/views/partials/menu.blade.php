@@ -108,7 +108,18 @@
                         </a>
                     </li>
                 @endcan
+                @can('user_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.users.profile") }}" class="nav-link {{ request()->is('admin/profile') || request()->is('admin/profile/*') ? 'active' : '' }}">
+                            <i class="fas fa-user">
 
+                            </i>
+                            <p>
+                                <span>{{ trans('global.profile.title') }}</span>
+                            </p>
+                        </a>
+                    </li>
+                @endcan
                 @can('customer_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.customers.index") }}" class="nav-link {{ request()->is('admin/customers') || request()->is('admin/customers/*') ? 'active' : '' }}">
@@ -119,7 +130,6 @@
                         </a>
                     </li>
                 @endcan
-
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

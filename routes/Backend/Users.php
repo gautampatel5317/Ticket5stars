@@ -8,4 +8,7 @@ Route::group(['namespace' => 'User'], function () {
 		Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
 		// For Datatables
 		Route::post('users/get', 'UserTableController')->name('users.get');
+
+		Route::get('profile', 'UserPasswordController@edit')->name('users.profile');
+		Route::post('changeProfile', 'UserPasswordController@update')->name('users.changeProfile');
 	});

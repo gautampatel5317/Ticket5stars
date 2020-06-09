@@ -136,6 +136,10 @@ return [
 			'deleted_at_helper'        => '',
 		],
 	],
+	'profile'         => [
+		'title'          => 'Profile',
+		'title_singular' => 'Profile',
+	],
 	'name'                               => 'Name',
 	'remember_token'                     => 'Remember token',
 	'permissions'                        => 'Permissions',
@@ -761,18 +765,18 @@ return [
 			'seo_keyword'     => 'SEO Keyword',
 			'seo_description' => 'SEO Description',
 		],
-    ],
-    'country_management' => 'Country Management',
-	'country'         => [
-		'title'          => 'Countries',
-		'title_singular' => 'Country',
-		'fields'         => [
-			'name'          => 'Name',
-			'code'          => 'Code',
-			'phonecode'     => 'Phone Code',
+	],
+	'country_management' => 'Country Management',
+	'country'            => [
+		'title'             => 'Countries',
+		'title_singular'    => 'Country',
+		'fields'            => [
+			'name'             => 'Name',
+			'code'             => 'Code',
+			'phonecode'        => 'Phone Code',
 		],
-    ],
-    'state_management' => 'State Management',
+	],
+	'state_management' => 'State Management',
 	'state'            => [
 		'title'           => 'States',
 		'title_singular'  => 'State',
@@ -781,15 +785,34 @@ return [
 			'select_country' => 'Select Country'
 		],
 	],
-    'country_name' => 'Country Name',
-    'state_name' => 'State Name',
-    'city_management' => 'City Management',
+	'country_name'    => 'Country Name',
+	'state_name'      => 'State Name',
+	'city_management' => 'City Management',
 	'city'            => [
-		'title'           => 'Cities',
-		'title_singular'  => 'City',
-		'fields'          => [
-			'name'           => 'Name',
-			'select_state' => 'Select State'
+		'title'          => 'Cities',
+		'title_singular' => 'City',
+		'fields'         => [
+			'name'          => 'Name',
+			'select_state'  => 'Select State'
+		],
+	],
+	'ingredient'          => [
+		'title'              => 'Ingredient Warnings',
+		'title_singular'     => 'Ingredient Warnings',
+		'fields'             => [
+			'title'             => 'Title',
+			'title_helper'      => '',
+			'status'            => 'Status',
+			'status_helper'     => '',
+			'active'            => 'Active',
+			'inactive'          => 'InActive',
+			'created_at'        => 'Created At',
+			'created_at_helper' => '',
+			'updated_at'        => 'Updated At',
+			'updated_at_helper' => '',
+			'deleted_at'        => 'Deleted at',
+			'deleted_at_helper' => '',
+
 		],
 	],
 ];
