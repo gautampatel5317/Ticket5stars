@@ -124,7 +124,8 @@
                     </a>
                 </li>
                 @endcan
-                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }}" style="cursor: pointer;">
+
+                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -147,6 +148,14 @@
                             <a href="{{ route("admin.state.index") }}" class="nav-link {{ request()->is('admin/state') || request()->is('admin/state/*') ? 'active' : '' }}">
                                 <i class="fa fa-city"></i>
                                 <p><span>{{ trans('global.state.title') }}</span></p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('city_access')
+                        <li class="nav-item">
+                            <a href="{{ route("admin.city.index") }}" class="nav-link {{ request()->is('admin/city') || request()->is('admin/city/*') ? 'active' : '' }}">
+                                <i class="fa fa-city"></i>
+                                <p><span>{{ trans('global.city.title') }}</span></p>
                             </a>
                         </li>
                         @endcan

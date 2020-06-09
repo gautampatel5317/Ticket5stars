@@ -1,6 +1,6 @@
-@extends('backend.layouts.admin')
+<!-- @extends('backend.layouts.admin') -->
 @section('page-header')
-{{ trans('global.add') }} {{ trans('global.country.title_singular') }}
+{{ trans('global.country_management') }}
 @endsection
 @section('content')
 @include('flash::message')
@@ -85,35 +85,35 @@
                             extend: 'copy',
                             className: 'copyButton',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
+                                columns: [0, 1, 2, 3]
                             }
                         },
                         {
                             extend: 'csv',
                             className: 'csvButton',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
+                                columns: [0, 1, 2, 3]
                             }
                         },
                         {
                             extend: 'excel',
                             className: 'excelButton',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
+                                columns: [0, 1, 2, 3]
                             }
                         },
                         {
                             extend: 'pdf',
                             className: 'pdfButton',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
+                                columns: [0, 1, 2, 3]
                             }
                         },
                         {
                             extend: 'print',
                             className: 'printButton',
                             exportOptions: {
-                                columns: [0, 1, 2, 3, 4, 5]
+                                columns: [0, 1, 2, 3]
                             }
                         }
                     ]
@@ -151,7 +151,7 @@
                                 $('#country_table').DataTable().ajax.reload();
                                     Swal.fire(
                                     'Deleted!',
-                                    'country has been deleted.',
+                                    'Country has been deleted.',
                                     'success'
                                     )
                                 }, 1000);
@@ -163,6 +163,33 @@
                 }
             });
             e.preventDefault();
+        });
+
+        $(document).on('click','.change_status',function(e){
+            var ID = jQuery(this).attr('data');
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            $.ajax({
+                url: "{{URL('admin/country/changeStatus')}}",
+                type: "POST",
+                cache: false,
+                data:{
+                    _token:'{{ csrf_token() }}', 
+                    'status': status, 
+                    'id': ID
+                },
+                success: function(dataResult){
+                    if(dataResult=="success"){
+                        $('#country_table').DataTable().ajax.reload();
+                        Swal.fire(
+                        'Done!',
+                        'Status has been updated successfully.',
+                        'success'
+                        );
+                    }else{
+                        swal("Error!", "Something Went Wrong!", "error");
+                    }
+                }
+            });
         });
 
     })

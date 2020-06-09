@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-    <label for="name">{{ trans('global.country.fields.name') }}*</label>
+    <label for="name" class = "required">{{ trans('global.country.fields.name') }}</label>
     <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($country) ? $country->name : '') }}">
     @if($errors->has('name'))
     <p class="help-block">
@@ -8,7 +8,7 @@
     @endif
 </div>
 <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
-    <label for="code">{{ trans('global.country.fields.code') }}*</label>
+    <label for="code" class = "required">{{ trans('global.country.fields.code') }}</label>
     <input type="text" id="code" name="code" class="form-control" value="{{ old('code', isset($country) ? $country->code : '') }}">
     @if($errors->has('code'))
     <p class="help-block">
@@ -18,7 +18,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('phonecode') ? 'has-error' : '' }}">
-    <label for="phonecode">{{ trans('global.country.fields.phonecode') }}*</label>
+    <label for="phonecode" class = "required">{{ trans('global.country.fields.phonecode') }}</label>
     <input type="text" id="phonecode" name="phonecode" class="form-control" value="{{ old('phonecode', isset($country) ? $country->phonecode : '') }}">
     @if($errors->has('phonecode'))
     <p class="help-block">

@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('global.state_management') }}
+{{ trans('global.city_management') }}
 @endsection
 @section('content')
 @include('flash::message')
@@ -10,9 +10,9 @@
 
     <div class="card-header">
         <div class="card-tools">
-        @can('state_create')
-            <a class="btn btn-primary btn-sm" href="{{ route("admin.state.create") }}">
-            <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.state.title_singular') }}
+        @can('city_create')
+            <a class="btn btn-primary btn-sm" href="{{ route("admin.city.create") }}">
+            <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.city.title_singular') }}
             </a>
           @endcan
         </div>
@@ -20,14 +20,17 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="state_table" class=" table table-bordered table-striped table-hover datatable">
+            <table id="city_table" class=" table table-bordered table-striped table-hover datatable">
                 <thead>
                     <tr>
                         <th>
-                            {{ trans('global.state.fields.name') }}
+                            {{ trans('global.city.fields.name') }}
                         </th>
                         <th>
                             {{ trans('global.country_name') }}
+                        </th>
+                        <th>
+                            {{ trans('global.state_name') }}
                         </th>
                         <th>
                             {{ trans('global.status') }}
@@ -51,11 +54,11 @@
         fetch_data();
         function fetch_data(status = ''){
             // Ajax Data Load
-            var dataTable = $('#state_table').DataTable({
+            var dataTable = $('#city_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route("admin.state.get") }}',
+                    url: '{{ route("admin.city.get") }}',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -65,9 +68,9 @@
                 columns: [
                     {data: 'name', name: 'name' },
                     {data: 'country_name', name: 'country_name' },
+                    {data: 'state_name', name: 'state_name' },
                     {data: 'status', name: 'status' },
-                    {data: 'actions', name: 'actions', searchable: false, sortable: false
-                    },
+                    {data: 'actions', name: 'actions', searchable: false, sortable: false },
                 ],
                 order: [],
                 searchDelay: 500,
@@ -77,35 +80,35 @@
                             extend: 'copy',
                             className: 'copyButton',
                             exportOptions: {
-                                columns: [0, 1, 2]
+                                columns: [0, 1, 2, 3]
                             }
                         },
                         {
                             extend: 'csv',
                             className: 'csvButton',
                             exportOptions: {
-                                columns: [0, 1, 2]
+                                columns: [0, 1, 2, 3]
                             }
                         },
                         {
                             extend: 'excel',
                             className: 'excelButton',
                             exportOptions: {
-                                columns: [0, 1, 2]
+                                columns: [0, 1, 2, 3]
                             }
                         },
                         {
                             extend: 'pdf',
                             className: 'pdfButton',
                             exportOptions: {
-                                columns: [0, 1, 2]
+                                columns: [0, 1, 2, 3]
                             }
                         },
                         {
                             extend: 'print',
                             className: 'printButton',
                             exportOptions: {
-                                columns: [0, 1, 2]
+                                columns: [0, 1, 2, 3]
                             }
                         }
                     ]
@@ -128,7 +131,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{URL('admin/state/')}}"+"/"+delId,
+                        url: "{{URL('admin/city/')}}"+"/"+delId,
                         type: "POST",
                         cache: false,
                         data:{
@@ -140,10 +143,10 @@
                         success: function(dataResult){
                             if(dataResult=="success"){
                                 setTimeout(function(){
-                                $('#state_table').DataTable().ajax.reload();
+                                $('#city_table').DataTable().ajax.reload();
                                     Swal.fire(
                                     'Deleted!',
-                                    'State has been deleted.',
+                                    'City has been deleted.',
                                     'success'
                                     )
                                 }, 1000);
@@ -161,7 +164,7 @@
             var ID = jQuery(this).attr('data');
             var status = $(this).prop('checked') == true ? 1 : 0;
             $.ajax({
-                url: "{{URL('admin/state/changeStatus')}}",
+                url: "{{URL('admin/city/changeStatus')}}",
                 type: "POST",
                 cache: false,
                 data:{
@@ -171,7 +174,7 @@
                 },
                 success: function(dataResult){
                     if(dataResult=="success"){
-                        $('#state_table').DataTable().ajax.reload();
+                        $('#city_table').DataTable().ajax.reload();
                         Swal.fire(
                         'Done!',
                         'Status has been updated successfully.',
