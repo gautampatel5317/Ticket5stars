@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
-    <label for="first_name">{{ trans('global.customer.fields.name') }}*</label>
+    <label for="first_name" class = "required">{{ trans('global.customer.fields.name') }}</label>
     <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name', isset($customer) ? $customer->first_name : '') }}">
     @if($errors->has('first_name'))
     <p class="help-block">
@@ -10,7 +10,7 @@
         {{ trans('global.customer.fields.name_helper') }}
 </div>
 <div class="form-group {{ $errors->has('family_name') ? 'has-error' : '' }}">
-    <label for="family_name">{{ trans('global.customer.fields.family_name') }}*</label>
+    <label for="family_name" class = "required">{{ trans('global.customer.fields.family_name') }}</label>
     <input type="text" id="family_name" name="family_name" class="form-control" value="{{ old('family_name', isset($customer) ? $customer->family_name : '') }}">
     @if($errors->has('family_name'))
     <p class="help-block">
@@ -23,7 +23,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-    <label for="email">{{ trans('global.customer.fields.email') }}*</label>
+    <label for="email" class = "required">{{ trans('global.customer.fields.email') }}</label>
     <input type="text" id="email" name="email" class="form-control" value="{{ old('email', isset($customer) ? $customer->email : '') }}">
     @if($errors->has('email'))
     <p class="help-block">
@@ -36,7 +36,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('experience') ? 'has-error' : '' }}">
-    <label for="experience">{{ trans('global.customer.fields.experience') }}*</label>
+    <label for="experience" class = "required">{{ trans('global.customer.fields.experience') }}</label>
     @php
         $selected_experience = ( old('experience') != "" ? old('experience') : ( isset($customer) ? $customer->experience : "") );
     @endphp
@@ -57,7 +57,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('business') ? 'has-error' : '' }}">
-    <label for="business">{{ trans('global.customer.fields.business') }}*</label>
+    <label for="business" class = "required">{{ trans('global.customer.fields.business') }}</label>
     @php
         $selected_business = ( old('business') != "" ? old('business') : ( isset($customer) ? $customer->business : "") );
     @endphp
@@ -82,7 +82,7 @@
 </div>
 
 <div class="form-group">
-    <label for="status">{{ trans('global.status') }}    </label>
+    <label for="status">{{ trans('global.status') }}</label>
     @php
         $selected_status = ( old('status') != "" ? old('status') : (isset($customer) ? $customer->status : '1' )  );
     @endphp
@@ -100,7 +100,7 @@
     @php
         $selected_confirmed = ( old('confirmed') != "" ? old('confirmed') : (isset($customer) ? $customer->confirmed : '' ) );
     @endphp
-    <label for="confirmed">{{ trans('global.customer.fields.confirmed') }}    </label>
+    <label for="confirmed">{{ trans('global.customer.fields.confirmed') }}</label>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" name = "confirmed" id="confirmed" value="1" {{ ($selected_confirmed == "1" ? "checked disabled" : "") }}>
     </div>

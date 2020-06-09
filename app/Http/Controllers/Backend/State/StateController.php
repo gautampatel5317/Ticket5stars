@@ -9,6 +9,7 @@ use App\Http\Requests\Backend\State\UpdateStateRequest;
 use App\Models\State\State;
 use App\Repositories\Backend\Country\CountryRepository;
 use App\Repositories\Backend\State\StateRepository;
+use Illuminate\Http\Request;
 
 class StateController extends Controller
 {
@@ -97,5 +98,16 @@ class StateController extends Controller
         abort_unless(\Gate::allows('state_delete'), 403);
         $this->model->destroy($state);
         return "success";
+    }
+    
+    public function changeStatus(Request $request)
+    {
+        $input = $request->except('_token');
+        $flag = $this->model->changeStatus($input['id'], $input['status']);
+        if ($flag == 1) {
+            return "success";
+        } else {
+            return "failed";
+        }
     }
 }

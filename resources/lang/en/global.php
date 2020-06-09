@@ -761,7 +761,8 @@ return [
 			'seo_keyword'     => 'SEO Keyword',
 			'seo_description' => 'SEO Description',
 		],
-	],
+    ],
+    'country_management' => 'Country Management',
 	'country'         => [
 		'title'          => 'Countries',
 		'title_singular' => 'Country',
@@ -770,7 +771,8 @@ return [
 			'code'          => 'Code',
 			'phonecode'     => 'Phone Code',
 		],
-	],
+    ],
+    'state_management' => 'State Management',
 	'state'            => [
 		'title'           => 'States',
 		'title_singular'  => 'State',
@@ -779,5 +781,15 @@ return [
 			'select_country' => 'Select Country'
 		],
 	],
-	'country_name' => 'Country Name',
+    'country_name' => 'Country Name',
+    'state_name' => 'State Name',
+    'city_management' => 'City Management',
+	'city'            => [
+		'title'           => 'Cities',
+		'title_singular'  => 'City',
+		'fields'          => [
+			'name'           => 'Name',
+			'select_state' => 'Select State'
+		],
+	],
 ];

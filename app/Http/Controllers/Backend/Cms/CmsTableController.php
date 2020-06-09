@@ -27,9 +27,9 @@ class CmsTableController extends Controller
             ->escapeColumns(['title'])
             ->addColumn('status', function ($status) {
                 if ($status->status == "1") {
-                    return trans('global.active');
+                    return '<span class="badge badge-success">'.trans('global.active').'</span>';
                 } else {
-                    return trans('global.inactive');
+                    return '<span class="badge badge-danger">'.trans('global.inactive').'</span>';
                 }
             })
             ->addColumn('actions', function ($Customer) {

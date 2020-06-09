@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Country\Traits\Attribute;
+namespace App\Models\City\Traits\Attribute;
 
 /**
- * Class CountryAttribute.
+ * Class CityAttribute.
  */
-trait CountryAttribute
+trait CityAttribute
 {
     /**
      * @return string
@@ -14,8 +14,8 @@ trait CountryAttribute
     {
         return '<div class="btn-group action-btn">' .
             $this->statusButton() .
-            $this->editButton('edit-blog', 'admin.country.edit') .
-            $this->deleteButton('delete-blog', 'admin.country.destroy') .
+            $this->editButton('edit-blog', 'admin.city.edit') .
+            $this->deleteButton('delete-blog', 'admin.city.destroy') .
             '</div>';
     }
     /**
@@ -23,7 +23,7 @@ trait CountryAttribute
      */
     public function editButton($permission, $route)
     {
-        if (\Gate::allows('country_edit')) {
+        if (\Gate::allows('city_edit')) {
             return '<a href="' . route($route, $this) . '" class="text-success pr-2">
                     <i data-toggle="tooltip" data-placement="top" title="Edit" class="fas fa-edit"></i>
 				</a>';
@@ -35,7 +35,7 @@ trait CountryAttribute
      */
     public function deleteButton($permission, $route)
     {
-        if (\Gate::allows('country_delete')) {
+        if (\Gate::allows('city_delete')) {
             return '<a href="' . route($route, $this) . '"
                   data="' . $this->id . '"  class="delete_record text-danger" data-method="delete"
                     data-trans-button-cancel="' . trans('buttons.general.cancel') . '"
@@ -45,13 +45,12 @@ trait CountryAttribute
                 </a>';
         }
     }
-
     /**
      * For status button
      */
     public function statusButton()
     {
-        if (\Gate::allows('country_edit')) {
+        if (\Gate::allows('city_edit')) {
             $checked = ($this->status == "1" ? "checked" : "");
             return '<div class="custom-control custom-switch ml-2">
                 <input type="checkbox" class="custom-control-input change_status" id="customSwitch' . $this->id . '" ' . $checked . ' data = ' . $this->id . ' >

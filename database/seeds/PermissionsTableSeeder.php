@@ -283,6 +283,30 @@ class PermissionsTableSeeder extends Seeder {
 				'title'      => 'state_delete',
 				'created_at' => '2020-06-02 16:14:42',
 				'updated_at' => '2020-06-02 16:14:42',
+            ],
+            [
+				'id'         => '46',
+				'title'      => 'city_access',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+            ],
+            [
+				'id'         => '47',
+				'title'      => 'city_create',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+            ],
+            [
+				'id'         => '48',
+				'title'      => 'city_edit',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+            ],
+            [
+				'id'         => '49',
+				'title'      => 'city_delete',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			],
 		];
 		Permission::insert($permissions);
