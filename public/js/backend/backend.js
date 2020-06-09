@@ -433,9 +433,9 @@ var Backend = {
                 errorPlacement: Rules.errorPlacement,
                 rules: {
                     vali: "required",
-                    name: {required: true},
-                    code: {required: true},
-                    phonecode: {required: true},
+                    name: {required: true, lettersonly : true},
+                    code: {required: true, lettersonly : true},
+                    phonecode: {required: true, pattern : /^\+?[0-9]+$/},
                 },
                 messages: {
                     name: 'The country name field is required.',
@@ -454,12 +454,33 @@ var Backend = {
                 errorPlacement: Rules.errorPlacement,
                 rules: {
                     vali: "required",
-                    name: {required: true},
+                    name: {required: true, lettersonly : true},
                     country_id: {required: true},
                 },
                 messages: {
                     name: 'The state name field is required.',
                     country_id: 'The country name field is required.',
+                }
+            });
+        Backend.Validate.$validator = $validator;
+        },
+        City: function(event) {
+            var Rules = Backend.Validate.init;
+            var $validator = $(".form-validate-jquery").validate({
+                errorClass: Rules.errorClass,
+                highlight: Rules.highlight,
+                unhighlight: Rules.unhighlight,
+                errorPlacement: Rules.errorPlacement,
+                rules: {
+                    vali: "required",
+                    name: {required: true, lettersonly : true},
+                    country_id: {required: true},
+                    state_id: {required: true},
+                },
+                messages: {
+                    name: 'The city name field is required.',
+                    country_id: 'The country name field is required.',
+                    state_id: 'The state name field is required.',
                 }
             });
         Backend.Validate.$validator = $validator;

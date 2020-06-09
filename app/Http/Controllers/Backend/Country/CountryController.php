@@ -8,6 +8,7 @@ use App\Http\Requests\Backend\Country\StoreCountryRequest;
 use App\Http\Requests\Backend\Country\UpdateCountryRequest;
 use App\Models\Country\Country;
 use App\Repositories\Backend\Country\CountryRepository;
+use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
@@ -94,5 +95,16 @@ class CountryController extends Controller
         abort_unless(\Gate::allows('country_delete'), 403);
         $this->model->destroy($country);
         return "success";
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $input = $request->except('_token');
+        $flag = $this->model->changeStatus($input['id'], $input['status']);
+        if ($flag == 1) {
+            return "success";
+        } else {
+            return "failed";
+        }
     }
 }

@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Backend\State;
+namespace App\Http\Controllers\Backend\City;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Backend\State\StateRepository;
+use App\Repositories\Backend\City\CityRepository;
 use Illuminate\Http\Request;
-use App\Models\State\State;
+use App\Models\City\City;
 use Yajra\DataTables\Facades\DataTables;
 
-class StateTableController extends Controller
+class CityTableController extends Controller
 {
-    protected $state;
-    public function __construct(StateRepository $state)
+    protected $city;
+    public function __construct(CityRepository $city)
     {
-        $this->state = $state;
+        $this->city = $city;
     }
 
     public function __invoke()
     {
-        $data = $this->state->getForDataTable();
+        $data = $this->city->getForDataTable();
         return Datatables::of($data)
             ->escapeColumns(['name'])
             ->addColumn('status', function ($status) {
@@ -28,8 +28,8 @@ class StateTableController extends Controller
                     return '<span class="badge badge-danger">'.trans('global.inactive').'</span>';
                 }
             })
-            ->addColumn('actions', function ($state) {
-                return $state->action_buttons;
+            ->addColumn('actions', function ($city) {
+                return $city->action_buttons;
             })
             ->make(true);
     }

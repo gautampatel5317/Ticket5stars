@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-    <label for="title">{{ trans('global.title') }}*</label>
+    <label for="title" class = "required">{{ trans('global.title') }}</label>
     <input type="text" id="title" name="title" class="form-control" value="{{ old('title', isset($cms) ? $cms->title : '') }}">
     @if($errors->has('title'))
     <p class="help-block">
@@ -8,7 +8,7 @@
     @endif
 </div>
 <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-    <label for="description">{{ trans('global.description') }}*</label>
+    <label for="description" class = "required">{{ trans('global.description') }}</label>
     <textarea id="description" name="description" class="form-control ckeditor">{{ old('description', isset($cms) ? $cms->description : '') }}</textarea>
     @if($errors->has('description'))
     <p class="help-block">

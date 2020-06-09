@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-    <label for="name">{{ trans('global.state.fields.name') }}*</label>
+    <label for="name" class = "required">{{ trans('global.state.fields.name') }}</label>
     <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($state) ? $state->name : '') }}">
     @if($errors->has('name'))
     <p class="help-block">
@@ -9,7 +9,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('country_id') ? 'has-error' : '' }}">
-    <label for="country_id">{{ trans('global.country_name') }}*</label>
+    <label for="country_id" class = "required">{{ trans('global.country_name') }}</label>
     @php
         $selected_country = ( old('country_id') != "" ? old('country_id') : ( isset($state) ? $state->country_id : "") );
     @endphp
