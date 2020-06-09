@@ -43,6 +43,18 @@ class CustomerRepository extends BaseRepository {
 			if ($user->save()) {
 				//set role
 				$user->roles()->sync([2]);
+				//Send Mail
+				$data = [
+					'data'               => [
+						'first_name'        => $user['name'],
+						'email'             => $user['email'],
+						'confirmation_code' => '/customer/confirm',
+						'customer_id'       => $customer['id'],
+						'user_id'           => $user->id,
+					],
+					'email_template_type' => 1
+				];
+				$confirmationMail = createNotification('User Registration', $user->id, $data);
 				return true;
 			}
 		}

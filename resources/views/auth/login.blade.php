@@ -12,9 +12,9 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
             @if(\Session::has('message'))
-                <p class="alert alert-info">
-                    {{ \Session::get('message') }}
-                </p>
+            <p class="alert alert-info">
+                {{ \Session::get('message') }}
+            </p>
             @endif
             <form action="{{ route('login') }}" method="POST">
                 {{ csrf_field() }}
@@ -22,9 +22,9 @@
                     <div class="input-group">
                         <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ trans('global.login_email') }}" name="email">
                         @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                 </div>
@@ -32,9 +32,9 @@
                     <div class="input-group">
                         <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="{{ trans('global.login_password') }}" name="password">
                         @error('password')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                 </div>
@@ -49,19 +49,20 @@
                     <!-- /.col -->
                 </div>
             </form>
-
-
-
             <p class="mb-1">
                 <a class="" href="{{ route('password.request') }}">
                     {{ trans('global.forgot_password') }}
                 </a>
             </p>
+            <p class="mb-1">
+                 Not a member yet ?
+                <a class="" href="{{ route('customer.create') }}">
+                 {{ trans('global.register') }}
+                </a>
+            </p>
             <p class="mb-0">
-
             </p>
             <p class="mb-1">
-
             </p>
         </div>
         <!-- /.login-card-body -->

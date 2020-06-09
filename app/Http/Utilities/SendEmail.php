@@ -17,7 +17,7 @@ class SendEmail {
 					// Replace user firstname
 					$content = str_replace('[name]', $data['first_name'], $content);
 					// Replace confirmation link
-					$url     = '<a href='.url('account/confirm/'.$data['confirmation_code']).'>Click Here</a>';
+					$url     = '<a href='.url($data['confirmation_code'].'/'.$data['customer_id']).'>Click Here</a>';
 					$content = str_replace('[confirmation_link]', $url, $content);
 					// User email
 					$data['to'] = $data['email'];

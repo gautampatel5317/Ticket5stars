@@ -1,4 +1,6 @@
 <?php
+use App\Exceptions\GeneralException;
+use App\Http\Utilities\SendEmail;
 
 /*
  * Global helpers file with misc functions.
@@ -10,7 +12,7 @@ if (!function_exists('app_name')) {
 	 * @return mixed
 	 */
 
-	function app_name() {
+function app_name() {
 		return config('app.name');
 	}
 }
@@ -38,4 +40,26 @@ if (!function_exists('includeRouteFiles')) {
 			}
 		}
 	}
+	// Creating Notification
+	if (!function_exists('createNotification')) {
+		/**
+		 * create new notification.
+		 *
+		 * @param  $message    message you want to show in notification
+		 * @param  $userId     To Whom You Want To send Notification
+		 * @param  $type       type of notification (1 - dashboard, 2 - email, 3 - both) (by default 1)
+		 * @param  $option     associate array [ 'data' => $data, 'email_template_type' => $template_type ]
+		 *
+		 * @return object
+		 */
+		function createNotification($message, $userId, $options = []) {
+			if (!empty($options['data']) && !empty($options['email_template_type'])) {
+				$mail        = new SendEmail();
+				$emailResult = $mail->sendWithTemplate($options['data'], $options['email_template_type']);
+			} else {
+				throw new GeneralException('Invalid input given.option array shold contains data and email_template_type');
+			}
+		}
+	}
+
 }

@@ -44,6 +44,11 @@ class CustomerController extends Controller {
 		flash('The customer has been registered successfully!')->success()->important();
 		return redirect()->route('customer.index');
 	}
+	public function confirmCustomer(Customer $customer, Request $request) {
+		$update = Customer::where('id', $customer->id)->update(['confirmed' => '1']);
+		flash('The customer has been confirmed successfully!')->success()->important();
+		return redirect()->route('customer.index');
+	}
 
 	/**
 	 * Display the specified resource.
