@@ -135,7 +135,7 @@
                     </a>
                 </li>
                 @endcan
-                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }}" style="cursor: pointer;">
+                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -161,16 +161,16 @@
                             </a>
                         </li>
                         @endcan
+                        @can('ingredient_access')
+                            <li class="nav-item">
+                                <a href="{{ route("admin.ingredient.index") }}" class="nav-link {{ request()->is('admin/ingredient') || request()->is('admin/ingredient/*') ? 'active' : '' }}">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <p><span>{{ trans('global.ingredient.title') }}</span></p>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
-                @can('ingredient_access')
-                    <li class="nav-item">
-                        <a href="{{ route("admin.ingredient.index") }}" class="nav-link {{ request()->is('admin/ingredient') || request()->is('admin/ingredient/*') ? 'active' : '' }}">
-                            <i class="fa fa-exclamation-circle"></i>
-                            <p><span>{{ trans('global.ingredient.title') }}</span></p>
-                        </a>
-                    </li>
-                @endcan
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

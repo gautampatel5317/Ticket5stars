@@ -10,6 +10,7 @@ trait IngredientAttribute {
 	 */
 	public function getActionButtonsAttribute() {
 		return '<div class="btn-group action-btn">'.
+		$this->statusButton().
 		$this->editButton('edit-blog', 'admin.ingredient.edit').
 		$this->view('edit-blog', 'admin.ingredient.show').
 		$this->deleteButton('delete-blog', 'admin.ingredient.destroy').
@@ -48,6 +49,16 @@ trait IngredientAttribute {
                     data-trans-title="'.trans('strings.backend.general.are_you_sure').'">
                         <i data-toggle="tooltip" data-placement="top" title="Delete" class="fa fa-trash"></i>
                 </a>';
+		}
+	}
+
+	public function statusButton() {
+		if(\Gate::allows('ingredient_edit')){
+			$checked = ($this->status == "1")?"checked":"";
+			return '<div class="custom-control custom-switch ml-2">
+			<input type="checkbox" class="custom-control-input change_status" id="customSwitch' . $this->id . '" '.$checked.' data = ' . $this->id . ' >
+			<label class="custom-control-label" for="customSwitch' . $this->id . '"></label>
+		</div>';
 		}
 	}
 }
