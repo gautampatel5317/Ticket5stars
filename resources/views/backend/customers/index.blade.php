@@ -23,7 +23,7 @@
             <table id="customers_table" class=" table table-bordered table-striped table-hover datatable">
                 <thead>
                     <tr>
-                      
+
                         <th>
                             {{ trans('global.customer.fields.name') }}
                         </th>
@@ -66,9 +66,9 @@
         function fetch_data(status = ''){
             // Ajax Data Load
             //$('tr > td').removeClass('select-checkbox');
-            
+
             var dataTable = $('#customers_table').DataTable({
-                
+
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -80,12 +80,12 @@
                     data: {status:status}
                 },
                 columns: [
-                    {data: 'first_name', name: 'first_name' },
+                    {data: 'name', name:'{{ config('tables.users_table')}}.name'},
                     {data: 'family_name', name: 'family_name' },
-                    {data: 'email', name: 'email' },
-                    {data: 'experience', name: 'experience' },
-                    {data: 'business', name: 'business' },
-                    {data: 'status', name: 'status' },
+                    {data: 'email',  name:'{{ config('tables.users_table')}}.email'},
+                    {data: 'experience', name:'{{ config('tables.customers_table')}}.experience'},
+                    {data: 'business', name:'{{ config('tables.customers_table')}}.business'},
+                    {data: 'status',  name:'{{ config('tables.customers_table')}}.status' },
                     {data: 'actions', name: 'actions', searchable: false, sortable: false
                     },
                 ],
@@ -174,7 +174,7 @@
         @can('customer_delete')
         dtButtons.push(deleteButton)
         @endcan
-        
+
         $(document).on('click','.delete_record',function(e){
             var delId = jQuery(this).attr('data');
             var that = this;
@@ -225,6 +225,6 @@
         });
 
     })
-    
+
 </script>
 @endsection

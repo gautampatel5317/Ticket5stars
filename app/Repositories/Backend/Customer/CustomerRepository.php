@@ -20,6 +20,11 @@ class CustomerRepository extends BaseRepository {
 	 * @return mixed
 	 */
 	public function getForDataTable($status) {
+		$users = function ($query) {
+			$query->where('status', 1)->where('deleted_at', NULL);
+
+		};
+		$query = $this->model->with(['users' => $users]);
 		if ($status != "" && ($status == "0" || $status == "1")) {
 			return $this->model->where('status', '=', $status)->orderByDesc('id')->get();
 		} else {

@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Models\Customer;
-
 use App\Models\Customer\Traits\Attribute\CustomerAttribute;
 use App\Models\ModelTrait;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -23,4 +23,10 @@ class Customer extends Model {
 		'created_by',
 		'updated_by',
 	];
+	/**
+	 * Users
+	 */
+	public function users() {
+		return $this->hasOne(User::class , 'is_front', 'id');
+	}
 }
