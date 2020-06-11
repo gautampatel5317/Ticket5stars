@@ -31,13 +31,9 @@ class IngredientTableController extends Controller
         return Datatables::of($this->ingredient->getForDataTable())
 			->escapeColumns(['title'])
 			->addColumn('checkbox', function ($ingredient) {
-				return "";
+                return '';
 			})->addColumn('status', function ($ingredient) {
-                $checked = ($ingredient->status == "1" ? "checked" : "");
-            return'<div class="custom-control custom-switch ml-2">
-                <input type="checkbox" class="custom-control-input change_status" id="customSwitch' . $ingredient->id . '" '.$checked.' data = ' . $ingredient->id . ' >
-                <label class="custom-control-label" for="customSwitch' . $ingredient->id . '"></label>
-            </div>';
+                return ($ingredient->status == "1" ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>');
 			})
 			->addColumn('action_buttons', function ($ingredient) {
 				return $ingredient->action_buttons;
