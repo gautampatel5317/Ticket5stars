@@ -11,7 +11,8 @@ trait EmailTemplateAttribute {
 	 */
 	public function getActionButtonsAttribute() {
 		return '<div class="btn-group action-btn">'
-		.$this->getEditButtonAttribute('edit-email-template', 'admin.emailtemplates.edit').
+		.$this->statusButton('edit-email-template', 'admin.emailtemplates.edit').
+		$this->getEditButtonAttribute('edit-email-template', 'admin.emailtemplates.edit').
 		$this->getDeleteButtonAttribute('delete-email-template', 'admin.emailtemplates.destroy').
 		'</div>';
 	}
@@ -32,5 +33,17 @@ trait EmailTemplateAttribute {
 	 */
 	public function isActive() {
 		return $this->status == 1;
+	}
+	/**
+	 * For status button
+	 */
+	public function statusButton() {
+		if (\Gate::allows('edit-email-template')) {
+			$checked = ($this->status == "1"?"checked":"");
+			return '<div class="custom-control custom-switch ml-2">
+                <input type="checkbox" class="custom-control-input change_status" id="customSwitch'.$this->id.'" '.$checked.' data = '.$this->id.' >
+                <label class="custom-control-label" for="customSwitch'.$this->id.'"></label>
+            </div>';
+		}
 	}
 }

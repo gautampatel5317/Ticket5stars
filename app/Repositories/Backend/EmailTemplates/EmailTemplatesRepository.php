@@ -61,5 +61,16 @@ class EmailTemplatesRepository extends BaseRepository {
 		}
 		throw new GeneralException(trans('exceptions.backend.emailtemplates.delete_error'));
 	}
+	/**
+	 * Email Template Change Status
+	 *
+	 * @param \App\Http\Requests\Backend\EmailTemplates\EditEmailTemplatesRequest $request
+	 * @return mixed
+	 */
+	public function changeStatus($input) {
+		$updateStatus = EmailTemplate::where('id', $input['id'])->update(['status' => $input['status']]);
+		return true;
+
+	}
 
 }

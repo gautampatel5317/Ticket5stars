@@ -88,5 +88,17 @@ class EmailTemplatesController extends Controller {
 		flash('The email template has been deleted successfully!')->success()->important();
 		return redirect()->route('admin.emailtemplates.index');
 	}
+	/**
+	 * Email Template Change Status
+	 *
+	 * @param \App\Http\Requests\Backend\EmailTemplates\EditEmailTemplatesRequest $request
+	 * @return mixed
+	 */
+	public function changeStatus(EditEmailTemplatesRequest $request) {
+		$input = $request->except('_token');
+		$this->emailtemplates->changeStatus($input);
+		return 'success';
+
+	}
 
 }

@@ -106,6 +106,32 @@ $(function () {
         });
           e.preventDefault();
       });
+           $(document).on('click','.change_status',function(e){
+            var ID = jQuery(this).attr('data');
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            $.ajax({
+                url: "{{ route('admin.emailtemplates.changestatus') }}",
+                type: "POST",
+                cache: false,
+                data:{
+                    _token:'{{ csrf_token() }}',
+                    'status': status,
+                    'id': ID
+                },
+                success: function(dataResult){
+                    if(dataResult=="success"){
+                        $('#emailtemplate_table').DataTable().ajax.reload();
+                        Swal.fire(
+                        'Done!',
+                        'Status has been updated successfully.',
+                        'success'
+                        );
+                    }else{
+                        Swal("Error!", "Something Went Wrong!", "error");
+                    }
+                }
+            });
+        });
 });
 </script>
 @endsection
