@@ -41,7 +41,7 @@ class CustomerController extends Controller {
 	public function store(StoreCustomer $request) {
 		$input    = $request->except('_token');
 		$customer = $this->customer->create($input);
-		flash('The customer has been registered successfully!')->success()->important();
+		flash('The customer has been registered successfully!Please check mail for confirm users!')->success()->important();
 		return redirect()->route('customer.index');
 	}
 	public function confirmCustomer(Customer $customer, Request $request) {
