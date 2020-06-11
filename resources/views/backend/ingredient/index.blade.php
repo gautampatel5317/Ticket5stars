@@ -58,9 +58,9 @@ $(function () {
               type: 'post'
       },
       columns: [
-              {data: 'checkbox', name:'{{ config('tables.ingredient_table')}}.id',visible:false},
-              {data: 'title', name:'{{ config('tables.ingredient_table')}}.title'},
-              {data: 'status', name:'{{ config('tables.ingredient_table')}}.status'},
+              {data: 'checkbox', name:'id',visible: false},
+              {data: 'title', name:'title'},
+              {data: 'status', name:'status'},
               {data: 'action_buttons', name: 'actions', searchable: false, sortable: false},
           ],
        order: [],
@@ -76,7 +76,6 @@ $(function () {
             ]
         }
   });
-
   $(document).on('click','.delete_record',function(e){
     var delId = jQuery(this).attr('data');
     var that = this;
