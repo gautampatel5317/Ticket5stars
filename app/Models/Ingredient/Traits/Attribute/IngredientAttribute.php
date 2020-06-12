@@ -20,8 +20,8 @@ trait IngredientAttribute {
 	 * Show ingredient
 	 */
 	public function view($permission, $route) {
-		if(\Gate::allows('ingredient_show')){
-		return '<a href="'.route($route, $this).'" class="text-success pr-2">
+		if (\Gate::allows('ingredient_show')) {
+			return '<a href="'.route($route, $this).'" class="text-primary pr-2">
                     <i data-toggle="tooltip" data-placement="top" title="View" class="fas fa-eye"></i>
 				</a>';
 		}
@@ -30,8 +30,8 @@ trait IngredientAttribute {
 	 * @return string
 	 */
 	public function editButton($permission, $route) {
-		if(\Gate::allows('ingredient_edit')){
-			return '<a href="'.route($route, $this).'" class="text-success pr-2">
+		if (\Gate::allows('ingredient_edit')) {
+			return '<a href="'.route($route, $this).'" class="text-primary pr-2">
                     <i data-toggle="tooltip" data-placement="top" title="Edit" class="fas fa-edit"></i>
 				</a>';
 		}
@@ -53,11 +53,11 @@ trait IngredientAttribute {
 	}
 
 	public function statusButton() {
-		if(\Gate::allows('ingredient_edit')){
+		if (\Gate::allows('ingredient_edit')) {
 			$checked = ($this->status == "1")?"checked":"";
 			return '<div class="custom-control custom-switch ml-2">
-			<input type="checkbox" class="custom-control-input change_status" id="customSwitch' . $this->id . '" '.$checked.' data = ' . $this->id . ' >
-			<label class="custom-control-label" for="customSwitch' . $this->id . '"></label>
+			<input type="checkbox" class="custom-control-input change_status" id="customSwitch'.$this->id.'" '.$checked.' data = '.$this->id.' >
+			<label class="custom-control-label" for="customSwitch'.$this->id.'"></label>
 		</div>';
 		}
 	}

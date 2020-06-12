@@ -20,19 +20,23 @@
                         <table id="roles_table" class=" table table-bordered table-striped table-hover datatable">
                             <thead>
                                 <tr>
-                                    <th width="10">
-
-                                    </th>
-                                    <th>
-                                        {{ trans('global.role.fields.title') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('global.role.fields.permissions') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('Actions') }}
-                                    </th>
+                                    <th width="10"></th>
+                                    <th>{{ trans('global.role.fields.title') }}</th>
+                                    <th>{{ trans('global.role.fields.permissions') }}</th>
+                                    <th>{{ trans('Created At') }}</th>
+                                    <th>{{ trans('Updated At') }}</th>
+                                    <th>{{ trans('Actions') }}</th>
                                 </tr>
+                            </thead>
+                            <thead>
+                              <tr>
+                                <th><input type="text" class="form-control text-search" name="title" data-column="1" placeholder="{{ trans('global.role.fields.title') }}"></th>
+                                <th></th>
+                                <th><input type="date" name="created_at" data-column="5" value="" class="form-control text-search">
+                                </th>
+                               <th><input type="date" name="updated_at" data-column="6" value="" class="form-control text-search">
+                            </th>
+                              </tr>
                             </thead>
                         </table>
                   </div>
@@ -62,8 +66,10 @@ $(function () {
           },
           columns: [
               {data: 'checkbox', name:'{{ config('tables.roles_table')}}.id',visible:false},
-              {data: 'title', name:'{{ config('tables.roles_table')}}.title'},
-              {data: 'permission', name: '{{ config('tables.permissions_table')}}.title'},
+              {data: 'title', name:'{{ config('tables.roles_table')}}.title',width:'15%'},
+              {data: 'permission', name: '{{ config('tables.permissions_table')}}.title',sortable:false,width:'45%'},
+              {data: 'created_at', name: '{{ config('tables.roles_table')}}.created_at'},
+              {data: 'updated_at', name:   '{{ config('tables.roles_table')}}.updated_at'},
               {data: 'action_buttons', name: 'action_buttons', searchable: false, sortable: false},
           ],
           order: [],
@@ -79,8 +85,13 @@ $(function () {
               ]
           }
       });
+  /* DataTable column search */
+  $('.custom-select').select2({width:50});
+  $('.text-search').on('keyup change',function(){
+     dataTable.columns($(this).attr('data-column')).search(this.value).draw();
   });
-    /* End Ajax Load Data */
+  });
+/* End Ajax Load Data */
         $(document).on('click','.delete_record',function(e){
           var delId = jQuery(this).attr('data');
           var deleteUrl = window.origin+`/admin/roles/${delId}/delete`;

@@ -8,7 +8,7 @@ trait ModelTrait {
 	 */
 	public function getEditButtonAttribute($permission, $route) {
 		// if (access()->allow($permission)) {
-		return '<a href="'.route($route, $this).'" class="btn btn-flat btn-default text-success pr-2">
+		return '<a href="'.route($route, $this).'" class="btn btn-flat btn-default text-primary pr-2">
                     <i data-toggle="tooltip" data-placement="top" title="Edit" class="fas fa-edit"></i>
                 </a>';
 		// }

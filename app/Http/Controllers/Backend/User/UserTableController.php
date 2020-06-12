@@ -31,16 +31,44 @@ class UserTableController extends Controller {
 			->escapeColumns(['name'])
 			->addColumn('checkbox', function ($user) {
 				return "";
-			})->addColumn('roles', function ($user) {
+			})
+			->addColumn('created_at', function ($user) {
+				if (!empty($user->created_at)) {
+					$createadAt = date('Y-m-d', strtotime($user->created_at));
+					return $createadAt;
+				}
+				return '-';
+			})
+			->addColumn('updated_at', function ($user) {
+				if (!empty($user->updated_at)) {
+					$updatedAt = date('Y-m-d', strtotime($user->updated_at));
+					return $updatedAt;
+				}
+				return '-';
+			})
+			->addColumn('email_verified_at', function ($user) {
+				if (empty($user->email_verified_at)) {
+					return '-';
+				}
+				return $user->email_verified_at;
+			})
+			->addColumn('roles', function ($user) {
 				if (!empty($user->roles)) {
 					$roles = [];
 					foreach ($user->roles as $key => $item) {
-						$roles[] = "<span class='badge badge-danger'>$item->title</span>";
+						$roles[] = "<span class='badge badge-success'>$item->title</span>";
 					}
 				} else {
 					return '';
 				}
 				return $roles;
+			})
+			->addColumn('status', function ($user) {
+				if ($user->status == 1) {
+					return "<span class='badge badge-success'>Active</span>";
+				} else {
+					return "<span class='badge badge-danger'>InActive</span>";
+				}
 			})
 			->addColumn('actions', function ($user) {
 				return $user->action_buttons;

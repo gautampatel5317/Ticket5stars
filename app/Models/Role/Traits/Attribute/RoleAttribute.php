@@ -19,7 +19,7 @@ trait RoleAttribute {
 	 * Show Roles
 	 */
 	public function view($permission, $route) {
-		return '<a href="'.route($route, $this).'" class="text-success pr-2">
+		return '<a href="'.route($route, $this).'" class="text-primary pr-2">
                     <i data-toggle="tooltip" data-placement="top" title="View" class="fas fa-eye"></i>
                 </a>';
 	}
@@ -27,7 +27,7 @@ trait RoleAttribute {
 	 * @return string
 	 */
 	public function editButton($permission, $route) {
-		return '<a href="'.route($route, $this).'" class="text-success pr-2">
+		return '<a href="'.route($route, $this).'" class="text-primary pr-2">
                     <i data-toggle="tooltip" data-placement="top" title="Edit" class="fas fa-edit"></i>
                 </a>';
 	}

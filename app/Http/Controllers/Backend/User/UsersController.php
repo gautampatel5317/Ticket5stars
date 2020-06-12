@@ -30,8 +30,14 @@ class UsersController extends Controller {
 	 */
 	public function index(ManageUserRequest $request) {
 		abort_unless(\Gate::allows('user_access'), 403);
-		$users = $this->user->getForDataTable();
-		return view('backend.users.index', compact('users'));
+		$users    = $this->user->getForDataTable();
+		$userData = $users->get()->toArray();
+		$roles    = [];
+		foreach ($userData as $rolesKey => $roleValue) {
+			$roles[] = $roleValue['roles'][0]['title'];
+		}
+		$roles = array_unique($roles);
+		return view('backend.users.index', compact('users', 'roles'));
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -125,5 +131,20 @@ class UsersController extends Controller {
 	public function massDestroy(MassDestroyUserRequest $request) {
 		$this->user->massDestroy(request('ids'));
 		return response(null, 204);
+	}
+	/**
+	 * Change status users.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function changeStatus(ManageUserRequest $request) {
+		$input = $request->except('_token');
+		$flag  = $this->user->changeStatus($input);
+		if ($flag == 1) {
+			return "success";
+		} else {
+			return "failed";
+		}
 	}
 }

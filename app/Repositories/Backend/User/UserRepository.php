@@ -96,4 +96,14 @@ class UserRepository extends BaseRepository {
 		$user->update($input);
 		return $user;
 	}
+	/**
+	 * Change status users.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function changeStatus($input) {
+		$updateStatus = User::where('id', $input['id'])->update(['status' => $input['status']]);
+		return true;
+	}
 }

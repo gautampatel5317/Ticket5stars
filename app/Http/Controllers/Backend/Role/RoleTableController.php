@@ -31,11 +31,26 @@ class RoleTableController extends Controller {
 			->escapeColumns(['title'])
 			->addColumn('checkbox', function ($role) {
 				return "";
-			})->addColumn('permission', function ($role) {
+			})
+			->addColumn('created_at', function ($role) {
+				if (!empty($role->created_at)) {
+					$createadAt = date('Y-m-d', strtotime($role->created_at));
+					return $createadAt;
+				}
+				return '-';
+			})
+			->addColumn('updated_at', function ($role) {
+				if (!empty($role->updated_at)) {
+					$updatedAt = date('Y-m-d', strtotime($role->updated_at));
+					return $updatedAt;
+				}
+				return '-';
+			})
+			->addColumn('permission', function ($role) {
 				if (!empty($role->permissions)) {
 					$permissions = [];
 					foreach ($role->permissions as $key => $item) {
-						$permissions[] = "<span class='badge badge-danger'>$item->title</span>";
+						$permissions[] = "<span class='badge badge-success'>$item->title</span>";
 					}
 				} else {
 					return '';

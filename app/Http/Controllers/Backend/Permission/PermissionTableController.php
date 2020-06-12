@@ -29,6 +29,23 @@ class PermissionTableController extends Controller {
 	public function __invoke(Request $request) {
 		return Datatables::of($this->permission->getForDataTable())
 			->escapeColumns(['title'])
+			->addColumn('title', function ($permission) {
+				return $permission->title;
+			})
+			->addColumn('created_at', function ($permission) {
+				if (!empty($permission->created_at)) {
+					$createadAt = date('Y-m-d', strtotime($permission->created_at));
+					return $createadAt;
+				}
+				return '-';
+			})
+			->addColumn('updated_at', function ($permission) {
+				if (!empty($permission->updated_at)) {
+					$updatedAt = date('Y-m-d', strtotime($permission->updated_at));
+					return $updatedAt;
+				}
+				return '-';
+			})
 			->addColumn('checkbox', function ($permission) {
 				return "";
 			})

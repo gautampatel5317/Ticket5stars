@@ -18,15 +18,22 @@
                   <table id="permission_table" class=" table table-bordered table-striped table-hover datatable">
                       <thead>
                           <tr>
-                              <th width="10">
-                              </th>
-                              <th>
-                                  {{ trans('global.permission.fields.title') }}
-                              </th>
-                              <th>
-                                {{ trans('Action') }}
-                              </th>
+                              <th width="10"></th>
+                              <th>{{ trans('global.permission.fields.title') }}</th>
+                               <th>{{ trans('Created At') }}</th>
+                               <th>{{ trans('Updated At') }}</th>
+                              <th>{{ trans('Action') }}</th>
                           </tr>
+                      </thead>
+                      <thead>
+                        <tr>
+                          <th><input type="text" class="form-control text-search" name="title" data-column="1" placeholder="{{ trans('global.permission.fields.title') }}"></th>
+                            <th><input type="date" name="created_at" data-column="2" value="" class="form-control text-search">
+                                </th>
+                               <th><input type="date" name="updated_at" data-column="3" value="" class="form-control text-search">
+                              </th>
+                              <th></th>
+                        </tr>
                       </thead>
                         <tbody>
                         </tbody>
@@ -57,6 +64,8 @@ $(function () {
       columns: [
               {data: 'checkbox', name:'{{ config('tables.permissions_table')}}.id',visible:false},
               {data: 'title', name:'{{ config('tables.permissions_table')}}.title'},
+              {data: 'created_at', name: '{{ config('tables.permissions_table')}}.created_at'},
+              {data: 'updated_at', name:   '{{ config('tables.permissions_table')}}.updated_at'},
               {data: 'action_buttons', name: 'actions', searchable: false, sortable: false},
           ],
        order: [],
@@ -71,8 +80,13 @@ $(function () {
                 { extend: 'print', className: 'btn btn-primary printButton',  exportOptions: {columns: [1]  }}
             ]
         }
+      });
+       /* DataTable column search */
+  $('.custom-select').select2({width:50});
+  $('.text-search').on('keyup change',function(){
+     dataTable.columns($(this).attr('data-column')).search(this.value).draw();
   });
-
+});
       $(document).on('click','.delete_record',function(e){
           var delId = jQuery(this).attr('data');
           console.log(delId);
@@ -98,7 +112,5 @@ $(function () {
         });
           e.preventDefault();
       });
-
-});
 </script>
 @endsection
