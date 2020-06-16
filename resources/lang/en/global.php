@@ -815,4 +815,12 @@ return [
 
 		],
 	],
+	'subscription_management' => 'Subscription Management',
+	'subscription'            => [
+		'title'             => 'Subscription',
+		'title_singular'    => 'Subscription',
+		'fields'            => [
+			'name'             => 'Name',
+		],
+	],
 ];

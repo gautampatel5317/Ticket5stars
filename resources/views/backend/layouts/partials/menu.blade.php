@@ -136,7 +136,7 @@
                 </li>
                 @endcan
 
-                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }}" style="cursor: pointer;">
+                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscription*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -175,6 +175,14 @@
                                 <a href="{{ route("admin.ingredient.index") }}" class="nav-link {{ request()->is('admin/ingredient') || request()->is('admin/ingredient/*') ? 'active' : '' }}">
                                     <i class="fa fa-exclamation-circle"></i>
                                     <p><span>{{ trans('global.ingredient.title') }}</span></p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('subscription_access')
+                            <li class="nav-item">
+                                <a href="{{ route("admin.subscription.index") }}" class="nav-link {{ request()->is('admin/subscription') || request()->is('admin/subscription/*') ? 'active' : '' }}">
+                                    <i class="fa fa-envelope"></i>
+                                    <p><span>{{ trans('global.subscription.title') }}</span></p>
                                 </a>
                             </li>
                         @endcan
