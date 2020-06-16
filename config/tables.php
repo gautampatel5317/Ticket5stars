@@ -34,6 +34,10 @@ return [
 	 */
 	'states_table' => 'states',
 	/**
+	 * city Tables
+	 */
+	'city_table' => 'cities',
+	/**
 	 * Email Template Tables
 	 */
 	'email_templates'     => [
