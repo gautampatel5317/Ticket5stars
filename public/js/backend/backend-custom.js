@@ -4345,7 +4345,7 @@ var Backend = {
         });
         Backend.Validate.$validator = $validator;
   },
-  Subscription: function(event) {
+  SubscriptionName: function(event) {
     var Rules = Backend.Validate.init;
     var $validator = $(".form-validate-jquery").validate({
       errorClass: Rules.errorClass,
@@ -4360,6 +4360,25 @@ var Backend = {
       },
       messages: {
           name: 'The name field is required!',
+      }
+    });
+    Backend.Validate.$validator = $validator;
+},
+SubscriptionType: function(event) {
+    var Rules = Backend.Validate.init;
+    var $validator = $(".form-validate-jquery").validate({
+      errorClass: Rules.errorClass,
+      highlight: Rules.highlight,
+      unhighlight: Rules.unhighlight,
+      errorPlacement: Rules.errorPlacement,
+      rules: {
+        vali: "required",
+        type: {
+            required: true                
+          },                       
+      },
+      messages: {
+          type: 'The Type field is required!',
       }
     });
     Backend.Validate.$validator = $validator;

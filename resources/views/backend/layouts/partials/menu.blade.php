@@ -136,7 +136,7 @@
                 </li>
                 @endcan
 
-                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscription*') ? 'menu-open' : '' }}" style="cursor: pointer;">
+                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptionname*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptiontype*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -178,11 +178,19 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('subscription_access')
+                        @can('subscriptionname_access')
                             <li class="nav-item">
-                                <a href="{{ route("admin.subscription.index") }}" class="nav-link {{ request()->is('admin/subscription') || request()->is('admin/subscription/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.subscriptionname.index") }}" class="nav-link {{ request()->is('admin/subscriptionname') || request()->is('admin/subscriptionname/*') ? 'active' : '' }}">
                                     <i class="fa fa-envelope"></i>
-                                    <p><span>{{ trans('global.subscription.title') }}</span></p>
+                                    <p><span>{{ trans('global.subscriptionname.title') }}</span></p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('subscriptiontype_access')
+                            <li class="nav-item">
+                                <a href="{{ route("admin.subscriptiontype.index") }}" class="nav-link {{ request()->is('admin/subscriptiontype') || request()->is('admin/subscriptiontype/*') ? 'active' : '' }}">
+                                    <i class="fa fa-envelope"></i>
+                                    <p><span>{{ trans('global.subscriptiontype.title') }}</span></p>
                                 </a>
                             </li>
                         @endcan

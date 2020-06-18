@@ -340,31 +340,61 @@ class PermissionsTableSeeder extends Seeder {
 			],
 			[
 				'id'         => '55',
-				'title'      => 'subscription_create',
+				'title'      => 'subscriptionname_create',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '56',
-				'title'      => 'subscription_edit',
+				'title'      => 'subscriptionname_edit',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '57',
-				'title'      => 'subscription_access',
+				'title'      => 'subscriptionname_access',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '58',
-				'title'      => 'subscription_show',
+				'title'      => 'subscriptionname_show',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '59',
-				'title'      => 'subscription_delete',
+				'title'      => 'subscriptionname_delete',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '60',
+				'title'      => 'subscriptiontype_create',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '61',
+				'title'      => 'subscriptiontype_edit',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '62',
+				'title'      => 'subscriptiontype_access',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '63',
+				'title'      => 'subscriptiontype_show',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '64',
+				'title'      => 'subscriptiontype_delete',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],

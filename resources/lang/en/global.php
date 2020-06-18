@@ -815,12 +815,20 @@ return [
 
 		],
 	],
-	'subscription_management' => 'Subscription Management',
-	'subscription'            => [
-		'title'             => 'Subscription',
-		'title_singular'    => 'Subscription',
+	'subscriptionname_management' => 'Subscription Name Management',
+	'subscriptionname'            => [
+		'title'             => 'Subscription Name',
+		'title_singular'    => 'Subscription Name',
 		'fields'            => [
 			'name'             => 'Name',
+		],
+	],
+	'subscriptiontype_management' => 'Subscription Type Management',
+	'subscriptiontype'            => [
+		'title'             => 'Subscription Type',
+		'title_singular'    => 'Subscription Type',
+		'fields'            => [
+			'type'             => 'Type',
 		],
 	],
 ];
