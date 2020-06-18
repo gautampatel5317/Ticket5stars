@@ -1,6 +1,6 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-    <label for="name" class = "required">{{ trans('global.subscription.fields.name') }}</label>
-    <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($subscription) ? $subscription->name : '') }}">
+    <label for="name" class = "required">{{ trans('global.subscriptionname.fields.name') }}</label>
+    <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($subscriptionname) ? $subscriptionname->name : '') }}">
     @if($errors->has('name'))
     <p class="help-block">
         {{ $errors->first('name') }}
@@ -11,7 +11,7 @@
 <div class="form-group">
     <label for="status">{{ trans('global.status') }}    </label>
     @php
-        $selected_status = ( old('status') != "" ? old('status') : (isset($subscription) ? $subscription->status : '1' )  );
+        $selected_status = ( old('status') != "" ? old('status') : (isset($subscriptionname) ? $subscriptionname->status : '1' )  );
     @endphp
     <div class="custom-control custom-radio custom-control-inline">
         <input type="radio" id="status1" name="status" class="custom-control-input" value = "1" {{ ($selected_status == "1" ? "checked" : "") }}> 
@@ -24,15 +24,15 @@
 </div>
 
 <div class="card-footer text-center">
-    <a href="{{ route('admin.subscription.index') }}" class="btn btn-danger ml-2">Cancel</a>
-    <input class="btn btn-primary" type="submit" value="{{ isset($subscription)  ?  trans('global.update') :trans('global.save') }}">
+    <a href="{{ route('admin.subscriptionname.index') }}" class="btn btn-danger ml-2">Cancel</a>
+    <input class="btn btn-primary" type="submit" value="{{ isset($subscriptionname)  ?  trans('global.update') :trans('global.save') }}">
 </div>
 
 <!-- JAvascript Included-->
 @section('after-scripts')
 <script type="text/javascript">
     $(document).ready(function(){
-        Backend.Validate.Subscription();
+        Backend.Validate.SubscriptionName();
     });
 </script>
 @endsection

@@ -1,6 +1,6 @@
 <!-- @extends('backend.layouts.admin') -->
 @section('page-header')
-{{ trans('global.subscription_management') }}
+{{ trans('global.subscriptionname_management') }}
 @endsection
 @section('content')
 @include('flash::message')
@@ -10,9 +10,9 @@
 
     <div class="card-header">
         <div class="card-tools">
-        @can('subscription_create')
-            <a class="btn btn-primary btn-sm" href="{{ route("admin.subscription.create") }}">
-            <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.subscription.title_singular') }}
+        @can('subscriptionname_create')
+            <a class="btn btn-primary btn-sm" href="{{ route("admin.subscriptionname.create") }}">
+            <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.subscriptionname.title_singular') }}
             </a>
           @endcan
         </div>
@@ -20,12 +20,12 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="subscription_table" class=" table table-bordered table-striped table-hover datatable">
+            <table id="subscriptionname_table" class=" table table-bordered table-striped table-hover datatable">
                 <thead>
                     <tr>
                       
                         <th>
-                            {{ trans('global.subscription.fields.name') }}
+                            {{ trans('global.subscriptionname.fields.name') }}
                         </th>
                         <th>
                             {{ trans('global.status') }}
@@ -49,12 +49,12 @@
         fetch_data();
         function fetch_data(status = ''){
         
-            var dataTable = $('#subscription_table').DataTable({
+            var dataTable = $('#subscriptionname_table').DataTable({
                 
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route("admin.subscription.get") }}',
+                    url: '{{ route("admin.subscriptionname.get") }}',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -106,7 +106,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{URL('admin/subscription/')}}"+"/"+delId,
+                        url: "{{URL('admin/subscriptionname/')}}"+"/"+delId,
                         type: "POST",
                         cache: false,
                         data:{
@@ -114,7 +114,7 @@
                         },
                         success: function(dataResult){
                             if(dataResult=="success"){
-                                $('#subscription_table').DataTable().ajax.reload();
+                                $('#subscriptionname_table').DataTable().ajax.reload();
                                     Swal.fire(
                                     'Deleted!',
                                     'subscription has been deleted.',
@@ -135,7 +135,7 @@
             var ID = jQuery(this).attr('data');
             var status = $(this).prop('checked') == true ? 1 : 0;
             $.ajax({
-                url: "{{URL('admin/subscription/changeStatus')}}",
+                url: "{{URL('admin/subscriptionname/changeStatus')}}",
                 type: "POST",
                 cache: false,
                 data:{
@@ -145,7 +145,7 @@
                 },
                 success: function(dataResult){
                     if(dataResult=="success"){
-                        $('#subscription_table').DataTable().ajax.reload();
+                        $('#subscriptionname_table').DataTable().ajax.reload();
                         Swal.fire(
                         'Done!',
                         'Status has been updated successfully.',

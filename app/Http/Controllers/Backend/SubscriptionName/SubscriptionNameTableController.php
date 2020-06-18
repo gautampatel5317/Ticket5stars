@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Subscription;
+namespace App\Http\Controllers\Backend\SubscriptionName;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Backend\Subscription\SubscriptionRepository;
+use App\Repositories\Backend\SubscriptionName\SubscriptionNameRepository;
 use Illuminate\Http\Request;
-use App\Models\Subscription\Subscription;
+use App\Models\SubscriptionName\SubscriptionName;
 use Yajra\DataTables\Facades\DataTables;
 
-class SubscriptionTableController extends Controller
+class SubscriptionNameTableController extends Controller
 {
-    protected $subscription;
-    public function __construct(SubscriptionRepository $subscription)
+    protected $subscriptionname;
+    public function __construct(SubscriptionNameRepository $subscriptionname)
     {
-        $this->subscription = $subscription;
+        $this->subscriptionname = $subscriptionname;
     }
 
     public function __invoke()
     {
-        $data = $this->subscription->getForDataTable();
+        $data = $this->subscriptionname->getForDataTable();
         return Datatables::of($data)
             ->escapeColumns(['name'])
             ->addColumn('status', function ($status) {

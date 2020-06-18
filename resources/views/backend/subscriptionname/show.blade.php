@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('global.show') }} {{ trans('global.subscription.title_singular') }}
+{{ trans('global.show') }} {{ trans('global.subscriptionname.title_singular') }}
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -11,10 +11,10 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('global.subscription.fields.name') }}
+                            {{ trans('global.subscriptionname.fields.name') }}
                         </th>
                         <td>
-                            {{ $subscription->name }}
+                            {{ $subscriptionname->name }}
                         </td>
                     </tr>
                     <tr>
@@ -22,7 +22,7 @@
                             {{ trans('global.status') }}
                         </th>
                         <td>
-                        @if($subscription->status == "1")
+                        @if($subscriptionname->status == "1")
                             <i class='fas fa-check fa-2x text-success'></i>
                         @else
                             <i class="fas fa-times fa-2x text-danger"></i>
@@ -34,7 +34,7 @@
             </table>
         </div>
         <div class="card-footer text-center">
-            <a href="{{ route('admin.subscription.index') }}" class="btn btn-danger ml-2">Back</a>
+            <a href="{{ route('admin.subscriptionname.index') }}" class="btn btn-danger ml-2">Back</a>
         </div>
     </div>
 </div>

@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Repositories\Backend\Subscription;
+namespace App\Repositories\Backend\SubscriptionName;
 
 use App\Repositories\BaseRepository;
-use App\Models\Subscription\Subscription;
+use App\Models\SubscriptionName\SubscriptionName;
 use Illuminate\Support\Facades\DB;
 
-class SubscriptionRepository extends BaseRepository
+class SubscriptionNameRepository extends BaseRepository
 {
 
     protected $model;
 
-    public function __construct(Subscription $model)
+    public function __construct(SubscriptionName $model)
     {
         $this->model = $model;
     }
     /**
      * Associated Repository Model.
      */
-    const MODEL = Subscription::class;
+    const MODEL = SubscriptionName::class;
 
     /**
      * @return mixed
@@ -28,7 +28,7 @@ class SubscriptionRepository extends BaseRepository
         return $this->model->orderByDesc('id')->get();
     }
 
-    public function getSubscription()
+    public function getSubscriptionName()
     {
         return $this->model->where('status', '1')->orderByDesc('id')->get();
     }
@@ -36,12 +36,12 @@ class SubscriptionRepository extends BaseRepository
      *
      * {@inheritDoc}
      *
-     * @see \App\Repositories\Subscription\SubscriptionRepositoryInterface::create()
+     * @see \App\Repositories\SubscriptionName\SubscriptionNameRepositoryInterface::create()
      */
     public function create(array $input)
     {
         $input['created_by'] = auth()->user()->id;
-        return Subscription::create($input);
+        return SubscriptionName::create($input);
     }
 
     /**
@@ -51,10 +51,10 @@ class SubscriptionRepository extends BaseRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(array $input, $subscription)
+    public function update(array $input, $subscriptionname)
     {
         $input['updated_by'] = auth()->user()->id;
-        return $subscription->update($input);
+        return $subscriptionname->update($input);
     }
     /**
      * Remove the specified resource from storage.
@@ -62,9 +62,9 @@ class SubscriptionRepository extends BaseRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($subscription)
+    public function destroy($subscriptionname)
     {
-        return $subscription->delete();
+        return $subscriptionname->delete();
     }
     /**
      * For change country status
