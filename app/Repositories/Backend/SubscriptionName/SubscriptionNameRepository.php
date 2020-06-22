@@ -67,6 +67,15 @@ class SubscriptionNameRepository extends BaseRepository
         return $subscriptionname->delete();
     }
     /**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function massDestroy($request) {
+		return $this->modal->whereIn('id', $request)->delete();
+	}
+    /**
      * For change country status
      */
     public function changeStatus($id, $status)

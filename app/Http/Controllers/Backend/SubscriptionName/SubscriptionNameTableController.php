@@ -21,6 +21,9 @@ class SubscriptionNameTableController extends Controller
         $data = $this->subscriptionname->getForDataTable();
         return Datatables::of($data)
             ->escapeColumns(['name'])
+            ->addColumn('checkbox', function ($subscription) {
+				return "";
+			})
             ->addColumn('status', function ($status) {
                 if ($status->status == "1") {
                     return '<span class="badge badge-success">'.trans('global.active').'</span>';

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\SubscriptionName\CreateSubscriptionNameRequest;
 use App\Http\Requests\Backend\SubscriptionName\StoreSubscriptionNameRequest;
 use App\Http\Requests\Backend\SubscriptionName\UpdateSubscriptionNameRequest;
+use App\Http\Requests\Backend\SubscriptionName\MassDestroySubscriptionNameRequest;
 use App\Models\SubscriptionName\SubscriptionName;
 use App\Repositories\Backend\SubscriptionName\SubscriptionNameRepository;
 use Illuminate\Http\Request;
@@ -82,12 +83,39 @@ class SubscriptionNameController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(SubscriptionName $subscriptionname) {
+	public function deleteSubscriptionName(SubscriptionName $subscriptionname) {
 		abort_unless(\Gate::allows('subscriptionname_delete'), 403);
 		$this->model->destroy($subscriptionname);
-		return "success";
+		flash('The Subscription Name has been deleted successfully!')->success()->important();
+		return back();
 	}
-
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id) {
+		abort_unless(\Gate::allows('subscriptionname_delete'), 403);
+		$subscriptionname = $this->subscriptionname->destroy($subscriptionname);
+		return back();
+	}
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function massDestroy(MassDestroySubscriptionNameRequest $request) {
+		$this->user->massDestroy(request('ids'));
+		return response(null, 204);
+	}
+	/**
+	 * Change status users.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
 	public function changeStatus(Request $request) {
 		$input = $request->except('_token');
 		$flag  = $this->model->changeStatus($input['id'], $input['status']);
