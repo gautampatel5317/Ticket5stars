@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\City;
 use App\Http\Controllers\Controller;
 use App\Models\City\City;
 use App\Repositories\Backend\City\CityRepository;
-
 use Yajra\DataTables\Facades\DataTables;
 
 class CityTableController extends Controller {
@@ -18,12 +17,6 @@ class CityTableController extends Controller {
 		$data = $this->city->getForDataTable();
 		return Datatables::of($data)
 			->escapeColumns(['name'])
-			->addColumn('country_name', function ($city) {
-				return $city['getState']['country']['name'];
-			})
-			->addColumn('state_name', function ($city) {
-				return $city['getState']['name'];
-			})
 			->addColumn('status', function ($status) {
 				if ($status->status == "1") {
 					return '<span class="badge badge-success">'.trans('global.active').'</span>';

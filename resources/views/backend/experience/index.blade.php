@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('global.state_management') }}
+{{ trans('global.experience_management') }}
 @endsection
 @section('content')
 @include('flash::message')
@@ -10,9 +10,9 @@
 
         <div class="card-header">
             <div class="card-tools">
-                @can('state_create')
-                <a class="btn btn-primary btn-sm" href="{{ route("admin.state.create") }}">
-                    <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.state.title_singular') }}
+                @can('experience_create')
+                <a class="btn btn-primary btn-sm" href="{{ route("admin.experience.create") }}">
+                    <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.experience.title_singular') }}
                 </a>
                 @endcan
             </div>
@@ -28,33 +28,31 @@
                     <div class="col-sm-12">
                         <div class="box-body">
                             <div class="table-responsive-lg data-table-wrapper">
-                                <table id="state_table" class=" table table-bordered table-striped table-hover datatable">
+                                <table id="experience_table" class="table  table-hover table-bordered datatable cell-border">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                {{ trans('global.state.fields.name') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('global.country_name') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('global.status') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('Actions') }}
-                                            </th>
+                                            <th>{{ trans('global.experience.fields.name') }}</th>
+                                            <th>{{ trans('global.status') }}</th>
+                                            <th>{{ trans('Created At') }}</th>
+                                            <th>{{ trans('Updated At') }}</th>
+                                            <th>{{ trans('Actions') }}</th>
                                         </tr>
                                     </thead>
                                     <thead>
                                         <tr>
-                                            <th><input type="text" class="form-control text-search" name="name" data-column="0" placeholder="{{ trans('global.state.fields.name') }}"></th>
-                                            <th><input type="text" class="form-control text-search" name="country_name" data-column="1" placeholder="{{ trans('global.country_name') }}"></th>
+                                            <th><input type="text" class="form-control text-search" name="name" data-column="0" placeholder="{{ trans('global.experience.fields.name') }}"></th>
                                             <th>
-                                                <select class="form-control select2 select-filter" name="status" data-column="2">
+                                                <select class="form-control select2 select-filter" name="status" data-column="1">
                                                     <option value="All">All</option>
                                                     <option value="1">Active</option>
                                                     <option value="0">InActive</option>
                                                 </select>
+                                            </th>
+                                            <th>
+                                                <input type="date" name="created_at" data-column="2" value="" class="form-control text-search">
+                                            </th>
+                                            <th>
+                                                <input type="date" name="updated_at" data-column="3" value="" class="form-control text-search">
                                             </th>
                                         </tr>
                                     </thead>
@@ -74,22 +72,40 @@
     $(function() {
 
         // Ajax Data Load
-        var dataTable = $('#state_table').DataTable({
+        var dataTable = $('#experience_table').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{{ route("admin.state.get") }}',
+                url: '{{ route("admin.experience.get") }}',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
-                data: {status:status}
+                data: {
+                    status: status
+                }
             },
-            columns: [
-                {data: 'name', name: 'name' },
-                {data: 'country_name', name: 'country_name' },
-                {data: 'status', name: 'status' },
-                {data: 'actions', name: 'actions', searchable: false, sortable: false
+            columns: [{
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
+                    data: 'updated_at',
+                    name: 'updated_at'
+                },
+                {
+                    data: 'actions',
+                    name: 'actions',
+                    searchable: false,
+                    sortable: false
                 },
             ],
             order: [],
@@ -100,62 +116,64 @@
                         extend: 'copy',
                         className: 'copyButton',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1]
                         }
                     },
                     {
                         extend: 'csv',
                         className: 'csvButton',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1]
                         }
                     },
                     {
                         extend: 'excel',
                         className: 'excelButton',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1]
                         }
                     },
                     {
                         extend: 'pdf',
                         className: 'pdfButton',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1]
                         }
                     },
                     {
                         extend: 'print',
                         className: 'printButton',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1]
                         }
                     }
                 ]
             }
         });
-        /* DataTable column search */
-            $('.custom-select').select2({width:50});
-            $('.text-search').on('keyup change',function(){
-                dataTable.columns($(this).attr('data-column')).search(this.value).draw();
-            });
-            $('.select-filter' ).on('change',function () {
-                if ($(this).val() != 'All') {
-                    var search_string = '';
-                    if($(this).val() == "1"){
-                        search_string = '<span class="badge badge-success">Active</span>';
-                    }else{
-                        search_string = '<span class="badge badge-danger">Inactive</span>';
-                    }
-                    dataTable.columns($(this).attr('data-column')).search(search_string).draw();
-                } else {
-                    location.reload();
-                }
-            });
-        /* End DataTable column search */
         /* End Ajax Load Data */
-        
-        $(document).on('click','.delete_record',function(e){
+
+        /* DataTable column search */
+        $('.custom-select').select2({width:50});
+        $('.text-search').on('keyup change',function(){
+            dataTable.columns($(this).attr('data-column')).search(this.value).draw();
+        });
+        /* End DataTable column search */
+
+        $('.select-filter' ).on('change',function () {
+            if ($(this).val() != 'All') {
+                var search_string = '';
+                if($(this).val() == "1"){
+                    search_string = '<span class="badge badge-success">Active</span>';
+                }else{
+                    search_string = '<span class="badge badge-danger">Inactive</span>';
+                }
+                dataTable.columns($(this).attr('data-column')).search(search_string).draw();
+            } else {
+                location.reload();
+            }
+        });
+         
+        $(document).on('click', '.delete_record', function(e) {
             var delId = jQuery(this).attr('data');
             var that = this;
             Swal.fire({
@@ -169,26 +187,27 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{URL('admin/state/')}}"+"/"+delId,
+                        url: "{{URL('admin/experience/')}}" + "/" + delId,
                         type: "POST",
                         cache: false,
-                        data:{
-                            _token:'{{ csrf_token() }}', _method:"DELETE"
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            _method: "DELETE"
                         },
-                        beforeSend:function(){
+                        beforeSend: function() {
                             $(that).html('Deleting...');
                         },
-                        success: function(dataResult){
-                            if(dataResult=="success"){
-                                setTimeout(function(){
-                                $('#state_table').DataTable().ajax.reload();
+                        success: function(dataResult) {
+                            if (dataResult == "success") {
+                                setTimeout(function() {
+                                    $('#experience_table').DataTable().ajax.reload();
                                     Swal.fire(
-                                    'Deleted!',
-                                    'State has been deleted.',
-                                    'success'
+                                        'Deleted!',
+                                        'Experience has been deleted.',
+                                        'success'
                                     )
                                 }, 1000);
-                            }else{
+                            } else {
                                 swal("Error!", "Something Went Wrong!", "error");
                             }
                         }
@@ -198,34 +217,33 @@
             e.preventDefault();
         });
 
-        $(document).on('click','.change_status',function(e){
+        $(document).on('click', '.change_status', function(e) {
             var ID = jQuery(this).attr('data');
             var status = $(this).prop('checked') == true ? 1 : 0;
             $.ajax({
-                url: "{{URL('admin/state/changeStatus')}}",
+                url: "{{URL('admin/experience/changeStatus')}}",
                 type: "POST",
                 cache: false,
-                data:{
-                    _token:'{{ csrf_token() }}', 
-                    'status': status, 
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    'status': status,
                     'id': ID
                 },
-                success: function(dataResult){
-                    if(dataResult=="success"){
-                        $('#state_table').DataTable().ajax.reload();
+                success: function(dataResult) {
+                    if (dataResult == "success") {
+                        $('#experience_table').DataTable().ajax.reload();
                         Swal.fire(
-                        'Done!',
-                        'Status has been updated successfully.',
-                        'success'
+                            'Done!',
+                            'Status has been updated successfully.',
+                            'success'
                         );
-                    }else{
+                    } else {
                         swal("Error!", "Something Went Wrong!", "error");
                     }
                 }
             });
         });
-        
+
     })
-    
 </script>
 @endsection

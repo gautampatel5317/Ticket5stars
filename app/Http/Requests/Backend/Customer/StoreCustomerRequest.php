@@ -14,7 +14,6 @@ class StoreCustomerRequest extends FormRequest {
 		return [
 			'first_name' => 'required',
             'family_name' => 'required',
-            'email' => 'required|email|unique:customers',
             'experience' => 'required',
             'business' => 'required'
 		];

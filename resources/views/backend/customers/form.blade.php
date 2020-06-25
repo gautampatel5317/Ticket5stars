@@ -1,14 +1,23 @@
-<div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
-    <label for="first_name" class = "required">{{ trans('global.customer.fields.name') }}</label>
-    <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name', isset($customer) ? $customer->first_name : '') }}">
-    @if($errors->has('first_name'))
-    <p class="help-block">
-        {{ $errors->first('first_name') }}
-    </p>
-    @endif
-    <p class="helper-block">
-        {{ trans('global.customer.fields.name_helper') }}
-</div>
+@if(isset($customer))
+    <div class="form-group">
+        <label for="name">{{ trans('global.customer.fields.name') }}</label>
+        <div class="input-group-">
+            <span class="input-group-text" id="basic-addon3">{{ $customer->name }}</span>
+        </div>
+    </div>
+@else
+    <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
+        <label for="first_name" class = "required">{{ trans('global.customer.fields.name') }}</label>
+        <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name', isset($customer) ? $customer->first_name : '') }}">
+        @if($errors->has('first_name'))
+        <p class="help-block">
+            {{ $errors->first('first_name') }}
+        </p>
+        @endif
+        <p class="helper-block">{{ trans('global.customer.fields.name_helper') }}</p>
+    </div>
+@endif
+
 <div class="form-group {{ $errors->has('family_name') ? 'has-error' : '' }}">
     <label for="family_name" class = "required">{{ trans('global.customer.fields.family_name') }}</label>
     <input type="text" id="family_name" name="family_name" class="form-control" value="{{ old('family_name', isset($customer) ? $customer->family_name : '') }}">
@@ -22,18 +31,27 @@
     </p>
 </div>
 
-<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-    <label for="email" class = "required">{{ trans('global.customer.fields.email') }}</label>
-    <input type="text" id="email" name="email" class="form-control" value="{{ old('email', isset($customer) ? $customer->email : '') }}">
-    @if($errors->has('email'))
-    <p class="help-block">
-        {{ $errors->first('email') }}
-    </p>
-    @endif
-    <p class="helper-block">
-        {{ trans('global.customer.fields.email_helper') }}
-    </p>
-</div>
+@if(isset($customer))
+    <div class="form-group">
+        <label for="email">{{ trans('global.customer.fields.email') }}</label>
+        <div class="input-group-">
+            <span class="input-group-text" id="basic-addon3">{{ $customer->email }}</span>
+        </div>
+    </div>
+@else
+    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+        <label for="email" class = "required">{{ trans('global.customer.fields.email') }}</label>
+        <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
+        @if($errors->has('email'))
+        <p class="help-block">
+            {{ $errors->first('email') }}
+        </p>
+        @endif
+        <p class="helper-block">
+            {{ trans('global.customer.fields.email_helper') }}
+        </p>
+    </div>
+@endif
 
 <div class="form-group {{ $errors->has('experience') ? 'has-error' : '' }}">
     <label for="experience" class = "required">{{ trans('global.customer.fields.experience') }}</label>
@@ -42,9 +60,11 @@
     @endphp
     <select name = "experience" class="form-control" name="experience">
         <option value = "">{{ trans('global.customer.fields.select_experience') }}</option>
-        <option value = "New" {{ $selected_experience == 'New' ? 'selected' : '' }}>{{ __('New') }}</option>
-        <option value = "Mid Expert" {{ $selected_experience == 'Mid Expert' ? 'selected' : '' }}>{{ __('Mid Expert') }}</option>
-        <option value = "Expert" {{ $selected_experience == 'Expert' ? 'selected' : '' }}>{{ __('Expert') }}</option>
+        @if($experienceData)
+            @foreach ($experienceData as $experience)
+                <option value = "{{ $experience['id'] }}" {{ $selected_experience == $experience['id'] ? 'selected' : '' }}>{{ $experience['name'] }}</option>
+            @endforeach
+        @endif
     </select>
     @if($errors->has('experience'))
     <p class="help-block">

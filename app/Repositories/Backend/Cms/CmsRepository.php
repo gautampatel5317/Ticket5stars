@@ -17,13 +17,9 @@ class CmsRepository extends BaseRepository
     /**
      * Get Cms data
      */
-    public function getForDataTable($status)
+    public function getForDataTable()
     {
-        if ($status != "" && ($status == "0" || $status == "1")) {
-            return $this->model->where('status', '=', $status)->orderByDesc('id')->get();
-        } else {
-            return $this->model->orderByDesc('id')->get();
-        }
+        return $this->model->orderByDesc('id')->get();
     }
 
     /**

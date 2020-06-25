@@ -33,13 +33,7 @@
                                 <th>
                                     {{ trans('global.cms.fields.seo_title') }}
                                 </th>
-                                <th>
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="">{{ trans('global.select_status')}}</option>
-                                        <option value="1">{{ trans('global.active')}}</option>
-                                        <option value="0">{{ trans('global.inactive')}}</option>
-                                    </select>
-                                </th>
+                                <th>{{ trans('global.status') }}</th>
                                 <th>
                                     {{ trans('Created At') }}
                                 </th>
@@ -48,6 +42,25 @@
                                 </th>
                                 <th>
                                    {{ trans('Actions') }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th><input type="text" class="form-control text-search" name="title" data-column="0" placeholder="{{ trans('global.title') }}"></th>
+                                <th><input type="text" class="form-control text-search" name="seo_title" data-column="1" placeholder="{{ trans('global.cms.fields.seo_title') }}"></th>
+                                <th>
+                                    <select class="form-control select2 select-filter" name="status" data-column="2">
+                                        <option value="All">All</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">InActive</option>
+                                    </select>
+                                </th>
+                                <th>
+                                    <input type="date" name="created_at" data-column="3" value="" class="form-control text-search">
+                                </th>
+                                <th>
+                                    <input type="date" name="updated_at" data-column="4" value="" class="form-control text-search">
                                 </th>
                             </tr>
                         </thead>
@@ -70,9 +83,6 @@
 $(function () {
     // Ajax Data Load
     
-    fetch_data();
-    function fetch_data(status = ''){
-
       var dataTable = $('#cms_table').DataTable({
           "lengthMenu": [
                 [10, 25, 50, -1],
@@ -109,8 +119,28 @@ $(function () {
               ]
           }
       });
-    }
-      /* End Ajax Load Data */
+
+    /* DataTable column search */
+        $('.custom-select').select2({width:50});
+        $('.text-search').on('keyup change',function(){
+            dataTable.columns($(this).attr('data-column')).search(this.value).draw();
+        });
+        $('.select-filter' ).on('change',function () {
+            if ($(this).val() != 'All') {
+                var search_string = '';
+                if($(this).val() == "1"){
+                    search_string = '<span class="badge badge-success">Active</span>';
+                }else{
+                    search_string = '<span class="badge badge-danger">Inactive</span>';
+                }
+                dataTable.columns($(this).attr('data-column')).search(search_string).draw();
+            } else {
+                location.reload();
+            }
+        });
+        /* End DataTable column search */
+    /* End Ajax Load Data */
+      
  
       $(document).on('click','.delete_record',function(e){
         var delId = jQuery(this).attr('data');
@@ -153,12 +183,6 @@ $(function () {
             }
         });
         e.preventDefault();
-    });
-
-    $('#status').change(function(){
-        var status = $('#status').val();
-        $('#cms_table').DataTable().destroy();
-        fetch_data(status);
     });
 
 });

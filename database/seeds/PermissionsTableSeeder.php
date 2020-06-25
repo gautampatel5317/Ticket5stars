@@ -337,7 +337,37 @@ class PermissionsTableSeeder extends Seeder {
 				'title'      => 'ingredient_delete',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
+            ],
+            [
+				'id'         => '55',
+				'title'      => 'experience_create',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
 			],
+			[
+				'id'         => '56',
+				'title'      => 'experience_edit',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '57',
+				'title'      => 'experience_access',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '58',
+				'title'      => 'experience_show',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '59',
+				'title'      => 'experience_delete',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+            ],
 		];
 		Permission::insert($permissions);
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');

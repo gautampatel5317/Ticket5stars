@@ -21,8 +21,10 @@ class CityRepository extends BaseRepository {
 	 * @return mixed
 	 */
 	public function getForDataTable() {
-		$query = City::with('getState', 'getState.country')->orderByDesc('id');
-		return $query;
+        return $this->model->select('cities.*', 'countries.name AS country_name', 'states.name AS state_name')
+        ->leftjoin('countries', 'countries.id', '=', 'cities.country_id')
+        ->leftjoin('states', 'states.id', '=', 'cities.state_id')
+        ->orderByDesc('cities.id')->get();
 	}
 	/**
 	 *

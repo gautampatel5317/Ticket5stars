@@ -814,5 +814,13 @@ return [
 			'deleted_at_helper' => '',
 
 		],
+    ],
+    'experience_management' => 'Level of Experience Management',
+	'experience'            => [
+		'title'          => 'Level of Experience',
+		'title_singular' => 'Level of Experience',
+		'fields'         => [
+			'name'          => 'Name',
+		],
 	],
 ];

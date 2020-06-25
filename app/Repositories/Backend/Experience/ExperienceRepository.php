@@ -1,26 +1,23 @@
 <?php
 
-namespace App\Repositories\Backend\Country;
+namespace App\Repositories\Backend\Experience;
 
-use App\Models\City\City;
+use App\Models\Experience\Experience;
 use App\Repositories\BaseRepository;
-use App\Models\Country\Country;
-use App\Models\State\State;
-use Illuminate\Support\Facades\DB;
 
-class CountryRepository extends BaseRepository
+class ExperienceRepository extends BaseRepository
 {
 
     protected $model;
 
-    public function __construct(Country $model)
+    public function __construct(Experience $model)
     {
         $this->model = $model;
     }
     /**
      * Associated Repository Model.
      */
-    const MODEL = Country::class;
+    const MODEL = Experience::class;
 
     /**
      * @return mixed
@@ -29,8 +26,7 @@ class CountryRepository extends BaseRepository
     {
         return $this->model->orderByDesc('id')->get();
     }
-
-    public function getCountry()
+    public function getExperience()
     {
         return $this->model->where('status', '1')->orderByDesc('id')->get();
     }
@@ -38,12 +34,12 @@ class CountryRepository extends BaseRepository
      *
      * {@inheritDoc}
      *
-     * @see \App\Repositories\Country\CountryRepositoryInterface::create()
+     * @see \App\Repositories\Experience\ExperienceRepositoryInterface::create()
      */
     public function create(array $input)
     {
         $input['created_by'] = auth()->user()->id;
-        return Country::create($input);
+        return Experience::create($input);
     }
 
     /**
@@ -53,10 +49,10 @@ class CountryRepository extends BaseRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(array $input, $country)
+    public function update(array $input, $experience)
     {
         $input['updated_by'] = auth()->user()->id;
-        return $country->update($input);
+        return $experience->update($input);
     }
     /**
      * Remove the specified resource from storage.
@@ -64,16 +60,12 @@ class CountryRepository extends BaseRepository
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($country)
+    public function destroy($experience)
     {
-        //START : Delete states & cities based on country_id
-        City::where('country_id', $country->id)->delete();
-        State::where('country_id', $country->id)->delete();
-        //END : Delete states & cities based on country_id
-        return $country->delete();
+        return $experience->delete();
     }
     /**
-     * For change country status
+     * For change Experience status
      */
     public function changeStatus($id, $status)
     {

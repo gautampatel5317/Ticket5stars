@@ -26,9 +26,9 @@ class StateRepository extends BaseRepository
     public function getForDataTable()
     {
         return $this->model
-            ->select('states.*', 'countries.name AS country_name')
-            ->join('countries', 'countries.id', '=', 'states.country_id')
-            ->orderByDesc('id')->get();
+        ->select('states.*', 'countries.name AS country_name')
+        ->join('countries', 'countries.id', '=', 'states.country_id')
+        ->orderByDesc('id')->get();
     }
     /**
      *

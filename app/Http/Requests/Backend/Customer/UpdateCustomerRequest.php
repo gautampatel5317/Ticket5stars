@@ -13,9 +13,7 @@ class UpdateCustomerRequest extends FormRequest {
 
 	public function rules(Request $request) {
 		return [
-			'first_name' => 'required',
-            'family_name' => 'required',
-            'email' => 'required|email|unique:customers,email,'.$request->get('id'),
+			'family_name' => 'required',
             'experience' => 'required',
             'business' => 'required'
 		];

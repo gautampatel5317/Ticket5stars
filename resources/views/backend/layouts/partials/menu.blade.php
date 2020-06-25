@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 @can('user_management_access')
-                <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}" style="cursor: pointer;">
+                <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }} {{ request()->is('admin/experience*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -97,6 +97,14 @@
                                 </p>
                             </a>
                         </li>
+                        @endcan
+                        @can('experience_access')
+                            <li class="nav-item">
+                                <a href="{{ route("admin.experience.index") }}" class="nav-link {{ request()->is('admin/experience') || request()->is('admin/experience/*') ? 'active' : '' }}">
+                                    <i class="fas fa-level-up-alt"></i>
+                                    <p><span>{{ trans('global.experience.title') }}</span></p>
+                                </a>
+                            </li>
                         @endcan
                     </ul>
                 </li>

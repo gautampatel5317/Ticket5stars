@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend\Country;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Country\CountryRepository;
-use Illuminate\Http\Request;
 use App\Models\Country\Country;
 use Yajra\DataTables\Facades\DataTables;
 

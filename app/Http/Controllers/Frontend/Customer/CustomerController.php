@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\StoreCustomer;
 use App\Models\Customer\Customer;
+use App\Models\Experience\Experience;
 use App\Repositories\Frontend\Customer\CustomerRepository;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,13 @@ class CustomerController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('frontend.customer.create');
+        $experienceData = Experience::where('status', '1')->get();
+        if(!empty($experienceData)){
+            foreach($experienceData as $data){
+                $experience[$data['id']] = $data['name'];
+            }
+        }
+        return view('frontend.customer.create',compact('experience'));
 	}
 
 	/**

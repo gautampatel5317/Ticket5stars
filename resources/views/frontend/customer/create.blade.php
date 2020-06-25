@@ -56,13 +56,6 @@
                         <div class="form-group row">
                             {{ Form::label('experience',trans('Experience'), ['for' => 'experience','class' => 'col-lg-2 control-label text-md-right required']) }}
                             <div class="col-lg-10">
-                                @php
-                                    $experience = [
-                                        'New' => 'New',
-                                        'Mid Expert' => 'Mid Expert',
-                                        'Expert' => 'Expert'
-                                    ];
-                                @endphp
                                 {!! Form::select('experience',$experience,null,['class' => 'select2 form-control box-size']) !!}
                                 @error('experience')
                                     <span class="invalid-feedback" role="alert">
