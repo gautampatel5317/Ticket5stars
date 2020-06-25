@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Repositories\Backend\Customer\CustomerRepository;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 /**
@@ -28,8 +27,8 @@ class CustomerTableController extends Controller {
 	 *
 	 * @return mixed
 	 */
-	public function __invoke(Request $request) {
-		$data = $this->Customer->getForDataTable($request->get("status"));
+	public function __invoke() {
+		$data = $this->Customer->getForDataTable();
 		return Datatables::of($data)
 			->escapeColumns(['name'])
 			->addColumn('name', function ($customer) {

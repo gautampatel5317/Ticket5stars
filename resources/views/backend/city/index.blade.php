@@ -6,44 +6,70 @@
 @include('flash::message')
 
 <div class="container-fluid">
-<div class="card card-primary card-outline">
+    <div class="card card-primary card-outline">
 
-    <div class="card-header">
-        <div class="card-tools">
-        @can('city_create')
-            <a class="btn btn-primary btn-sm" href="{{ route("admin.city.create") }}">
-            <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.city.title_singular') }}
-            </a>
-          @endcan
+        <div class="card-header">
+            <div class="card-tools">
+                @can('city_create')
+                <a class="btn btn-primary btn-sm" href="{{ route("admin.city.create") }}">
+                    <i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.city.title_singular') }}
+                </a>
+                @endcan
+            </div>
         </div>
-     </div>
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <table id="city_table" class=" table table-bordered table-striped table-hover datatable">
-                <thead>
-                    <tr>
-                        <th>
-                            {{ trans('global.city.fields.name') }}
-                        </th>
-                        <th>
-                            {{ trans('global.country_name') }}
-                        </th>
-                        <th>
-                            {{ trans('global.state_name') }}
-                        </th>
-                        <th>
-                            {{ trans('global.status') }}
-                        </th>
-                        <th>
-                            {{ trans('Actions') }}
-                        </th>
-                    </tr>
-                </thead>
-            </table>
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6"></div>
+                    <div class="col-sm-12 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box-body">
+                            <div class="table-responsive-lg data-table-wrapper">
+                                <table id="city_table" class=" table table-bordered table-striped table-hover datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                {{ trans('global.city.fields.name') }}
+                                            </th>
+                                            <th>
+                                                {{ trans('global.country_name') }}
+                                            </th>
+                                            <th>
+                                                {{ trans('global.state_name') }}
+                                            </th>
+                                            <th>
+                                                {{ trans('global.status') }}
+                                            </th>
+                                            <th>
+                                                {{ trans('Actions') }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <thead>
+                                        <tr>
+                                            <th><input type="text" class="form-control text-search" name="name" data-column="0" placeholder="{{ trans('global.city.fields.name') }}"></th>
+                                            <th><input type="text" class="form-control text-search" name="country_name" data-column="1" placeholder="{{ trans('global.country_name') }}"></th>
+                                            <th><input type="text" class="form-control text-search" name="state_name" data-column="2" placeholder="{{ trans('global.state_name') }}"></th>
+                                            <th>
+                                                <select class="form-control select2 select-filter" name="status" data-column="3">
+                                                    <option value="All">All</option>
+                                                    <option value="1">Active</option>
+                                                    <option value="0">InActive</option>
+                                                </select>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
 @section('scripts')
@@ -51,8 +77,6 @@
 <script>
     $(function() {
 
-        fetch_data();
-        function fetch_data(status = ''){
             // Ajax Data Load
             var dataTable = $('#city_table').DataTable({
                 processing: true,
@@ -114,8 +138,28 @@
                     ]
                 }
             });
+            /* DataTable column search */
+            $('.custom-select').select2({width:50});
+            $('.text-search').on('keyup change',function(){
+                dataTable.columns($(this).attr('data-column')).search(this.value).draw();
+            });
+                
+            $('.select-filter' ).on('change',function () {
+                if ($(this).val() != 'All') {
+                    var search_string = '';
+                    if($(this).val() == "1"){
+                        search_string = '<span class="badge badge-success">Active</span>';
+                    }else{
+                        search_string = '<span class="badge badge-danger">Inactive</span>';
+                    }
+                    dataTable.columns($(this).attr('data-column')).search(search_string).draw();
+                } else {
+                    location.reload();
+                }
+            });
+
+            /* End DataTable column search */
             /* End Ajax Load Data */
-        }
         
         $(document).on('click','.delete_record',function(e){
             var delId = jQuery(this).attr('data');
@@ -186,7 +230,6 @@
                 }
             });
         });
-
     })
     
 </script>

@@ -340,64 +340,95 @@ class PermissionsTableSeeder extends Seeder {
 			],
 			[
 				'id'         => '55',
-				'title'      => 'subscriptionname_create',
+				'title'      => 'experience_create',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '56',
-				'title'      => 'subscriptionname_edit',
+				'title'      => 'experience_edit',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '57',
-				'title'      => 'subscriptionname_access',
+				'title'      => 'experience_access',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '58',
-				'title'      => 'subscriptionname_show',
+				'title'      => 'experience_show',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
-				'id'         => '59',
-				'title'      => 'subscriptionname_delete',
+				'id' => '59',
+
+				'title'      => 'experience_delete',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '60',
-				'title'      => 'subscriptiontype_create',
+				'title'      => 'subscriptionname_create',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '61',
-				'title'      => 'subscriptiontype_edit',
+				'title'      => 'subscriptionname_edit',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '62',
-				'title'      => 'subscriptiontype_access',
+				'title'      => 'subscriptionname_access',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '63',
-				'title'      => 'subscriptiontype_show',
+				'title'      => 'subscriptionname_show',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '64',
-				'title'      => 'subscriptiontype_delete',
+				'title'      => 'subscriptionname_delete',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
+			[
+				'id'         => '65',
+				'title'      => 'subscriptiontype_create',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '66',
+				'title'      => 'subscriptiontype_edit',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '67',
+				'title'      => 'subscriptiontype_access',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '68',
+				'title'      => 'subscriptiontype_show',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '69',
+				'title'      => 'subscriptiontype_delete',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			]
 		];
 		Permission::insert($permissions);
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');

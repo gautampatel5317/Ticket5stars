@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend\State;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\State\StateRepository;
-use Illuminate\Http\Request;
 use App\Models\State\State;
 use Yajra\DataTables\Facades\DataTables;
 

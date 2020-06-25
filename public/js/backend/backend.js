@@ -604,6 +604,24 @@ SubscriptionType: function(event) {
     });
     Backend.Validate.$validator = $validator;
 },
-  
+    Experience: function(event) {
+        var Rules = Backend.Validate.init;
+        var $validator = $(".form-validate-jquery").validate({
+            errorClass: Rules.errorClass,
+            highlight: Rules.highlight,
+            unhighlight: Rules.unhighlight,
+            errorPlacement: Rules.errorPlacement,
+            rules: {
+                vali: "required",
+                name: {
+                    required: true                
+                },                       
+            },
+            messages: {
+                name: 'The name field is required!',
+            }
+        });
+        Backend.Validate.$validator = $validator;
+    },
   }
 }

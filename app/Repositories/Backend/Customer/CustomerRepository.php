@@ -2,7 +2,9 @@
 namespace App\Repositories\Backend\Customer;
 
 use App\Models\Customer\Customer;
+use App\Models\User\User;
 use App\Repositories\BaseRepository;
+use Carbon\Carbon;
 
 class CustomerRepository extends BaseRepository {
 
@@ -19,17 +21,10 @@ class CustomerRepository extends BaseRepository {
 	/**
 	 * @return mixed
 	 */
-	public function getForDataTable($status) {
-		$users = function ($query) {
-			$query->where('status', 1)->where('deleted_at', NULL);
-
-		};
-		$query = $this->model->with(['users' => $users]);
-		if ($status != "" && ($status == "0" || $status == "1")) {
-			return $this->model->where('status', '=', $status)->orderByDesc('id')->get();
-		} else {
-			return $this->model->orderByDesc('id')->get();
-		}
+	public function getForDataTable() {
+        return $this->model->select('customers.*', 'experiences.name AS experience_name')
+        ->leftjoin('experiences', 'experiences.id', '=', 'customers.experience')
+        ->orderByDesc('customers.id')->get();
 	}
 	/**
 	 *
@@ -39,7 +34,33 @@ class CustomerRepository extends BaseRepository {
 	 */
 	public function create(array $input) {
 		$input['created_by'] = auth()->user()->id;
-		return Customer::create($input);
+        $customer = Customer::create($input);
+        if ($customer) {
+			$user             = new User();
+			$user->is_front   = $customer['id'];
+			$user->name       = $input['first_name'];
+			$user->email      = $input['email'];
+            $user->password   = \Hash::make('123456');
+            $user->status     = $input['status'];
+			$user->created_at = Carbon::now();
+			if ($user->save()) {
+				//set role
+				$user->roles()->sync([2]);
+				//Send Mail
+				$data = [
+					'data'               => [
+						'first_name'        => $user['name'],
+						'email'             => $user['email'],
+						'confirmation_code' => '/customer/confirm',
+						'customer_id'       => $customer['id'],
+						'user_id'           => $user->id,
+					],
+					'email_template_type' => 1
+				];
+				$confirmationMail = createNotification('User Registration', $user->id, $data);
+				return true;
+			}
+		}
 	}
 
 	/**
