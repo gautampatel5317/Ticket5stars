@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('Ingredient Warnings Management') }}
+{{ trans('global.ingredient_management') }}
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -9,7 +9,7 @@
           <div class="card-header">
               <div class="card-tools">
                 @can('ingredient_create')
-                   <a href="{{route('admin.ingredient.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>Add New Ingredient</a>
+                   <a href="{{route('admin.ingredient.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.cms.title_singular') }}</a>
                 @endcan
               </div>
           </div>
@@ -27,7 +27,7 @@
                                   {{ trans('global.ingredient.fields.status') }}
                               </th>
                               <th>
-                                {{ trans('Action') }}
+                                {{ trans('global.actions') }}
                               </th>
                           </tr>
                       </thead>
@@ -80,13 +80,13 @@ $(function () {
     var delId = jQuery(this).attr('data');
     var that = this;
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to delete this!",
+        title: '{{ trans("global.areYouSure")}}',
+        text: '{{ trans("global.youWontbeAbletoDelete") }}',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: "{{ trans('global.yesDeleteIt') }}"
     }).then((result) => {
       if (result.value) {
         $.ajax({
@@ -100,8 +100,8 @@ $(function () {
               if(Result=="success"){
                   $('#ingredient_table').DataTable().ajax.reload();
                       Swal.fire(
-                      'Deleted!',
-                      'Ingredient has been deleted successfully.',
+                        '{{ trans("global.deleted") }}',
+                        '{{ trans("global.data_has_been_deleted") }}',
                       'success'
                       )
               }
@@ -127,12 +127,12 @@ $(function () {
                     if(Result=="success"){
                         $('#ingredient_table').DataTable().ajax.reload();
                         Swal.fire(
-                          'Status Changed!',
-                          'Ingredient status has been changed successfully.',
+                        '{{ trans("global.done") }}',
+                        '{{ trans("global.status_updated_success") }}',
                           'success'
                         )
                       }else{
-                        swal("Error!", "Something Went Wrong!", "error");
+                        swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                     }
                 }
             });

@@ -53,7 +53,7 @@ class CityController extends Controller
         abort_unless(\Gate::allows('city_create'), 403);
         $input = $request->except('_token');
         $this->model->create($input);
-        flash('The city has been created successfully!')->success()->important();
+        flash(trans('alerts.city_add_message'))->success()->important();
         return redirect()->route('admin.city.index');
     }
     public function show(City $city)
@@ -85,7 +85,7 @@ class CityController extends Controller
         abort_unless(\Gate::allows('city_edit'), 403);
         $input   = $request->except('_token');
         $this->model->update($input, $city);
-        flash('The City has been updated successfully!')->success()->important();
+        flash(trans('alerts.city_edit_message'))->success()->important();
         return redirect()->route('admin.city.index');
     }
     /**

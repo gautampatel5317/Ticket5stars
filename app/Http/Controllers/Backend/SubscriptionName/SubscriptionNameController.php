@@ -46,7 +46,7 @@ class SubscriptionNameController extends Controller {
 		abort_unless(\Gate::allows('subscriptionname_create'), 403);
 		$input = $request->except('_token');
 		$this->model->create($input);
-		flash('The Subscription Name has been created successfully!')->success()->important();
+		flash(trans('alerts.subscription_name_add_message'))->success()->important();
 		return redirect()->route('admin.subscriptionname.index');
 	}
 	public function show(SubscriptionName $subscriptionname) {
@@ -74,7 +74,7 @@ class SubscriptionNameController extends Controller {
 		abort_unless(\Gate::allows('subscriptionname_edit'), 403);
 		$input = $request->except('_token');
 		$this->model->update($input, $subscriptionname);
-		flash('The Subscription Name has been updated successfully!')->success()->important();
+		flash(trans('alerts.subscription_name_edit_message'))->success()->important();
 		return redirect()->route('admin.subscriptionname.index');
 	}
 	/**
@@ -86,7 +86,7 @@ class SubscriptionNameController extends Controller {
 	public function deleteSubscriptionName(SubscriptionName $subscriptionname) {
 		abort_unless(\Gate::allows('subscriptionname_delete'), 403);
 		$this->model->destroy($subscriptionname);
-		flash('The Subscription Name has been deleted successfully!')->success()->important();
+		flash(trans('alerts.subscription_name_delete_message'))->success()->important();
 		return back();
 	}
 	/**

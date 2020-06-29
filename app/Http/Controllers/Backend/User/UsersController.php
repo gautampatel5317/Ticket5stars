@@ -59,7 +59,7 @@ class UsersController extends Controller {
 		abort_unless(\Gate::allows('user_create'), 403);
 		$input = $request->except('_token');
 		$user  = $this->user->create($input);
-		flash('The User has been created successfully!')->success()->important();
+		flash(trans('alerts.user_add_message'))->success()->important();
 		return redirect()->route('admin.users.index');
 	}
 	/**
@@ -84,8 +84,8 @@ class UsersController extends Controller {
 	public function update(UpdateUserRequest $request, User $user) {
 		abort_unless(\Gate::allows('user_edit'), 403);
 		$input = $request->except('_token');
-		$user  = $this->user->update($input, $user);
-		flash('The User has been updated successfully!')->success()->important();
+        $user  = $this->user->update($input, $user);
+        flash(trans('alerts.user_edit_message'))->success()->important();
 		return redirect()->route('admin.users.index');
 	}
 	/**
@@ -107,8 +107,8 @@ class UsersController extends Controller {
 	 */
 	public function deleteUser(User $user) {
 		abort_unless(\Gate::allows('user_delete'), 403);
-		$user = $this->user->destroy($user);
-		flash('The User has been deleted successfully!')->success()->important();
+        $user = $this->user->destroy($user);
+        flash(trans('alerts.user_delete_message'))->success()->important();
 		return back();
 	}
 	/**

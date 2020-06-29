@@ -58,7 +58,7 @@
     @php
         $selected_experience = ( old('experience') != "" ? old('experience') : ( isset($customer) ? $customer->experience : "") );
     @endphp
-    <select name = "experience" class="form-control" name="experience">
+    <select name = "experience" class="form-control select2" name="experience">
         <option value = "">{{ trans('global.customer.fields.select_experience') }}</option>
         @if($experienceData)
             @foreach ($experienceData as $experience)
@@ -81,7 +81,7 @@
     @php
         $selected_business = ( old('business') != "" ? old('business') : ( isset($customer) ? $customer->business : "") );
     @endphp
-    <select name = "business" class="form-control" name="business">
+    <select name = "business" class="form-control select2" name="business">
         <option value = "">{{ trans('global.customer.fields.select_business') }}</option>
         <option value = "1 to 3 months" {{ $selected_business == '1 to 3 months' ? 'selected' : '' }}>{{ __('1 to 3 months') }}</option>
         <option value = "3 to 6 months" {{ $selected_business == '3 to 6 months' ? 'selected' : '' }}>{{ __('3 to 6 months') }}</option>

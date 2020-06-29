@@ -33,9 +33,9 @@
                                         <tr>
                                             <th>{{ trans('global.experience.fields.name') }}</th>
                                             <th>{{ trans('global.status') }}</th>
-                                            <th>{{ trans('Created At') }}</th>
-                                            <th>{{ trans('Updated At') }}</th>
-                                            <th>{{ trans('Actions') }}</th>
+                                            <th>{{ trans('global.created_at') }}</th>
+                                            <th>{{ trans('global.updated_at') }}</th>
+                                            <th>{{ trans('global.actions') }}</th>
                                         </tr>
                                     </thead>
                                     <thead>
@@ -43,9 +43,9 @@
                                             <th><input type="text" class="form-control text-search" name="name" data-column="0" placeholder="{{ trans('global.experience.fields.name') }}"></th>
                                             <th>
                                                 <select class="form-control select2 select-filter" name="status" data-column="1">
-                                                    <option value="All">All</option>
-                                                    <option value="1">Active</option>
-                                                    <option value="0">InActive</option>
+                                                    <option value="All">{{ trans('global.all')}}</option>
+                                                    <option value="1">{{ trans('global.active')}}</option>
+                                                    <option value="0">{{ trans('global.inactive')}}</option>
                                                 </select>
                                             </th>
                                             <th>
@@ -177,13 +177,13 @@
             var delId = jQuery(this).attr('data');
             var that = this;
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to delete this!",
+                title: '{{ trans("global.areYouSure")}}',
+                text: '{{ trans("global.youWontbeAbletoDelete") }}',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: "{{ trans('global.yesDeleteIt') }}"
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
@@ -195,20 +195,20 @@
                             _method: "DELETE"
                         },
                         beforeSend: function() {
-                            $(that).html('Deleting...');
+                            $(that).html('{{ trans("global.deleting") }}');
                         },
                         success: function(dataResult) {
                             if (dataResult == "success") {
                                 setTimeout(function() {
                                     $('#experience_table').DataTable().ajax.reload();
                                     Swal.fire(
-                                        'Deleted!',
-                                        'Experience has been deleted.',
+                                        '{{ trans("global.deleted") }}',
+                                        '{{ trans("global.data_has_been_deleted") }}',
                                         'success'
                                     )
                                 }, 1000);
                             } else {
-                                swal("Error!", "Something Went Wrong!", "error");
+                                swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                             }
                         }
                     });
@@ -233,12 +233,12 @@
                     if (dataResult == "success") {
                         $('#experience_table').DataTable().ajax.reload();
                         Swal.fire(
-                            'Done!',
-                            'Status has been updated successfully.',
+                            '{{ trans("global.done") }}',
+                            '{{ trans("global.status_updated_success") }}',
                             'success'
                         );
                     } else {
-                        swal("Error!", "Something Went Wrong!", "error");
+                        swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                     }
                 }
             });

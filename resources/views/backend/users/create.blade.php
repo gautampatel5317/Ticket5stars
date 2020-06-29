@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('Create User') }}
+{{ trans('global.add') }} {{ trans('global.user.title_singular') }}
 @endsection
 @section('content')
 <div class="container-fluid">

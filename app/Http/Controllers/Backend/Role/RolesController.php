@@ -52,7 +52,7 @@ class RolesController extends Controller {
 		abort_unless(\Gate::allows('role_create'), 403);
 		$input = $request->except('_token');
 		$role  = $this->role->create($input);
-		flash('The Role has been created successfully!')->success()->important();
+		flash(trans('alerts.role_add_message'))->success()->important();
 		return redirect()->route('admin.roles.index');
 	}
 	/**
@@ -77,8 +77,8 @@ class RolesController extends Controller {
 	public function update(UpdateRoleRequest $request, Role $role) {
 		abort_unless(\Gate::allows('role_edit'), 403);
 		$input = $request->except('_token');
-		$role  = $this->role->update($input, $role);
-		flash('The Role has been updated successfully!')->success()->important();
+        $role  = $this->role->update($input, $role);
+        flash(trans('alerts.role_edit_message'))->success()->important();
 		return redirect()->route('admin.roles.index');
 	}
 	/**
@@ -101,7 +101,7 @@ class RolesController extends Controller {
 	public function roleDelete(Role $role) {
 		abort_unless(\Gate::allows('role_delete'), 403);
 		$role = $this->role->destroy($role);
-		flash('The Role has been deleted successfully!')->success()->important();
+		flash(trans('alerts.role_delete_message'))->success()->important();
 		return back();
 	}
 	/**
@@ -113,7 +113,7 @@ class RolesController extends Controller {
 	public function destroy(Role $role) {
 		abort_unless(\Gate::allows('role_delete'), 403);
 		$role = $this->role->destroy($role);
-		flash('The Role has been deleted successfully!')->success()->important();
+		flash(trans('alerts.role_delete_message'))->success()->important();
 		return back();
 	}
 	/**

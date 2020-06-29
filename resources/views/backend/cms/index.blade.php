@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-    {{ trans('Page Management') }}
+    {{ trans('global.cms_management') }}
 @endsection
 @section('content')
 @include('flash::message')
@@ -10,7 +10,7 @@
      <div class="card-header">
         <div class="card-tools">
           @can('cms_create')
-          <a href="{{route('admin.cms.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>Add New Page</a>
+          <a href="{{route('admin.cms.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.cms.title_singular') }}</a>
           @endcan
         </div>
      </div>
@@ -35,13 +35,13 @@
                                 </th>
                                 <th>{{ trans('global.status') }}</th>
                                 <th>
-                                    {{ trans('Created At') }}
+                                    {{ trans('global.created_at') }}
                                 </th>
                                 <th>
-                                    {{ trans('Updated At') }}
+                                    {{ trans('global.updated_at') }}
                                 </th>
                                 <th>
-                                   {{ trans('Actions') }}
+                                   {{ trans('global.actions') }}
                                 </th>
                             </tr>
                         </thead>
@@ -51,9 +51,9 @@
                                 <th><input type="text" class="form-control text-search" name="seo_title" data-column="1" placeholder="{{ trans('global.cms.fields.seo_title') }}"></th>
                                 <th>
                                     <select class="form-control select2 select-filter" name="status" data-column="2">
-                                        <option value="All">All</option>
-                                        <option value="1">Active</option>
-                                        <option value="0">InActive</option>
+                                        <option value="All">{{ trans('global.all')}}</option>
+                                        <option value="1">{{ trans('global.active')}}</option>
+                                        <option value="0">{{ trans('global.inactive')}}</option>
                                     </select>
                                 </th>
                                 <th>
@@ -146,13 +146,13 @@ $(function () {
         var delId = jQuery(this).attr('data');
         var that = this;
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to delete this!",
+            title: '{{ trans("global.areYouSure")}}',
+            text: '{{ trans("global.youWontbeAbletoDelete") }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: '{{ trans("global.yesDeleteIt") }}'
         }).then((result) => {
             if (result.value) {
                 $.ajax({
@@ -163,20 +163,20 @@ $(function () {
                         _token:'{{ csrf_token() }}', _method:"DELETE"
                     },
                     beforeSend:function(){
-                        $(that).html('Deleting...');
+                        $(that).html('{{ trans("global.deleting") }}');
                     },
                     success: function(dataResult){
                         if(dataResult=="success"){
                             setTimeout(function(){
                             $('#cms_table').DataTable().ajax.reload();
                                 Swal.fire(
-                                'Deleted!',
-                                'Cms has been deleted.',
-                                'success'
+                                    '{{ trans("global.deleted") }}',
+                                    '{{ trans("global.data_has_been_deleted") }}',
+                                    'success'
                                 )
                             }, 1000);
                         }else{
-                            swal("Error!", "Something Went Wrong!", "error");
+                            swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                         }
                     }
                 });

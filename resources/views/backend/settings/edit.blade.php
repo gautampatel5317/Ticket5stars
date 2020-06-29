@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('Edit Settings') }}
+{{ trans('global.edit') }} {{ trans('global.settings') }}
 @endsection
 @section('content')
 <div class="card card-primary card-outline">
@@ -12,17 +12,17 @@
 					<div class="col-xs-12 ">
 						<nav>
 							<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-								<a class="nav-item nav-link active" id="nav-seo-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-seo" aria-selected="true">SEO Settings</a>
-								<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-contact" aria-selected="false">Company Contact Details</a>
-								<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-mail" aria-selected="false">Mail Settings</a>
-								<a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-footer" aria-selected="false">Footer Settings</a>
-								<a class="nav-item nav-link" id="nav-terms-tab" data-toggle="tab" href="#nav-terms" role="tab" aria-controls="nav-terms" aria-selected="false">Terms and Condition Settings</a>
+								<a class="nav-item nav-link active" id="nav-seo-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-seo" aria-selected="true">{{ trans('global.setting.seo_settings') }}</a>
+								<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-contact" aria-selected="false">{{ trans('global.setting.company_contact_details') }}</a>
+								<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-mail" aria-selected="false">{{ trans('global.setting.mail_settings') }}</a>
+								<a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-footer" aria-selected="false">{{ trans('global.setting.footer_settings') }}</a>
+								<a class="nav-item nav-link" id="nav-terms-tab" data-toggle="tab" href="#nav-terms" role="tab" aria-controls="nav-terms" aria-selected="false">{{ trans('global.setting.terms_condition_settings') }}</a>
 							</div>
 						</nav>
 						<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 							<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-seo-tab">
 								<div class="form-group">
-									{{ Form::label('logo', trans('Site Logo'), ['class' => 'col-lg-2 control-label']) }}
+									{{ Form::label('logo', trans('global.setting.site_logo'), ['class' => 'col-lg-2 control-label']) }}
 									<div class="col-lg-10">
 										{!! Form::file('logo', array('class'=>'form-control inputfile inputfile-1' )) !!}
 										<label for="logo">

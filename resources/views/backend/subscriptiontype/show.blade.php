@@ -34,7 +34,7 @@
             </table>
         </div>
         <div class="card-footer text-center">
-            <a href="{{ route('admin.subscriptiontype.index') }}" class="btn btn-danger ml-2">Back</a>
+            <a href="{{ route('admin.subscriptiontype.index') }}" class="btn btn-danger ml-2">{{ trans('global.back') }}</a>
         </div>
     </div>
 </div>

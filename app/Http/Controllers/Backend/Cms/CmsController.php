@@ -42,7 +42,7 @@ class CmsController extends Controller{
 		abort_unless(\Gate::allows('cms_create'), 403);
 		$input = $request->except('_token');
 		$this->model->create($input);
-		flash('The Cms has been created successfully!')->success()->important();
+		flash(trans('alerts.cms_add_message'))->success()->important();
 		return redirect()->route('admin.cms.index');
 	}
 	public function show(Cms $id){
@@ -74,8 +74,8 @@ class CmsController extends Controller{
 		if( $request->get('status') != "1" ){
 			$input['status'] = '0';
 		}
-		$this->model->update($input, $id);
-		flash('The cms has been updated successfully!')->success()->important();
+        $this->model->update($input, $id);
+        flash(trans('alerts.cms_edit_message'))->success()->important();
 		return redirect()->route('admin.cms.index');
 	}
 	/**

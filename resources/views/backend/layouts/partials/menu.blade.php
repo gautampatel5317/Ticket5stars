@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
     <a href="#" class="brand-link text-center" style="height: 90px;">
-        <img style="width: 100%;height:100%;" src="{{ \URL::to('images/site_logos.png') }}" alt="Ticket5Star" class="brand-image">
-        <span class="brand-text font-weight-light"><img style="width: 156px;height:86px;" src="{{ \URL::to('images/site_logos.png') }}" alt="Ticket5Star"></span>
+        <img style="width: 100%;height:100%;" src="{{ \URL::to('images/site_logos.png') }}" alt="{{ trans('global.site_title') }}" class="brand-image">
+        <span class="brand-text font-weight-light"><img style="width: 156px;height:86px;" src="{{ \URL::to('images/site_logos.png') }}" alt="{{ trans('global.site_title') }}"></span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -34,7 +34,7 @@
                     <a href="{{ route('admin.video') }}" class="nav-link {{ request()->is('admin/video') || request()->is('admin/video/*') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-video"></i>
-                            <span>{{ trans('Video') }}</span>
+                            <span>{{ trans('global.video') }}</span>
                         </p>
                     </a>
                 </li>
@@ -42,7 +42,7 @@
                     <a href="{{ route('admin.calander') }}" class="nav-link {{ request()->is('admin/calander') || request()->is('admin/calander') ? 'active' : '' }}">
                         <p>
                             <i class="far fa-calendar-times"></i>
-                            <span>{{ trans('Calander') }}</span>
+                            <span>{{ trans('global.calender') }}</span>
                         </p>
                     </a>
                 </li>
@@ -50,12 +50,12 @@
                     <a href="{{ route('admin.barcode') }}" class="nav-link {{ request()->is('admin/barcode') || request()->is('admin/barcode') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-barcode"></i>
-                            <span>{{ trans('QRCODE') }}</span>
+                            <span>{{ trans('global.qrcode') }}</span>
                         </p>
                     </a>
                 </li>
                 @can('user_management_access')
-                <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }} {{ request()->is('admin/experience*') ? 'menu-open' : '' }}" style="cursor: pointer;">
+                <li class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -98,14 +98,6 @@
                             </a>
                         </li>
                         @endcan
-                        @can('experience_access')
-                            <li class="nav-item">
-                                <a href="{{ route("admin.experience.index") }}" class="nav-link {{ request()->is('admin/experience') || request()->is('admin/experience/*') ? 'active' : '' }}">
-                                    <i class="fas fa-level-up-alt"></i>
-                                    <p><span>{{ trans('global.experience.title') }}</span></p>
-                                </a>
-                            </li>
-                        @endcan
                     </ul>
                 </li>
                 @endcan
@@ -113,7 +105,7 @@
                     <a href="{{ route('admin.emailtemplates.index') }}" class="nav-link {{ request()->is('admin/emailtemplates/*') || request()->is('admin/emailtemplates') ?'active':'' }}">
                         <p>
                             <i class="fas fa-envelope-open-text"></i>
-                            <span>{{ trans('Email Templates') }}</span>
+                            <span>{{ trans('global.email_template.title') }}</span>
                         </p>
                     </a>
                 </li>
@@ -121,7 +113,7 @@
                     <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-cogs"></i>
-                            <span>{{ trans('Settings') }}</span>
+                            <span>{{ trans('global.settings') }}</span>
                         </p>
                     </a>
                 </li>
@@ -144,7 +136,7 @@
                 </li>
                 @endcan
 
-                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptionname*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptiontype*') ? 'menu-open' : '' }}" style="cursor: pointer;">
+                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptionname*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptiontype*') ? 'menu-open' : '' }}  {{ request()->is('admin/experience*') ? 'menu-open' : '' }}"  style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -199,6 +191,14 @@
                                 <a href="{{ route("admin.subscriptiontype.index") }}" class="nav-link {{ request()->is('admin/subscriptiontype') || request()->is('admin/subscriptiontype/*') ? 'active' : '' }}">
                                     <i class="fa fa-envelope"></i>
                                     <p><span>{{ trans('global.subscriptiontype.title') }}</span></p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('experience_access')
+                            <li class="nav-item">
+                                <a href="{{ route("admin.experience.index") }}" class="nav-link {{ request()->is('admin/experience') || request()->is('admin/experience/*') ? 'active' : '' }}">
+                                    <i class="fas fa-level-up-alt"></i>
+                                    <p><span>{{ trans('global.experience.title') }}</span></p>
                                 </a>
                             </li>
                         @endcan

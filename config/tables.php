@@ -44,5 +44,9 @@ return [
 		'placeholders_table' => 'email_template_placeholders',
 		'types_table'        => 'email_template_types',
 		'table'              => 'email_templates'
-	]
+    ],
+    /**
+	 * Level of Experience Tables
+	 */
+    'levelof_experience_table' => 'levelof_experience',
 ];

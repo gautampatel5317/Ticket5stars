@@ -34,7 +34,7 @@ class SettingsController extends Controller {
 	 */
 	public function update(Setting $setting, UpdateSettingsRequest $request) {
 		$this->settings->update($setting, $request->except(['_token', '_method']));
-		flash('The Settings has been created successfully!')->success()->important();
+		flash(trans('alerts.setting_edit_message'))->success()->important();
 		return redirect()->route('admin.settings.edit', $setting->id);
 	}
 }

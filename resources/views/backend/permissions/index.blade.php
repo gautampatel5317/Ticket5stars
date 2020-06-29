@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('Permissions Management') }}
+{{ trans('global.permissionsManagement') }}
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -9,7 +9,7 @@
           <div class="card-header">
               <div class="card-tools">
                 @can('permission_create')
-                   <a href="{{route('admin.permissions.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>Add New Permission</a>
+                   <a href="{{route('admin.permissions.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.permission.title_singular') }}</a>
                 @endcan
               </div>
           </div>
@@ -20,9 +20,9 @@
                           <tr>
                               <th width="10"></th>
                               <th>{{ trans('global.permission.fields.title') }}</th>
-                               <th>{{ trans('Created At') }}</th>
-                               <th>{{ trans('Updated At') }}</th>
-                              <th>{{ trans('Action') }}</th>
+                               <th>{{ trans('global.created_at') }}</th>
+                               <th>{{ trans('global.updated_at') }}</th>
+                              <th>{{ trans('global.actions') }}</th>
                           </tr>
                       </thead>
                       <thead>
@@ -93,19 +93,19 @@ $(function () {
           var deleteUrl = window.origin+`/admin/permissions/${delId}/delete`;
           console.log(deleteUrl);
           Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to delete this!",
+            title: '{{ trans("global.areYouSure")}}',
+            text: '{{ trans("global.youWontbeAbletoDelete") }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: "{{ trans('global.yesDeleteIt') }}"
           }).then((result) => {
             if (result.value) {
               window.location.href = deleteUrl;
               Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                '{{ trans("global.deleted") }}',
+                '{{ trans("global.data_has_been_deleted") }}',
                 'success'
               )
             }

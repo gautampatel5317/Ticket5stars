@@ -55,10 +55,10 @@ class UserPasswordController extends Controller
             $user->password = bcrypt($request->get('new_password'));
             $user  = $this->user->changepassword($input, $user);
 			
-			flash('Password changed successfully !')->success()->important();
+			flash(trans('alerts.password_success_message'))->success()->important();
 		    return redirect()->route('admin.users.profile');
         }else{
-            flash('This is not your Current Password.')->error()->important();
+            flash(trans('alerts.password_error_message'))->error()->important();
             return redirect()->route('admin.users.profile');
         }
         

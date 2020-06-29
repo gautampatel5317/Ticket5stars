@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('QRCODE') }}
+{{ trans('global.qrcode') }}
 @endsection
 @section('content')
 <div class="container-fluid">

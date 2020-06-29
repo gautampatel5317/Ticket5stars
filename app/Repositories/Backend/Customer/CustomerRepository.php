@@ -22,9 +22,9 @@ class CustomerRepository extends BaseRepository {
 	 * @return mixed
 	 */
 	public function getForDataTable() {
-        return $this->model->select('customers.*', 'experiences.name AS experience_name')
-        ->leftjoin('experiences', 'experiences.id', '=', 'customers.experience')
-        ->orderByDesc('customers.id')->get();
+        return $this->model->select(config("tables.customers_table").'.*', config("tables.levelof_experience_table").'.name AS experience_name')
+        ->leftjoin(config("tables.levelof_experience_table"), config("tables.levelof_experience_table").'.id', '=', config("tables.customers_table").'.experience')
+        ->orderByDesc(config("tables.customers_table").'.id')->get();
 	}
 	/**
 	 *

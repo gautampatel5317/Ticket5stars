@@ -45,7 +45,7 @@ class CountryController extends Controller {
 		abort_unless(\Gate::allows('country_create'), 403);
 		$input = $request->except('_token');
 		$this->model->create($input);
-		flash('The country has been created successfully!')->success()->important();
+		flash(trans('alerts.country_add_message'))->success()->important();
 		return redirect()->route('admin.country.index');
 	}
 	public function show(Country $country) {
@@ -72,8 +72,8 @@ class CountryController extends Controller {
 	public function update(UpdateCountryRequest $request, Country $country) {
 		abort_unless(\Gate::allows('country_edit'), 403);
 		$input = $request->except('_token');
-		$this->model->update($input, $country);
-		flash('The Country has been updated successfully!')->success()->important();
+        $this->model->update($input, $country);
+        flash(trans('alerts.country_edit_message'))->success()->important();
 		return redirect()->route('admin.country.index');
 	}
 	/**

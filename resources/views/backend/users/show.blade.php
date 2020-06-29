@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('View User') }}
+{{ trans('global.view') }} {{ trans('global.user.title_singular') }}
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Roles
+                            {{ trans('global.user.roles') }}
                         </th>
                         <td>
                             @foreach($user->roles as $id => $roles)
@@ -47,7 +47,7 @@
             </table>
         </div>
         <div class="card-footer text-center">
-            <a href="{{ route('admin.users.index') }}" class="btn btn-danger ml-2">Back</a>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-danger ml-2">{{ trans('global.back') }}</a>
         </div>
     </div>
 </div>

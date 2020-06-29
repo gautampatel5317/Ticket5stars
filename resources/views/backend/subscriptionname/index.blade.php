@@ -36,7 +36,7 @@
                                                 {{ trans('global.status') }}
                                             </th>
                                             <th>
-                                                {{ trans('Actions') }}
+                                                {{ trans('global.actions') }}
                                             </th>
                                         </tr>
                                     </thead>
@@ -45,9 +45,9 @@
                                             <th><input type="text" class="form-control text-search" name="name" data-column="1" placeholder="{{ trans('global.subscriptionname.fields.name') }}"></th>
                                             <th>
                                                 <select class="form-control select2 select-filter" name="status" data-column="2">
-                                                    <option value="All">All</option>
-                                                    <option value="Active">Active</option>
-                                                    <option value="Inactive">InActive</option>
+                                                    <option value="All">{{ trans('global.all')}}</option>
+                                                    <option value="1">{{ trans('global.active')}}</option>
+                                                    <option value="0">{{ trans('global.inactive')}}</option>
                                                 </select>
                                             </th>
                                             <th></th>
@@ -147,19 +147,19 @@ $('.select-filter' ).on('change',function () {
           var delId = jQuery(this).attr('data');
           var deleteUrl = window.origin+`/admin/subscriptionname/${delId}/delete`;
           Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to delete this!",
+            title: '{{ trans("global.areYouSure")}}',
+            text: '{{ trans("global.youWontbeAbletoDelete") }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: "{{ trans('global.yesDeleteIt') }}"
           }).then((result) => {
             if (result.value) {
               window.location.href = deleteUrl;
               Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                '{{ trans("global.deleted") }}',
+                '{{ trans("global.data_has_been_deleted") }}',
                 'success'
               )
             }
@@ -182,12 +182,12 @@ $('.select-filter' ).on('change',function () {
                     if(dataResult=="success"){
                         $('#subscriptionname_table').DataTable().ajax.reload();
                         Swal.fire(
-                        'Done!',
-                        'Status has been updated successfully.',
+                        '{{ trans("global.done") }}',
+                        '{{ trans("global.status_updated_success") }}',
                         'success'
                         );
                     }else{
-                        swal("Error!", "Something Went Wrong!", "error");
+                        swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                     }
                 }
             });

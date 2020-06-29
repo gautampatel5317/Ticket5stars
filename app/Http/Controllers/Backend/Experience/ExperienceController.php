@@ -50,7 +50,7 @@ class ExperienceController extends Controller
         abort_unless(\Gate::allows('experience_create'), 403);
         $input = $request->except('_token');
         $this->model->create($input);
-        flash('The Level of Experience has been created successfully!')->success()->important();
+        flash(trans('alerts.level_experience_add_message'))->success()->important();
         return redirect()->route('admin.experience.index');
     }
     public function show(Experience $experience)
@@ -81,7 +81,7 @@ class ExperienceController extends Controller
         abort_unless(\Gate::allows('experience_edit'), 403);
         $input   = $request->except('_token');
         $this->model->update($input, $experience);
-        flash('The Level of Experience has been updated successfully!')->success()->important();
+        flash(trans('alerts.level_experience_edit_message'))->success()->important();
         return redirect()->route('admin.experience.index');
     }
     /**

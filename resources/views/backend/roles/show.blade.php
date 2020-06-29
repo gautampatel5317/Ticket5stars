@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('View Role') }}
+{{ trans('global.view') }} {{ trans('global.role.title_singular') }}
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -19,7 +19,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Permissions
+                            {{ trans('global.permissions') }}
                         </th>
                         <td>
                             @foreach($role->permissions as $id => $permissions)
@@ -31,7 +31,7 @@
             </table>
         </div>
         <div class="card-footer text-center">
-            <a href="{{ route('admin.roles.index') }}" class="btn btn-danger ml-2">Back</a>
+            <a href="{{ route('admin.roles.index') }}" class="btn btn-danger ml-2">{{ trans('global.back') }}</a>
         </div>
     </div>
 </div>

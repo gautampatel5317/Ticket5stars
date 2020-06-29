@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-    {{ trans('Email Template Management') }}
+    {{ trans('global.email_template_management') }}
 @endsection
 @section('content')
 @include('flash::message')
@@ -8,7 +8,7 @@
 	<div class="card card-primary card-outline">
 		<div class="card-header">
 			<div class="card-tools">
-         <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>Add New Email Template</a>
+         <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.email_template.title_singular') }}</a>
 			</div>
 		</div>
 		<div class="card-body">
@@ -29,7 +29,7 @@
 									 	<th>{{ trans('global.email_template.tables.status') }}</th>
 									 	<th>{{ trans('global.email_template.tables.createdat') }}</th>
 									 	<th>{{ trans('global.email_template.tables.updatedat') }}</th>
-									    <th>{{ trans('Actions') }}</th>
+									    <th>{{ trans('global.actions') }}</th>
 									 </thead>
 									 <tbody>
 									 </tbody>
@@ -87,19 +87,19 @@ $(function () {
           var delId = jQuery(this).attr('data');
           var deleteUrl = window.origin+`/admin/emailtemplates/${delId}/delete`;
           Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to delete this!",
+            title: '{{ trans("global.areYouSure")}}',
+                text: '{{ trans("global.youWontbeAbletoDelete") }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: "{{ trans('global.yesDeleteIt') }}"
           }).then((result) => {
             if (result.value) {
               window.location.href = deleteUrl;
               Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                '{{ trans("global.deleted") }}',
+                '{{ trans("global.data_has_been_deleted") }}',
                 'success'
               )
             }
@@ -122,12 +122,12 @@ $(function () {
                     if(dataResult=="success"){
                         $('#emailtemplate_table').DataTable().ajax.reload();
                         Swal.fire(
-                        'Done!',
-                        'Status has been updated successfully.',
+                        '{{ trans("global.done") }}',
+                        '{{ trans("global.status_updated_success") }}',
                         'success'
                         );
                     }else{
-                        Swal("Error!", "Something Went Wrong!", "error");
+                        swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                     }
                 }
             });

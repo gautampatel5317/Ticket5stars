@@ -21,9 +21,9 @@ class CityRepository extends BaseRepository {
 	 * @return mixed
 	 */
 	public function getForDataTable() {
-        return $this->model->select('cities.*', 'countries.name AS country_name', 'states.name AS state_name')
-        ->leftjoin('countries', 'countries.id', '=', 'cities.country_id')
-        ->leftjoin('states', 'states.id', '=', 'cities.state_id')
+        return $this->model->select(config("tables.city_table").'.*', config("tables.country_table").'.name AS country_name', config("tables.states_table").'.name AS state_name')
+        ->leftjoin(config("tables.country_table"), config("tables.country_table").'.id', '=', config("tables.city_table").'.country_id')
+        ->leftjoin(config("tables.states_table"), config("tables.states_table").'.id', '=', config("tables.city_table").'.state_id')
         ->orderByDesc('cities.id')->get();
 	}
 	/**

@@ -41,7 +41,7 @@
                                                 {{ trans('global.status') }}
                                             </th>
                                             <th>
-                                                {{ trans('Actions') }}
+                                                {{ trans('global.actions') }}
                                             </th>
                                         </tr>
                                     </thead>
@@ -51,9 +51,9 @@
                                             <th><input type="text" class="form-control text-search" name="country_name" data-column="1" placeholder="{{ trans('global.country_name') }}"></th>
                                             <th>
                                                 <select class="form-control select2 select-filter" name="status" data-column="2">
-                                                    <option value="All">All</option>
-                                                    <option value="1">Active</option>
-                                                    <option value="0">InActive</option>
+                                                    <option value="All">{{ trans('global.all')}}</option>
+                                                    <option value="1">{{ trans('global.active')}}</option>
+                                                    <option value="0">{{ trans('global.inactive')}}</option>
                                                 </select>
                                             </th>
                                         </tr>
@@ -159,13 +159,13 @@
             var delId = jQuery(this).attr('data');
             var that = this;
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to delete this!",
+                title: '{{ trans("global.areYouSure")}}',
+                text: '{{ trans("global.youWontbeAbletoDelete") }}',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: "{{ trans('global.yesDeleteIt') }}"
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
@@ -176,20 +176,20 @@
                             _token:'{{ csrf_token() }}', _method:"DELETE"
                         },
                         beforeSend:function(){
-                            $(that).html('Deleting...');
+                            $(that).html('{{ trans("global.deleting") }}');
                         },
                         success: function(dataResult){
                             if(dataResult=="success"){
                                 setTimeout(function(){
                                 $('#state_table').DataTable().ajax.reload();
                                     Swal.fire(
-                                    'Deleted!',
-                                    'State has been deleted.',
+                                    '{{ trans("global.deleted") }}',
+                                    '{{ trans("global.data_has_been_deleted") }}',
                                     'success'
                                     )
                                 }, 1000);
                             }else{
-                                swal("Error!", "Something Went Wrong!", "error");
+                                swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                             }
                         }
                     });
@@ -214,12 +214,12 @@
                     if(dataResult=="success"){
                         $('#state_table').DataTable().ajax.reload();
                         Swal.fire(
-                        'Done!',
-                        'Status has been updated successfully.',
+                        '{{ trans("global.done") }}',
+                        '{{ trans("global.status_updated_success") }}',
                         'success'
                         );
                     }else{
-                        swal("Error!", "Something Went Wrong!", "error");
+                        swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                     }
                 }
             });

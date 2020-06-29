@@ -44,8 +44,8 @@ class SubscriptionTypeController extends Controller {
 	public function store(StoreSubscriptionTypeRequest $request) {
 		abort_unless(\Gate::allows('subscriptiontype_create'), 403);
 		$input = $request->except('_token');
-		$this->model->create($input);
-		flash('The subscription Type has been created successfully!')->success()->important();
+        $this->model->create($input);
+		flash(trans('alerts.subscription_add_message'))->success()->important();
 		return redirect()->route('admin.subscriptiontype.index');
 	}
 	public function show(SubscriptionType $subscriptiontype) {
@@ -73,7 +73,7 @@ class SubscriptionTypeController extends Controller {
 		abort_unless(\Gate::allows('subscriptiontype_edit'), 403);
 		$input = $request->except('_token');
 		$this->model->update($input, $subscriptiontype);
-		flash('The Subscription Type has been updated successfully!')->success()->important();
+		flash(trans('alerts.subscription_edit_message'))->success()->important();
 		return redirect()->route('admin.subscriptiontype.index');
 	}
 	/**

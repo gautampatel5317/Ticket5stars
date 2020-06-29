@@ -52,7 +52,7 @@ class StateController extends Controller
         abort_unless(\Gate::allows('state_create'), 403);
         $input = $request->except('_token');
         $this->model->create($input);
-        flash('The state has been created successfully!')->success()->important();
+        flash(trans('alerts.state_add_message'))->success()->important();
         return redirect()->route('admin.state.index');
     }
     public function show(State $state)
@@ -84,7 +84,7 @@ class StateController extends Controller
         abort_unless(\Gate::allows('state_edit'), 403);
         $input   = $request->except('_token');
         $this->model->update($input, $state);
-        flash('The State has been updated successfully!')->success()->important();
+        flash(trans('alerts.state_update_message'))->success()->important();
         return redirect()->route('admin.state.index');
     }
     /**

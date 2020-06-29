@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('Role Management') }}
+{{ trans('global.role_management') }}
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -23,9 +23,9 @@
                                     <th width="10"></th>
                                     <th>{{ trans('global.role.fields.title') }}</th>
                                     <th>{{ trans('global.role.fields.permissions') }}</th>
-                                    <th>{{ trans('Created At') }}</th>
-                                    <th>{{ trans('Updated At') }}</th>
-                                    <th>{{ trans('Actions') }}</th>
+                                    <th>{{ trans('global.created_at') }}</th>
+                                    <th>{{ trans('global.updated_at') }}</th>
+                                    <th>{{ trans('global.actions') }}</th>
                                 </tr>
                             </thead>
                             <thead>
@@ -97,19 +97,19 @@ $(function () {
           var deleteUrl = window.origin+`/admin/roles/${delId}/delete`;
           console.log(deleteUrl);
           Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to delete this!",
+            title: '{{ trans("global.areYouSure")}}',
+            text: '{{ trans("global.youWontbeAbletoDelete") }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: '{{ trans("global.yesDeleteIt") }}'
           }).then((result) => {
             if (result.value) {
               window.location.href = deleteUrl;
               Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                '{{ trans("global.deleted") }}',
+                '{{ trans("global.data_has_been_deleted") }}',
                 'success'
               )
             }

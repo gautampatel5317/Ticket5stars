@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Experience extends Model {
-	use SoftDeletes, ExperienceAttribute;
+    use SoftDeletes, ExperienceAttribute;
+    protected $table = "levelof_experience";
 	protected $fillable = [
 		'id',
 		'name',

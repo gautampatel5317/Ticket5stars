@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-    {{ trans('Dashboard') }}
+    {{ trans('global.dashboard') }}
 @endsection
 @section('content')
 @include('flash::message')
@@ -11,7 +11,7 @@
 	   			</div>
 	   		</div>
 	   		<div class="card-body">
-	   			<h5>Welcome To Ticket5Stars</h5>
+	   			<h5>{{ trans('global.welcome_to_ticket5Stars') }}</h5>
 	   		</div>
 	   </div>
 </div>

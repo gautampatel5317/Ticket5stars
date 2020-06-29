@@ -43,7 +43,7 @@ class IngredientController extends Controller {
 		abort_unless(\Gate::allows('ingredient_create'), 403);
 		$input = $request->except('_token');
 		$this->model->create($input);
-		flash('The Ingredient Warnings has been created successfully!')->success()->important();
+		flash(trans('alerts.ingredient_add_message'))->success()->important();
 		return redirect()->route('admin.ingredient.index');
 	}
 	public function show(Ingredient $ingredient) {
@@ -70,8 +70,8 @@ class IngredientController extends Controller {
 	public function update(UpdateIngredientRequest $request, Ingredient $ingredient) {
 		abort_unless(\Gate::allows('ingredient_edit'), 403);
 		$input = $request->except('_token');
-		$this->model->update($input, $ingredient);
-		flash('The Ingredient Warnings has been updated successfully!')->success()->important();
+        $this->model->update($input, $ingredient);
+        flash(trans('alerts.ingredient_edit_message'))->success()->important();
 		return redirect()->route('admin.ingredient.index');
 	}
 	/**

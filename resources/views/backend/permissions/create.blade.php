@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('Create Permissions') }}
+{{ trans('global.add') }} {{ trans('global.permissions') }}
 @endsection
 @section('content')
 <div class="container-fluid">

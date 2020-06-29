@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-{{ trans('Edit Email Template') }}
+{{ trans('global.edit') }} {{ trans('global.email_template.title_singular') }}
 @endsection
 @section('content')
 <div class="container-fluid">

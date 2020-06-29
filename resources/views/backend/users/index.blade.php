@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 @section('page-header')
-    {{ trans('User Management') }}
+    {{ trans('global.user_management') }}
 @endsection
 @section('content')
 @include('flash::message')
@@ -9,7 +9,7 @@
      <div class="card-header">
         <div class="card-tools">
           @can('user_create')
-          <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>Add New User</a>
+          <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm"><i class="mr-1 fas fa-plus"></i>{{ trans('global.add') }} {{ trans('global.user.title_singular') }}</a>
           @endcan
         </div>
      </div>
@@ -31,10 +31,10 @@
                                 <th>{{ trans('global.user.fields.email') }}</th>
                                 <th>{{ trans('global.user.fields.email_verified_at') }}</th>
                                 <th>{{ trans('global.user.fields.roles') }}</th>
-                                <th>{{ trans('Status') }}
-                                <th>{{ trans('Created At') }}</th>
-                                <th>{{ trans('Updated At') }}</th>
-                                <th>{{ trans('Actions') }}</th>
+                                <th>{{ trans('global.status') }}
+                                <th>{{ trans('global.created_at') }}</th>
+                                <th>{{ trans('global.updated_at') }}</th>
+                                <th>{{ trans('global.actions') }}</th>
                             </tr>
                         </thead>
                         <thead>
@@ -44,7 +44,7 @@
                             <th></th>
                             <th>
                               <select class="form-control select2 select-filter" name="roles" data-column="4">
-                                <option value="All">All</option>
+                                <option value="All">{{ trans('global.all') }}</option>
                                 @foreach ($roles as $roleKey => $roleVal)
                                   <option value="{{ $roleVal }}">{{ $roleVal }}</option>
                                 @endforeach
@@ -52,10 +52,9 @@
                             </th>
                             <th>
                               <select class="form-control select2 select-filter" name="status" data-column="5">
-                                  <option value="All">All</option>
-                                  <option value="Active">Active</option>
-                                  <option value="InActive">InActive</option>
-
+                                <option value="All">{{ trans('global.all')}}</option>
+                                <option value="1">{{ trans('global.active')}}</option>
+                                <option value="0">{{ trans('global.inactive')}}</option>
                               </select>
                             </th>
                             <th>
@@ -167,19 +166,19 @@ $('.select-filter' ).on('change',function () {
           var delId = jQuery(this).attr('data');
           var deleteUrl = window.origin+`/admin/users/${delId}/delete`;
           Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to delete this!",
+            title: '{{ trans("global.areYouSure")}}',
+            text: '{{ trans("global.youWontbeAbletoDelete") }}',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: "{{ trans('global.yesDeleteIt') }}"
           }).then((result) => {
             if (result.value) {
               window.location.href = deleteUrl;
               Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                '{{ trans("global.deleted") }}',
+                '{{ trans("global.data_has_been_deleted") }}',
                 'success'
               )
             }
@@ -202,12 +201,12 @@ $('.select-filter' ).on('change',function () {
                     if(dataResult=="success"){
                         $('#country_table').DataTable().ajax.reload();
                         Swal.fire(
-                        'Done!',
-                        'Status has been updated successfully.',
+                        '{{ trans("global.done") }}',
+                        '{{ trans("global.status_updated_success") }}',
                         'success'
                         );
                     }else{
-                        swal("Error!", "Something Went Wrong!", "error");
+                        swal("{{ trans('global.error') }}", "{{ trans('global.something_Went_wrong') }}", "error");
                     }
                 }
             });
