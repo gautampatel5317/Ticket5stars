@@ -144,7 +144,7 @@
                 </li>
                 @endcan
 
-                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptionname*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptiontype*') ? 'menu-open' : '' }}" style="cursor: pointer;">
+                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptionname*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptiontype*') ? 'menu-open' : '' }} {{ request()->is('admin/interest*') ? 'menu-open' : '' }}" style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -199,6 +199,14 @@
                                 <a href="{{ route("admin.subscriptiontype.index") }}" class="nav-link {{ request()->is('admin/subscriptiontype') || request()->is('admin/subscriptiontype/*') ? 'active' : '' }}">
                                     <i class="fa fa-envelope"></i>
                                     <p><span>{{ trans('global.subscriptiontype.title') }}</span></p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('interest_access')
+                            <li class="nav-item">
+                                <a href="{{ route("admin.interest.index") }}" class="nav-link {{ request()->is('admin/interest') || request()->is('admin/interest/*') ? 'active' : '' }}">
+                                    <i class="fab fa-pinterest"></i>
+                                    <p><span>{{ trans('global.interest.title') }}</span></p>
                                 </a>
                             </li>
                         @endcan

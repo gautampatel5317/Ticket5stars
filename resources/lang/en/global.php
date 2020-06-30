@@ -839,4 +839,12 @@ return [
 			'type'             => 'Type',
 		],
 	],
+	'interest_management' => 'Interest Management',
+	'interest'            => [
+		'title'          => 'Interest Management',
+		'title_singular' => 'Interest Management',
+		'fields'         => [
+			'name'          => 'Interest',
+		],
+	],
 ];
