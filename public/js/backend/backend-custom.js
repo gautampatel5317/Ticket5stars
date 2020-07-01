@@ -4402,5 +4402,24 @@ SubscriptionType: function(event) {
         });
         Backend.Validate.$validator = $validator;
     },
+    Settings: function(event) {
+        var Rules = Backend.Validate.init;
+        var $validator = $(".form-validate-jquery").validate({
+            errorClass: Rules.errorClass,
+            highlight: Rules.highlight,
+            unhighlight: Rules.unhighlight,
+            errorPlacement: Rules.errorPlacement,
+            rules: {
+                vali: "required",
+                logo: {extension: "jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF"},
+                favicon: {extension: "jpg|jpeg|png|gif|ico|JPG|JPEG|PNG|GIF|ICO"},
+            },
+            messages: {
+                logo:{'extension':'Only gif, jpg, jpeg, png are allowed.'}, 
+                favicon:{'extension':'Only gif, jpg, jpeg, png, ico are allowed.'}, 
+            }
+        });
+    Backend.Validate.$validator = $validator;
+    },
   }
 }

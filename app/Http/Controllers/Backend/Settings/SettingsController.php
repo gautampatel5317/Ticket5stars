@@ -5,6 +5,8 @@ use App\Http\Requests\Backend\Settings\ManageSettingsRequest;
 use App\Http\Requests\Backend\Settings\UpdateSettingsRequest;
 use App\Models\Settings\Setting;
 use App\Repositories\Backend\Settings\SettingsRepository;
+use Illuminate\Http\Request;
+
 /**
  * Class SettingsController.
  */
@@ -32,8 +34,8 @@ class SettingsController extends Controller {
 	 *
 	 * @return \App\Http\Responses\RedirectResponse
 	 */
-	public function update(Setting $setting, UpdateSettingsRequest $request) {
-		$this->settings->update($setting, $request->except(['_token', '_method']));
+	public function update(Setting $setting, Request $request) {
+        $this->settings->update($setting, $request->except(['_token', '_method']));
 		flash(trans('alerts.setting_edit_message'))->success()->important();
 		return redirect()->route('admin.settings.edit', $setting->id);
 	}

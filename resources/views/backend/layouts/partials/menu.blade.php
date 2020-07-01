@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
     <a href="#" class="brand-link text-center" style="height: 90px;">
-        <img style="width: 100%;height:100%;" src="{{ \URL::to('images/site_logos.png') }}" alt="{{ trans('global.site_title') }}" class="brand-image">
-        <span class="brand-text font-weight-light"><img style="width: 156px;height:86px;" src="{{ \URL::to('images/site_logos.png') }}" alt="{{ trans('global.site_title') }}"></span>
+        <img style="width: 100%;height:100%;" src="{{ $settings['logo'] }}" alt="{{ trans('global.site_title') }}" class="brand-image">
+        <span class="brand-text font-weight-light"><img style="width: 156px;height:86px;" src="{{ $settings['logo'] }}" alt="{{ trans('global.site_title') }}"></span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -110,7 +110,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.settings.update',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
+                    <a href="{{ route('admin.settings.edit',[1]) }}" class="nav-link {{ request()->is('admin/settings/1/edit') ? 'active' : '' }}">
                         <p>
                             <i class="fas fa-cogs"></i>
                             <span>{{ trans('global.settings') }}</span>

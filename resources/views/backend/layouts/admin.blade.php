@@ -12,6 +12,9 @@
         @yield('styles')
     </head>
     <body class="sidebar-mini sidebar-open" style="height: auto;">
+    @php
+        $settings = getSettings();
+    @endphp
         <div class="wrapper">
             <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
                 <!-- Left navbar links -->
@@ -54,7 +57,7 @@
                 <!-- /.content -->
             </div>
             <footer class="main-footer">
-                <strong> &copy;</strong> {{ trans('global.allRightsReserved') }}
+                <strong>{{ $settings['footer_text'] }}</strong> {{ $settings['copyright_text'] }}
             </footer>
             <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}

@@ -1,6 +1,7 @@
 <?php
 use App\Exceptions\GeneralException;
 use App\Http\Utilities\SendEmail;
+use App\Models\Settings\Setting;
 
 /*
  * Global helpers file with misc functions.
@@ -60,6 +61,20 @@ if (!function_exists('includeRouteFiles')) {
 				throw new GeneralException('Invalid input given.option array shold contains data and email_template_type');
 			}
 		}
-	}
+    }
+    /**
+     * Get setting data
+     */
+    function getSettings(){
+        $settingData = Setting::all();
+        $settingData = $settingData[0];
+        if(!empty($settingData['logo'])){
+            $settingData['logo'] = Storage::disk('public')->url('images/settings/' . $settingData['logo']);
+        }
+        if(!empty($settingData['favicon'])){
+            $settingData['favicon'] = Storage::disk('public')->url('images/settings/' . $settingData['favicon']);
+        }
+        return $settingData;
+    }
 
 }
