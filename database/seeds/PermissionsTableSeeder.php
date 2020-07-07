@@ -371,60 +371,90 @@ class PermissionsTableSeeder extends Seeder {
 			],
 			[
 				'id'         => '60',
-				'title'      => 'subscriptionname_create',
+				'title'      => 'interest_create',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '61',
-				'title'      => 'subscriptionname_edit',
+				'title'      => 'interest_edit',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '62',
-				'title'      => 'subscriptionname_access',
+				'title'      => 'interest_access',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '63',
-				'title'      => 'subscriptionname_show',
+				'title'      => 'interest_show',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
-				'id'         => '64',
-				'title'      => 'subscriptionname_delete',
+				'id' 		 => '64',
+				'title'      => 'interest_delete',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '65',
-				'title'      => 'subscriptiontype_create',
+				'title'      => 'subscriptionname_create',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '66',
-				'title'      => 'subscriptiontype_edit',
+				'title'      => 'subscriptionname_edit',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '67',
-				'title'      => 'subscriptiontype_access',
+				'title'      => 'subscriptionname_access',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '68',
-				'title'      => 'subscriptiontype_show',
+				'title'      => 'subscriptionname_show',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
 				'id'         => '69',
+				'title'      => 'subscriptionname_delete',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '70',
+				'title'      => 'subscriptiontype_create',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '71',
+				'title'      => 'subscriptiontype_edit',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '72',
+				'title'      => 'subscriptiontype_access',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '73',
+				'title'      => 'subscriptiontype_show',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'id'         => '74',
 				'title'      => 'subscriptiontype_delete',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
