@@ -136,7 +136,7 @@
                 </li>
                 @endcan
 
-                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptionname*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptiontype*') ? 'menu-open' : '' }}  {{ request()->is('admin/experience*') ? 'menu-open' : '' }}"  style="cursor: pointer;">
+                <li class="nav-item has-treeview {{ request()->is('admin/country*') ? 'menu-open' : '' }} {{ request()->is('admin/state*') ? 'menu-open' : '' }} {{ request()->is('admin/city*') ? 'menu-open' : '' }} {{ request()->is('admin/ingredient*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptionname*') ? 'menu-open' : '' }} {{ request()->is('admin/subscriptiontype*') ? 'menu-open' : '' }}  {{ request()->is('admin/experience*') ? 'menu-open' : '' }} {{ request()->is('admin/pos*') ? 'menu-open' : '' }}"  style="cursor: pointer;">
                     <a class="nav-link nav-dropdown-toggle">
                         <i class="fas fa-users">
                         </i>
@@ -199,6 +199,14 @@
                                 <a href="{{ route("admin.experience.index") }}" class="nav-link {{ request()->is('admin/experience') || request()->is('admin/experience/*') ? 'active' : '' }}">
                                     <i class="fas fa-level-up-alt"></i>
                                     <p><span>{{ trans('global.experience.title') }}</span></p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('pos_access')
+                            <li class="nav-item">
+                                <a href="{{ route("admin.pos.index") }}" class="nav-link {{ request()->is('admin/pos') || request()->is('admin/pos/*') ? 'active' : '' }}">
+                                    <i class="fas fa-hand-point-up"></i>
+                                    <p><span>{{ trans('global.pos.title') }}</span></p>
                                 </a>
                             </li>
                         @endcan

@@ -761,10 +761,10 @@ return [
 			'deleted_at_helper'  => '',
 		],
     ],
-    'cms_management'   => 'Page Management',
+    'cms_management'   => 'ページ管理',
 	'cms'               => [
-		'title'            => 'Pages',
-		'title_singular'   => 'Page',
+		'title'            => 'ページ',
+		'title_singular'   => 'ページ',
 		'fields'           => [
 			'cannonical_link' => 'Cannonical Link',
 			'seo_title'       => 'SEO Title',
@@ -887,9 +887,4 @@ return [
         'terms' => 'Terms',
         'disclaimer'    => 'Disclaimer',
     ],
-    'pos_management' => 'POS Used Management',
-	'pos'            => [
-		'title'          => 'POS',
-		'title_singular' => 'POS',
-	],
 ];

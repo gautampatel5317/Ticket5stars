@@ -37,6 +37,6 @@ return [
     'city_edit_message' => 'The City has been updated successfully!',
     'ingredient_add_message'  => 'The Ingredient Warnings has been created successfully!',
     'ingredient_edit_message'   => 'The Ingredient Warnings has been updated successfully!',
-    
-
+    'pos_add_message'    => 'The POS has been created successfully!',
+    'pos_edit_message' => 'The POS has been updated successfully!',
 ];
