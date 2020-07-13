@@ -55,7 +55,7 @@
         </p>
     </div>
     <div class="card-footer text-center">
-        <a href="{{ route('admin.users.index') }}" class="btn btn-danger ml-2">Cancel</a>
+        <a href="{{ route('admin.users.index') }}" class="btn btn-danger ml-2">{{trans('global.cancel')}}</a>
           <input class="btn btn-primary" type="submit" value="{{ isset($user)  ?  trans('global.update') :trans('global.save') }}">
 
     </div>
